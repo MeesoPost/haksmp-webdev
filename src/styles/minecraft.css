@@ -1,67 +1,17 @@
-/* Pixel border effect */
-.pixel-border {
-  clip-path: polygon(
-    0 var(--pixel-size),
-    var(--pixel-size) var(--pixel-size),
-    var(--pixel-size) 0,
-    calc(100% - var(--pixel-size)) 0,
-    calc(100% - var(--pixel-size)) var(--pixel-size),
-    100% var(--pixel-size),
-    100% calc(100% - var(--pixel-size)),
-    calc(100% - var(--pixel-size)) calc(100% - var(--pixel-size)),
-    calc(100% - var(--pixel-size)) 100%,
-    var(--pixel-size) 100%,
-    var(--pixel-size) calc(100% - var(--pixel-size)),
-    0 calc(100% - var(--pixel-size))
-  );
-}
-
-/* Pixel shadows - no blur! */
-.pixel-shadow {
-  box-shadow: 4px 0 0 var(--root-color--secondary-dark),
-    0 4px 0 var(--root-color--secondary-dark),
-    4px 4px 0 var(--root-color--secondary-dark);
-}
-
-.pixel-shadow-lg {
-  box-shadow: 6px 0 0 var(--root-color--secondary-darkest),
-    0 6px 0 var(--root-color--secondary-darkest),
-    6px 6px 0 var(--root-color--secondary-darkest);
-}
-
-.pixel-shadow-support {
-  box-shadow: 4px 0 0 var(--root-color--support-dark),
-    0 4px 0 var(--root-color--support-dark),
-    4px 4px 0 var(--root-color--support-dark);
-}
-
 /* Minecraft button */
 .btn-minecraft {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
-  background: var(--root-color--secondary);
-  color: var(--root-color--white);
+  background: hsl(80, 91%, 27%);
+  color: white;
   border: none;
+  border-radius: 4px;
   font-family: var(--root-font-family--primary);
   font-size: 1rem;
   font-weight: var(--root-font-weight--bold);
   cursor: pointer;
-  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
   text-align: center;
-  clip-path: polygon(
-    0 2px,
-    2px 2px,
-    2px 0,
-    calc(100% - 2px) 0,
-    calc(100% - 2px) 2px,
-    100% 2px,
-    100% calc(100% - 2px),
-    calc(100% - 2px) calc(100% - 2px),
-    calc(100% - 2px) 100%,
-    2px 100%,
-    2px calc(100% - 2px),
-    0 calc(100% - 2px)
-  );
+  text-decoration: none;
 }
 
 .btn-minecraft--large {
@@ -69,35 +19,15 @@
   font-size: 1.25rem;
 }
 
-@media (hover: hover) {
-  .btn-minecraft:hover {
-    transform: translate(-2px, -2px);
-    background: var(--root-color--secondary-light);
-    box-shadow: 4px 0 0 var(--root-color--secondary-dark),
-      0 4px 0 var(--root-color--secondary-dark),
-      4px 4px 0 var(--root-color--secondary-dark);
-  }
+.btn-minecraft:hover {
+  background: hsl(80, 91%, 17%) !important;
 }
 
 .btn-minecraft:active {
-  transform: translate(1px, 1px);
-  box-shadow: 2px 0 0 var(--root-color--secondary-darkest),
-    0 2px 0 var(--root-color--secondary-darkest),
-    2px 2px 0 var(--root-color--secondary-darkest);
+  background: hsl(80, 91%, 7%) !important;
 }
 
 .btn-minecraft:focus-visible {
-  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline: var(--focus-outline-width) dotted var(--focus-outline-color);
   outline-offset: var(--focus-outline-offset);
-}
-
-/* Pixel grid background */
-.pixel-grid {
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.02) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 8px 8px;
-  background-position: center center;
 }
