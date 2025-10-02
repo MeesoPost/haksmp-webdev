@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FlipClock from '../components/FlipClock.astro';
+---
+
+<Layout title="HAK - Test Pagina">
+  <section class="test-hero">
+    <div class="container">
+      <h1>HAK Minecraft Server</h1>
+      <p class="subtitle">Seizoen 4: Het Landen Systeem</p>
+      
+      <FlipClock />
+      
+      <button class="btn-minecraft btn-minecraft--large">
+        Join Discord 💬
+      </button>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .test-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      180deg,
+      var(--root-color-background--primary-dark) 0%,
+      var(--root-color-background--primary-darkest) 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Pixel grid overlay */
+  .test-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 8px 8px;
+    background-position: center center;
+    pointer-events: none;
+  }
+
+  .test-hero .container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .test-hero h1 {
+    color: var(--root-color--grey);
+    margin-bottom: var(--space-sm);
+    text-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+  }
+
+  .subtitle {
+    font-family: var(--root-font-family--primary);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    color: var(--root-color--support);
+    margin-bottom: var(--space-xl);
+  }
+
+  .btn-minecraft {
+    margin-top: var(--space-lg);
+  }
+</style>

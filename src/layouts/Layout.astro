@@ -1,0 +1,48 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "HAK - Seizoen 4 | Het Landen Systeem",
+  description = "Join HAK Seizoen 4: Het Landen Systeem. Bouw je eigen koninkrijk met vrienden, unlock territorium, en creëer epische avonturen!"
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content={description}>
+  <title>{title}</title>
+
+  <!-- Font -->
+  <link rel="preload" href="/fonts/Minecraft-Seven_v2.woff2" as="font" type="font/woff2" crossorigin>
+  
+  <style is:inline>
+    @font-face {
+      font-family: 'Monocraft';
+      src: url('/fonts/Minecraft-Seven_v2.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Spring naar content</a>
+  
+  <main id="main-content">
+    <slot />
+  </main>
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/reset.css';
+  @import '../styles/global.css';
+  @import '../styles/minecraft.css';
+  @import '../styles/animations.css';
+</style>

@@ -1,0 +1,330 @@
+:root {
+  /* Color transformations */
+  --lightTransformation: 0% 0% 20%;
+  --lightestTransformation: 0% 0% 40%;
+  --darkTransformation: 0% 0% -10%;
+  --darkestTransformation: 0% 0% -20%;
+
+  /* Primary colors - Lapis Lazuli #4682B4 */
+  --root-color--primary: hsl(206, 60%, 33%);
+  --root-color--primary-light: hsl(
+    calc(206 + 0%),
+    calc(60% + 0%),
+    calc(33% + 20%)
+  );
+  --root-color--primary-lightest: hsl(
+    calc(206 + 0%),
+    calc(60% + 0%),
+    calc(33% + 40%)
+  );
+  --root-color--primary-dark: hsl(
+    calc(206 + 0%),
+    calc(60% + 0%),
+    calc(33% - 10%)
+  );
+  --root-color--primary-darkest: hsl(
+    calc(206 + 0%),
+    calc(60% + 0%),
+    calc(33% - 20%)
+  );
+
+  /* Secondary colors - Avocado #569503 */
+  --root-color--secondary: hsl(80, 91%, 27%);
+  --root-color--secondary-light: hsl(
+    calc(80 + 0%),
+    calc(91% + 0%),
+    calc(27% + 20%)
+  );
+  --root-color--secondary-lightest: hsl(
+    calc(80 + 0%),
+    calc(91% + 0%),
+    calc(27% + 40%)
+  );
+  --root-color--secondary-dark: hsl(
+    calc(80 + 0%),
+    calc(91% + 0%),
+    calc(27% - 10%)
+  );
+  --root-color--secondary-darkest: hsl(
+    calc(80 + 0%),
+    calc(91% + 0%),
+    calc(27% - 20%)
+  );
+
+  /* Support colors - Carrot Orange #E87A2F */
+  --root-color--support: hsl(29, 89%, 61%);
+  --root-color--support-light: hsl(
+    calc(29 + 0%),
+    calc(89% + 0%),
+    calc(61% + 20%)
+  );
+  --root-color--support-lightest: hsl(
+    calc(29 + 0%),
+    calc(89% + 0%),
+    calc(61% + 40%)
+  );
+  --root-color--support-dark: hsl(
+    calc(29 + 0%),
+    calc(89% + 0%),
+    calc(61% - 10%)
+  );
+  --root-color--support-darkest: hsl(
+    calc(29 + 0%),
+    calc(89% + 0%),
+    calc(61% - 20%)
+  );
+
+  /* Contrast colors - Flame #D14D2B */
+  --root-color--contrast: hsl(15, 82%, 51%);
+  --root-color--contrast-light: hsl(
+    calc(15 + 0%),
+    calc(82% + 0%),
+    calc(51% + 20%)
+  );
+  --root-color--contrast-lightest: hsl(
+    calc(15 + 0%),
+    calc(82% + 0%),
+    calc(51% + 40%)
+  );
+  --root-color--contrast-dark: hsl(
+    calc(15 + 0%),
+    calc(82% + 0%),
+    calc(51% - 10%)
+  );
+  --root-color--contrast-darkest: hsl(
+    calc(15 + 0%),
+    calc(82% + 0%),
+    calc(51% - 20%)
+  );
+
+  /* Grey colors - Isabelline #F0F0ED */
+  --root-color--grey: hsl(48, 16%, 94%);
+  --root-color--grey-light: hsl(calc(48 + 0%), calc(16% + 0%), calc(94% + 5%));
+  --root-color--grey-dark: hsl(calc(48 + 0%), calc(16% + 0%), calc(94% - 10%));
+  --root-color--grey-darkest: hsl(
+    calc(48 + 0%),
+    calc(16% + 0%),
+    calc(94% - 30%)
+  );
+
+  /* White & footer */
+  --root-color--white: hsl(0, 0%, 100%);
+  --root-color--footer: var(--root-color--primary);
+
+  /* Background colors */
+  --root-color-background--transparent: transparent;
+  --root-color-background--primary: var(--root-color--primary);
+  --root-color-background--primary-light: var(--root-color--primary-light);
+  --root-color-background--primary-dark: var(--root-color--primary-dark);
+  --root-color-background--primary-darkest: var(--root-color--primary-darkest);
+  --root-color-background--secondary: var(--root-color--secondary);
+  --root-color-background--support: var(--root-color--support-lightest);
+  --root-color-background--grey: var(--root-color--grey);
+  --root-color-background--dark: hsl(210, 11%, 8%);
+  --root-color-background--dark-secondary: hsl(210, 11%, 12%);
+  --root-color-background--dark: hsl(210, 11%, 8%);
+  --root-color-background--dark-secondary: hsl(210, 11%, 12%);
+
+  /* Text colors */
+  --root-color-text: hsl(0, 0%, 90%);
+  --root-color-text-light: var(--root-color--grey);
+  --root-color-text-dark: hsl(210, 11%, 15%);
+  --root-color-text-link: var(--root-color--primary-light);
+  --root-color-text-link--hover: var(--root-color--primary-lightest);
+  --root-color-text-placeholder: hsl(0, 0%, 60%);
+
+  /* Border colors */
+  --root-color-border: var(--root-color--grey-dark);
+  --root-color-border--primary: var(--root-color--primary);
+  --root-color-border--secondary: var(--root-color--secondary);
+  --root-color-border--support: var(--root-color--support);
+
+  /* Interaction colors */
+  --root-color-interaction--hover: var(--root-color--secondary-light);
+  --root-color-interaction--active: var(--root-color--secondary-dark);
+  --root-color-interaction--focus: var(--root-color--support);
+
+  /* Font variables */
+  --root-font-size: 1rem;
+  --root-font-family--primary: "Monocraft", "Courier New", monospace;
+  --root-font-family--secondary: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --root-font-weight--light: 400;
+  --root-font-weight--normal: 400;
+  --root-font-weight--semi-bold: 700;
+  --root-font-weight--bold: 700;
+  --root-line-height: 1.6;
+
+  /* Heading colors */
+  --root-heading-1-color: var(--root-color--grey);
+  --root-heading-2-color: var(--root-color--grey);
+  --root-heading-3-color: var(--root-color-text);
+  --root-heading-4-color: var(--root-color-text);
+
+  /* Heading families */
+  --root-heading-1-family: var(--root-font-family--primary);
+  --root-heading-2-family: var(--root-font-family--primary);
+  --root-heading-3-family: var(--root-font-family--primary);
+  --root-heading-4-family: var(--root-font-family--secondary);
+
+  /* Heading sizes */
+  --root-heading-1-size: clamp(2.5rem, 6vw, 4.5rem);
+  --root-heading-2-size: clamp(1.75rem, 4vw, 3rem);
+  --root-heading-3-size: clamp(1.25rem, 3vw, 1.875rem);
+  --root-heading-4-size: 1.125rem;
+
+  /* Heading weights */
+  --root-heading-1-weight: var(--root-font-weight--bold);
+  --root-heading-2-weight: var(--root-font-weight--bold);
+  --root-heading-3-weight: var(--root-font-weight--bold);
+  --root-heading-4-weight: var(--root-font-weight--semi-bold);
+
+  /* Heading line heights */
+  --root-heading-1-line-height: 1.1;
+  --root-heading-2-line-height: 1.2;
+  --root-heading-3-line-height: 1.3;
+  --root-heading-4-line-height: 1.4;
+
+  /* Spacing - 8px grid */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 6rem;
+  --space-xxl: 8rem;
+
+  /* Container */
+  --container-max: 1200px;
+  --container-padding: var(--space-md);
+
+  /* Pixel effects */
+  --pixel-size: 4px;
+
+  /* Focus state */
+  --focus-outline-width: 3px;
+  --focus-outline-color: var(--root-color--support);
+  --focus-outline-offset: 2px;
+}
+
+/* Body styling */
+body {
+  font-family: var(--root-font-family--secondary);
+  font-size: var(--root-font-size);
+  line-height: var(--root-line-height);
+  color: var(--root-color-text);
+  background: var(--root-color-background--dark);
+}
+
+/* Headings */
+h1 {
+  color: var(--root-heading-1-color);
+  font-family: var(--root-heading-1-family);
+  font-size: var(--root-heading-1-size);
+  font-weight: var(--root-heading-1-weight);
+  line-height: var(--root-heading-1-line-height);
+}
+
+h2 {
+  color: var(--root-heading-2-color);
+  font-family: var(--root-heading-2-family);
+  font-size: var(--root-heading-2-size);
+  font-weight: var(--root-heading-2-weight);
+  line-height: var(--root-heading-2-line-height);
+}
+
+h3 {
+  color: var(--root-heading-3-color);
+  font-family: var(--root-heading-3-family);
+  font-size: var(--root-heading-3-size);
+  font-weight: var(--root-heading-3-weight);
+  line-height: var(--root-heading-3-line-height);
+}
+
+h4 {
+  color: var(--root-heading-4-color);
+  font-family: var(--root-heading-4-family);
+  font-size: var(--root-heading-4-size);
+  font-weight: var(--root-heading-4-weight);
+  line-height: var(--root-heading-4-line-height);
+}
+
+/* Links */
+a {
+  color: var(--root-color-text-link);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--root-color-text-link--hover);
+}
+
+/* Container */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  width: 100%;
+}
+
+/* Skip link - Accessibility */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  z-index: 100;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--root-color--secondary);
+  color: var(--root-color--white);
+  text-decoration: none;
+  font-weight: var(--root-font-weight--bold);
+  font-family: var(--root-font-family--primary);
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Focus states */
+:focus-visible {
+  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline-offset: var(--focus-outline-offset);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  :root {
+    --root-color-border: currentColor;
+  }
+}
+
+/* Responsive typography */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 3rem;
+    --root-font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --space-xl: 8rem;
+  }
+}
