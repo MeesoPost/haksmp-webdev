@@ -1,0 +1,169 @@
+:root {
+  /* Official Discord Brand Colors */
+  --discord-blurple: #5865f2;
+  --discord-light-blurple: #e0e3ff;
+  --discord-dark-blurple: #19175c;
+  --discord-black: #000000;
+  --discord-dark: #1f1f1f;
+  --discord-white: #ffffff;
+  --discord-green: #35ed7e;
+  --discord-light-green: #c8ffef;
+  --discord-dark-green: #002920;
+  --discord-pink: #ff4cd2;
+  --discord-light-pink: #f5c9ff;
+  --discord-dark-pink: #381f2c;
+
+  /* GOV.UK Style Variables (using Discord colors) */
+  --discord-button-shadow: var(--discord-dark-blurple);
+  --discord-button-hover-shadow: var(--discord-dark-blurple);
+  --govuk-shadow: #0b0c0c; /* Classic gov.uk black shadow */
+}
+
+.btn-discord {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 19px 8px 19px; /* GOV.UK style asymmetric padding */
+  background: var(--discord-blurple);
+  color: var(--discord-white);
+  border: 3px solid var(--discord-blurple); /* GOV.UK thick border */
+  border-radius: 0;
+  font-family: var(--root-font-family--primary), "GDS Transport", Arial,
+    sans-serif;
+  font-size: 19px;
+  font-weight: 600; /* GOV.UK weight */
+  line-height: 1.1875; /* GOV.UK line height */
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  /* GOV.UK characteristic thick black shadow */
+  box-shadow: 0 4px 0 var(--govuk-shadow);
+  vertical-align: top;
+  position: relative;
+  transition: all 0.1s ease; /* GOV.UK faster transition */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* GOV.UK focus preparation */
+  outline: 0;
+}
+
+.btn-discord--large {
+  padding: 16px 24px 12px 24px; /* GOV.UK asymmetric padding */
+  font-size: 24px;
+  gap: 0.625rem;
+  box-shadow: 0 6px 0 var(--govuk-shadow); /* Thicker GOV.UK shadow */
+}
+
+.btn-discord--small {
+  padding: 8px 15px 5px 15px; /* GOV.UK asymmetric padding */
+  font-size: 16px;
+  gap: 0.375rem;
+  box-shadow: 0 2px 0 var(--govuk-shadow); /* GOV.UK shadow */
+}
+
+.btn-discord:hover {
+  background: var(--discord-blurple);
+  filter: brightness(1.05); /* Subtle brightness change */
+  /* GOV.UK hover: move up 2px, reduce shadow by 2px */
+  transform: translateY(-2px);
+  box-shadow: 0 2px 0 var(--govuk-shadow);
+}
+
+.btn-discord:active {
+  background: var(--discord-dark-blurple);
+  filter: none;
+  /* GOV.UK active: pressed down fully */
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--govuk-shadow);
+  /* Pressed state feedback */
+  outline: 0;
+}
+
+/* GOV.UK Focus State */
+.btn-discord:focus {
+  outline: 3px solid #ffdd00; /* GOV.UK yellow focus */
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px #0b0c0c, 0 4px 0 var(--govuk-shadow);
+}
+
+.btn-discord:disabled {
+  background: var(--discord-dark);
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+  filter: none;
+  box-shadow: 0 2px 0 rgba(31, 31, 31, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transform: none;
+}
+
+.btn-discord:disabled:hover {
+  background: var(--discord-dark);
+  filter: none;
+  transform: none;
+  box-shadow: 0 2px 0 rgba(31, 31, 31, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.discord-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.btn-discord--large .discord-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.btn-discord--small .discord-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.btn-discord--secondary {
+  background: var(--discord-dark);
+  color: var(--discord-white);
+  box-shadow: 0 2px 0 rgba(31, 31, 31, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-discord--secondary:hover {
+  background: var(--discord-dark);
+  filter: brightness(1.2);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 0 rgba(31, 31, 31, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 4px 12px rgba(31, 31, 31, 0.3);
+}
+
+.btn-discord--secondary:active {
+  background: var(--discord-black);
+  filter: none;
+  transform: translateY(2px);
+  box-shadow: 0 0 0 var(--discord-black), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn-discord--outline {
+  background: transparent;
+  color: var(--discord-blurple);
+  border: 2px solid var(--discord-blurple);
+  box-shadow: none;
+}
+
+.btn-discord--outline:hover {
+  background: var(--discord-blurple);
+  color: var(--discord-white);
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(88, 101, 242, 0.3);
+}
+
+.btn-discord--outline:active {
+  background: var(--discord-dark-blurple);
+  color: var(--discord-white);
+  border-color: var(--discord-dark-blurple);
+  filter: none;
+  transform: translateY(0);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
