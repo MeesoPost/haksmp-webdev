@@ -89,3 +89,53 @@ html {
 .slide-in-right {
   animation: slideInRight 0.5s ease-out;
 }
+
+/* Grid building animation */
+@keyframes buildGridHorizontal {
+  0% {
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes buildGridVertical {
+  0% {
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: center top;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Smooth grid fade-in for browsers that don't support advanced animations */
+@keyframes gridFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Grid animation classes */
+.grid-build-horizontal {
+  animation: buildGridHorizontal 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.3s both;
+}
+
+.grid-build-vertical {
+  animation: buildGridVertical 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) 0.8s both;
+}
