@@ -9,118 +9,83 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
   
   <div class="flip-clock__cards" id="flip-clock-cards">
     <!-- Dagen -->
-    <div class="flip-card" data-unit="days">
-      <div class="flip-card__container">
-        <!-- Static display -->
-        <div class="flip-card__static">
-          <div class="flip-card__top">
-            <span class="flip-card__number" data-value="top-days">60</span>
-          </div>
-          <div class="flip-card__bottom">
-            <span class="flip-card__number" data-value="bottom-days">60</span>
-          </div>
-        </div>
-        
-        <!-- Flip animation layer -->
-        <div class="flip-card__flip-wrapper">
-          <div class="flip-card__flipper">
-            <div class="flip-card__flipper-front">
-              <span class="flip-card__number" data-value="flip-front-days">60</span>
-            </div>
-            <div class="flip-card__flipper-back">
-              <span class="flip-card__number" data-value="flip-back-days">60</span>
-            </div>
-          </div>
+    <div class="flip-unit" data-unit="days">
+      <div class="upper-card">
+        <span class="number" data-current="60">60</span>
+        <div class="flip-card">
+          <span class="number" data-next="60">60</span>
         </div>
       </div>
-      <div class="flip-card__label">DAGEN</div>
+      <div class="lower-card">
+        <span class="number" data-current="60">60</span>
+        <div class="flip-card">
+          <span class="number" data-next="60">60</span>
+        </div>
+      </div>
+      <div class="label">DAGEN</div>
     </div>
 
-    <div class="flip-clock__separator">:</div>
+    <div class="separator">:</div>
 
     <!-- Uren -->
-    <div class="flip-card" data-unit="hours">
-      <div class="flip-card__container">
-        <div class="flip-card__static">
-          <div class="flip-card__top">
-            <span class="flip-card__number" data-value="top-hours">04</span>
-          </div>
-          <div class="flip-card__bottom">
-            <span class="flip-card__number" data-value="bottom-hours">04</span>
-          </div>
-        </div>
-        <div class="flip-card__flip-wrapper">
-          <div class="flip-card__flipper">
-            <div class="flip-card__flipper-front">
-              <span class="flip-card__number" data-value="flip-front-hours">04</span>
-            </div>
-            <div class="flip-card__flipper-back">
-              <span class="flip-card__number" data-value="flip-back-hours">04</span>
-            </div>
-          </div>
+    <div class="flip-unit" data-unit="hours">
+      <div class="upper-card">
+        <span class="number" data-current="04">04</span>
+        <div class="flip-card">
+          <span class="number" data-next="04">04</span>
         </div>
       </div>
-      <div class="flip-card__label">UREN</div>
+      <div class="lower-card">
+        <span class="number" data-current="04">04</span>
+        <div class="flip-card">
+          <span class="number" data-next="04">04</span>
+        </div>
+      </div>
+      <div class="label">UREN</div>
     </div>
 
-    <div class="flip-clock__separator">:</div>
+    <div class="separator">:</div>
 
     <!-- Minuten -->
-    <div class="flip-card" data-unit="minutes">
-      <div class="flip-card__container">
-        <div class="flip-card__static">
-          <div class="flip-card__top">
-            <span class="flip-card__number" data-value="top-minutes">49</span>
-          </div>
-          <div class="flip-card__bottom">
-            <span class="flip-card__number" data-value="bottom-minutes">49</span>
-          </div>
-        </div>
-        <div class="flip-card__flip-wrapper">
-          <div class="flip-card__flipper">
-            <div class="flip-card__flipper-front">
-              <span class="flip-card__number" data-value="flip-front-minutes">49</span>
-            </div>
-            <div class="flip-card__flipper-back">
-              <span class="flip-card__number" data-value="flip-back-minutes">49</span>
-            </div>
-          </div>
+    <div class="flip-unit" data-unit="minutes">
+      <div class="upper-card">
+        <span class="number" data-current="49">49</span>
+        <div class="flip-card">
+          <span class="number" data-next="49">49</span>
         </div>
       </div>
-      <div class="flip-card__label">MINUTEN</div>
+      <div class="lower-card">
+        <span class="number" data-current="49">49</span>
+        <div class="flip-card">
+          <span class="number" data-next="49">49</span>
+        </div>
+      </div>
+      <div class="label">MINUTEN</div>
     </div>
 
-    <div class="flip-clock__separator">:</div>
+    <div class="separator">:</div>
 
     <!-- Seconden -->
-    <div class="flip-card" data-unit="seconds">
-      <div class="flip-card__container">
-        <div class="flip-card__static">
-          <div class="flip-card__top">
-            <span class="flip-card__number" data-value="top-seconds">23</span>
-          </div>
-          <div class="flip-card__bottom">
-            <span class="flip-card__number" data-value="bottom-seconds">23</span>
-          </div>
-        </div>
-        <div class="flip-card__flip-wrapper">
-          <div class="flip-card__flipper">
-            <div class="flip-card__flipper-front">
-              <span class="flip-card__number" data-value="flip-front-seconds">23</span>
-            </div>
-            <div class="flip-card__flipper-back">
-              <span class="flip-card__number" data-value="flip-back-seconds">23</span>
-            </div>
-          </div>
+    <div class="flip-unit" data-unit="seconds">
+      <div class="upper-card">
+        <span class="number" data-current="23">23</span>
+        <div class="flip-card">
+          <span class="number" data-next="23">23</span>
         </div>
       </div>
-      <div class="flip-card__label">SECONDEN</div>
+      <div class="lower-card">
+        <span class="number" data-current="23">23</span>
+        <div class="flip-card">
+          <span class="number" data-next="23">23</span>
+        </div>
+      </div>
+      <div class="label">SECONDEN</div>
     </div>
   </div>
 
   <!-- Live status -->
   <div class="flip-clock__live" id="flip-clock-live" style="display: none;">
-    <span class="flip-clock__live-indicator pulse">●</span>
+    <span class="flip-clock__live-indicator">●</span>
     <span class="flip-clock__live-text">🎉 LIVE NOW!</span>
   </div>
 </div>
@@ -151,157 +116,134 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     justify-content: center;
   }
 
-  .flip-clock__separator {
+  .separator {
     font-family: var(--root-font-family--primary);
     font-size: 3rem;
     color: var(--root-color--support);
     font-weight: var(--root-font-weight--bold);
     line-height: 1;
     margin: 0 var(--space-xs);
-    padding-bottom: 30px;
-    animation: blink 2s ease-in-out infinite;
+    align-self: center;
+    animation: pulse 2s ease-in-out infinite;
   }
 
-  @keyframes blink {
+  @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+    50% { opacity: 0.4; }
   }
 
-  /* Flip card structure */
-  .flip-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .flip-card__container {
+  /* Flip unit container */
+  .flip-unit {
     position: relative;
     width: 100px;
     height: 120px;
-    perspective: 400px;
-    transform-style: preserve-3d;
+    margin: 10px;
+    text-align: center;
   }
 
-  /* Static background layers */
-  .flip-card__static {
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-
-  .flip-card__top,
-  .flip-card__bottom {
+  /* Upper and lower cards */
+  .upper-card,
+  .lower-card {
     position: absolute;
     width: 100%;
     height: 50%;
     overflow: hidden;
     background: var(--root-color--secondary);
-    border: 2px solid var(--root-color--secondary-dark);
   }
 
-  .flip-card__top {
+  .upper-card {
     top: 0;
-    border-bottom-width: 1px;
     border-radius: 8px 8px 0 0;
+    border: 2px solid var(--root-color--secondary-dark);
+    border-bottom-width: 1px;
     background: linear-gradient(to bottom, 
       var(--root-color--secondary), 
       var(--root-color--secondary-dark));
   }
 
-  .flip-card__bottom {
+  .lower-card {
     bottom: 0;
-    border-top-width: 1px;
     border-radius: 0 0 8px 8px;
+    border: 2px solid var(--root-color--secondary-dark);
+    border-top-width: 1px;
     background: linear-gradient(to bottom, 
       var(--root-color--secondary-dark), 
       var(--root-color--secondary-darkest));
-    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
   }
 
-  /* Numbers that fill the cards */
-  .flip-card__number {
+  /* Numbers - the key to making them fill properly */
+  .number {
     position: absolute;
     width: 100%;
+    left: 0;
     font-family: var(--root-font-family--primary);
     font-size: 5rem;
     font-weight: var(--root-font-weight--bold);
     color: var(--root-color--white);
     text-align: center;
-    line-height: 120px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    line-height: 120px; /* Match total height */
   }
 
-  /* Position numbers to be cut in half */
-  .flip-card__top .flip-card__number {
+  /* Upper card shows top half of number */
+  .upper-card .number {
     top: 0;
   }
 
-  .flip-card__bottom .flip-card__number {
-    top: -60px; /* Half the total height to show bottom half of number */
+  /* Lower card shows bottom half of number */
+  .lower-card .number {
+    top: -60px; /* Shift up by half height to show bottom portion */
   }
 
-  /* Flip animation wrapper */
-  .flip-card__flip-wrapper {
+  /* Flip card animations */
+  .flip-card {
     position: absolute;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 50%;
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .flip-card__flipper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transform-origin: bottom;
-  }
-
-  .flip-card__flipper-front,
-  .flip-card__flipper-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    backface-visibility: hidden;
     background: var(--root-color--secondary);
+    overflow: hidden;
+    transform-origin: bottom;
+    transform: rotateX(0deg);
+    opacity: 0;
+  }
+
+  .upper-card .flip-card {
+    border-radius: 8px 8px 0 0;
     border: 2px solid var(--root-color--secondary-dark);
     border-bottom-width: 1px;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .flip-card__flipper-front {
     background: linear-gradient(to bottom, 
       var(--root-color--secondary), 
       var(--root-color--secondary-dark));
+  }
+
+  .lower-card .flip-card {
+    border-radius: 0 0 8px 8px;
+    border: 2px solid var(--root-color--secondary-dark);
+    border-top-width: 1px;
+    background: linear-gradient(to bottom, 
+      var(--root-color--secondary-dark), 
+      var(--root-color--secondary-darkest));
+    transform-origin: top;
+    transform: rotateX(180deg);
+  }
+
+  /* Animation classes */
+  .flip-unit.flipping .upper-card .flip-card {
+    animation: flipUpperCard 0.6s ease-in-out;
+    opacity: 1;
     z-index: 2;
   }
 
-  .flip-card__flipper-back {
-    transform: rotateX(180deg);
-    background: linear-gradient(to bottom, 
-      var(--root-color--secondary), 
-      var(--root-color--secondary-dark));
+  .flip-unit.flipping .lower-card .flip-card {
+    animation: flipLowerCard 0.6s ease-in-out 0.3s;
+    opacity: 1;
+    z-index: 2;
   }
 
-  /* Position flip numbers */
-  .flip-card__flipper-front .flip-card__number,
-  .flip-card__flipper-back .flip-card__number {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    font-size: 5rem;
-    line-height: 120px;
-  }
-
-  /* Flip animation */
-  .flip-card.flipping .flip-card__flipper {
-    animation: flip 0.6s ease-in-out;
-  }
-
-  @keyframes flip {
+  @keyframes flipUpperCard {
     0% {
       transform: rotateX(0deg);
     }
@@ -310,9 +252,21 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     }
   }
 
-  /* Label styling */
-  .flip-card__label {
-    margin-top: var(--space-xs);
+  @keyframes flipLowerCard {
+    0% {
+      transform: rotateX(180deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  /* Label */
+  .label {
+    position: absolute;
+    bottom: -25px;
+    width: 100%;
+    text-align: center;
     font-family: var(--root-font-family--primary);
     font-size: 0.75rem;
     color: var(--root-color--grey);
@@ -344,64 +298,51 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
   .flip-clock__live-indicator {
     font-size: 2rem;
     color: var(--root-color--support);
-    animation: blink 1s ease-in-out infinite;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .flip-clock__container {
+    .flip-unit {
       width: 70px;
       height: 90px;
     }
 
-    .flip-card__number {
+    .number {
       font-size: 3.5rem;
       line-height: 90px;
     }
 
-    .flip-card__bottom .flip-card__number {
+    .lower-card .number {
       top: -45px;
     }
 
-    .flip-card__flipper-front .flip-card__number,
-    .flip-card__flipper-back .flip-card__number {
-      font-size: 3.5rem;
-      line-height: 90px;
-    }
-
-    .flip-clock__separator {
+    .separator {
       font-size: 2rem;
-      padding-bottom: 20px;
     }
 
-    .flip-card__label {
+    .label {
       font-size: 0.625rem;
     }
   }
 
   @media (max-width: 480px) {
-    .flip-clock__separator {
+    .separator {
       display: none;
     }
 
-    .flip-card__container {
+    .flip-unit {
       width: 60px;
       height: 75px;
+      margin: 5px;
     }
 
-    .flip-card__number {
+    .number {
       font-size: 3rem;
       line-height: 75px;
     }
 
-    .flip-card__bottom .flip-card__number {
+    .lower-card .number {
       top: -37.5px;
-    }
-
-    .flip-card__flipper-front .flip-card__number,
-    .flip-card__flipper-back .flip-card__number {
-      font-size: 3rem;
-      line-height: 75px;
     }
   }
 </style>
@@ -420,9 +361,9 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     return num.toString().padStart(2, '0');
   }
 
-  function updateFlipCard(unit, newValue) {
-    const card = document.querySelector(`[data-unit="${unit}"]`);
-    if (!card) return;
+  function updateFlipUnit(unit, newValue) {
+    const flipUnit = document.querySelector(`[data-unit="${unit}"]`);
+    if (!flipUnit) return;
 
     const formattedValue = padNumber(newValue);
     const oldValue = previousValues[unit] === -1 ? formattedValue : padNumber(previousValues[unit]);
@@ -431,27 +372,23 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     if (oldValue === formattedValue) return;
     
     // Get all number elements
-    const topNumber = card.querySelector(`[data-value="top-${unit}"]`);
-    const bottomNumber = card.querySelector(`[data-value="bottom-${unit}"]`);
-    const flipFront = card.querySelector(`[data-value="flip-front-${unit}"]`);
-    const flipBack = card.querySelector(`[data-value="flip-back-${unit}"]`);
+    const upperCurrent = flipUnit.querySelector('.upper-card .number[data-current]');
+    const upperNext = flipUnit.querySelector('.upper-card .flip-card .number[data-next]');
+    const lowerCurrent = flipUnit.querySelector('.lower-card .number[data-current]');
+    const lowerNext = flipUnit.querySelector('.lower-card .flip-card .number[data-next]');
 
-    // Set the flip animation values
-    if (flipFront) flipFront.textContent = oldValue;
-    if (flipBack) flipBack.textContent = formattedValue;
+    // Set the next values
+    if (upperNext) upperNext.textContent = formattedValue;
+    if (lowerNext) lowerNext.textContent = formattedValue;
 
     // Start flip animation
-    card.classList.add('flipping');
+    flipUnit.classList.add('flipping');
 
-    // Update bottom number halfway through
+    // After animation completes, update current values and reset
     setTimeout(() => {
-      if (bottomNumber) bottomNumber.textContent = formattedValue;
-    }, 300);
-
-    // Complete animation and update top
-    setTimeout(() => {
-      if (topNumber) topNumber.textContent = formattedValue;
-      card.classList.remove('flipping');
+      if (upperCurrent) upperCurrent.textContent = formattedValue;
+      if (lowerCurrent) lowerCurrent.textContent = formattedValue;
+      flipUnit.classList.remove('flipping');
     }, 600);
   }
 
@@ -478,19 +415,19 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     // Update cards only if value changed
     if (days !== previousValues.days) {
-      updateFlipCard('days', days);
+      updateFlipUnit('days', days);
       previousValues.days = days;
     }
     if (hours !== previousValues.hours) {
-      updateFlipCard('hours', hours);
+      updateFlipUnit('hours', hours);
       previousValues.hours = hours;
     }
     if (minutes !== previousValues.minutes) {
-      updateFlipCard('minutes', minutes);
+      updateFlipUnit('minutes', minutes);
       previousValues.minutes = minutes;
     }
     if (seconds !== previousValues.seconds) {
-      updateFlipCard('seconds', seconds);
+      updateFlipUnit('seconds', seconds);
       previousValues.seconds = seconds;
     }
   }
