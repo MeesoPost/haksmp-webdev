@@ -107,6 +107,9 @@
     calc(94% - 30%)
   );
 
+  /* Black & dark grey */
+  --root-color--black: hsl(0, 0%, 0%);
+
   /* White & footer */
   --root-color--white: hsl(0, 0%, 100%);
   --root-color--footer: var(--root-color--primary);
@@ -204,6 +207,63 @@
   --focus-outline-width: 3px;
   --focus-outline-color: var(--root-color--support);
   --focus-outline-offset: 2px;
+
+  /* Simplified color aliases for easier use */
+  --primary: var(--root-color--primary);
+  --primary-light: var(--root-color--primary-light);
+  --primary-lightest: var(--root-color--primary-lightest);
+  --primary-dark: var(--root-color--primary-dark);
+  --primary-darkest: var(--root-color--primary-darkest);
+
+  --secondary: var(--root-color--secondary);
+  --secondary-light: var(--root-color--secondary-light);
+  --secondary-lightest: var(--root-color--secondary-lightest);
+  --secondary-dark: var(--root-color--secondary-dark);
+  --secondary-darkest: var(--root-color--secondary-darkest);
+
+  --support: var(--root-color--support);
+  --support-light: var(--root-color--support-light);
+  --support-lightest: var(--root-color--support-lightest);
+  --support-dark: var(--root-color--support-dark);
+  --support-darkest: var(--root-color--support-darkest);
+
+  --contrast: var(--root-color--contrast);
+  --contrast-light: var(--root-color--contrast-light);
+  --contrast-lightest: var(--root-color--contrast-lightest);
+  --contrast-dark: var(--root-color--contrast-dark);
+  --contrast-darkest: var(--root-color--contrast-darkest);
+
+  --grey: var(--root-color--grey);
+  --grey-light: var(--root-color--grey-light);
+  --grey-dark: var(--root-color--grey-dark);
+  --grey-darkest: var(--root-color--grey-darkest);
+
+  --black: var(--root-color--black);
+  --white: var(--root-color--white);
+
+  /* Background aliases */
+  --bg-primary: var(--root-color-background--primary);
+  --bg-primary-light: var(--root-color-background--primary-light);
+  --bg-primary-dark: var(--root-color-background--primary-dark);
+  --bg-primary-darkest: var(--root-color-background--primary-darkest);
+  --bg-secondary: var(--root-color-background--secondary);
+  --bg-support: var(--root-color-background--support);
+  --bg-grey: var(--root-color-background--grey);
+  --bg-dark: var(--root-color-background--dark);
+  --bg-dark-secondary: var(--root-color-background--dark-secondary);
+
+  /* Text aliases */
+  --text: var(--root-color-text);
+  --text-light: var(--root-color-text-light);
+  --text-dark: var(--root-color-text-dark);
+  --text-link: var(--root-color-text-link);
+  --text-link-hover: var(--root-color-text-link--hover);
+
+  /* Border aliases */
+  --border: var(--root-color-border);
+  --border-primary: var(--root-color-border--primary);
+  --border-secondary: var(--root-color-border--secondary);
+  --border-support: var(--root-color-border--support);
 }
 
 /* Body styling */
@@ -286,7 +346,7 @@ a:hover {
 
 /* Focus states */
 :focus-visible {
-  outline: var(--focus-outline-width) solid var(--focus-outline-color);
+  outline: var(--focus-outline-width) dotted var(--focus-outline-color);
   outline-offset: var(--focus-outline-offset);
 }
 
@@ -327,4 +387,48 @@ a:hover {
   :root {
     --space-xl: 8rem;
   }
+}
+
+/* Hero section styles */
+.test-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    var(--root-color-background--primary-dark) 0%,
+    var(--root-color-background--primary-darkest) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+/* Hero section styles */
+.test-hero {
+  position: relative;
+}
+
+.test-hero .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.test-hero h1 {
+  color: var(--root-color--grey);
+  margin-bottom: var(--space-sm);
+  text-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+}
+
+.subtitle {
+  font-family: var(--root-font-family--primary);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  color: var(--root-color--support);
+  margin-bottom: var(--space-xl);
+}
+
+/* Button spacing */
+.btn-minecraft {
+  margin-top: var(--space-lg);
 }
