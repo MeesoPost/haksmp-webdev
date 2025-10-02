@@ -6,22 +6,12 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
 <div class="flip-clock">
   <h2 class="flip-clock__title">Seizoen 4 Start Over:</h2>
-  
-  <div class="flip-clock__cards" id="flip-clock-cards">
+    
+    <div class="flip-clock__cards" id="flip-clock-cards">
     <!-- Dagen -->
     <div class="flip-unit" data-unit="days">
-      <div class="upper-card">
-        <span class="number" data-current="60">60</span>
-        <div class="flip-card">
-          <span class="number" data-next="60">60</span>
-        </div>
-      </div>
-      <div class="lower-card">
-        <span class="number" data-current="60">60</span>
-        <div class="flip-card">
-          <span class="number" data-next="60">60</span>
-        </div>
-      </div>
+      <div class="number current">60</div>
+      <div class="number incoming">60</div>
       <div class="label">DAGEN</div>
     </div>
 
@@ -29,18 +19,8 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     <!-- Uren -->
     <div class="flip-unit" data-unit="hours">
-      <div class="upper-card">
-        <span class="number" data-current="04">04</span>
-        <div class="flip-card">
-          <span class="number" data-next="04">04</span>
-        </div>
-      </div>
-      <div class="lower-card">
-        <span class="number" data-current="04">04</span>
-        <div class="flip-card">
-          <span class="number" data-next="04">04</span>
-        </div>
-      </div>
+      <div class="number current">04</div>
+      <div class="number incoming">04</div>
       <div class="label">UREN</div>
     </div>
 
@@ -48,18 +28,8 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     <!-- Minuten -->
     <div class="flip-unit" data-unit="minutes">
-      <div class="upper-card">
-        <span class="number" data-current="49">49</span>
-        <div class="flip-card">
-          <span class="number" data-next="49">49</span>
-        </div>
-      </div>
-      <div class="lower-card">
-        <span class="number" data-current="49">49</span>
-        <div class="flip-card">
-          <span class="number" data-next="49">49</span>
-        </div>
-      </div>
+      <div class="number current">49</div>
+      <div class="number incoming">49</div>
       <div class="label">MINUTEN</div>
     </div>
 
@@ -67,18 +37,8 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     <!-- Seconden -->
     <div class="flip-unit" data-unit="seconds">
-      <div class="upper-card">
-        <span class="number" data-current="23">23</span>
-        <div class="flip-card">
-          <span class="number" data-next="23">23</span>
-        </div>
-      </div>
-      <div class="lower-card">
-        <span class="number" data-current="23">23</span>
-        <div class="flip-card">
-          <span class="number" data-next="23">23</span>
-        </div>
-      </div>
+      <div class="number current">23</div>
+      <div class="number incoming">23</div>
       <div class="label">SECONDEN</div>
     </div>
   </div>
@@ -124,142 +84,86 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     line-height: 1;
     margin: 0 var(--space-xs);
     align-self: center;
-    animation: pulse 2s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
-
-  /* Flip unit container */
+  /* Flip unit container - simplified */
   .flip-unit {
     position: relative;
     width: 100px;
     height: 120px;
     margin: 10px;
     text-align: center;
-  }
-
-  /* Upper and lower cards */
-  .upper-card,
-  .lower-card {
-    position: absolute;
-    width: 100%;
-    height: 50%;
+    background: var(--root-color--primary);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     overflow: hidden;
-    background: var(--root-color--secondary);
   }
 
-  .upper-card {
-    top: 0;
-    border-radius: 8px 8px 0 0;
-    border: 2px solid var(--root-color--secondary-dark);
-    border-bottom-width: 1px;
-    background: linear-gradient(to bottom, 
-      var(--root-color--secondary), 
-      var(--root-color--secondary-dark));
-  }
-
-  .lower-card {
-    bottom: 0;
-    border-radius: 0 0 8px 8px;
-    border: 2px solid var(--root-color--secondary-dark);
-    border-top-width: 1px;
-    background: linear-gradient(to bottom, 
-      var(--root-color--secondary-dark), 
-      var(--root-color--secondary-darkest));
-    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-  }
-
-  /* Numbers - the key to making them fill properly */
-  .number {
+  /* Basis nummer styling */
+  .flip-unit .number {
     position: absolute;
-    width: 100%;
+    top: 0;
     left: 0;
-    font-family: var(--root-font-family--primary);
-    font-size: 5rem;
-    font-weight: var(--root-font-weight--bold);
-    color: var(--root-color--white);
-    text-align: center;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    line-height: 120px; /* Match total height */
-  }
-
-  /* Upper card shows top half of number */
-  .upper-card .number {
-    top: 0;
-  }
-
-  /* Lower card shows bottom half of number */
-  .lower-card .number {
-    top: -60px; /* Shift up by half height to show bottom portion */
-  }
-
-  /* Flip card animations */
-  .flip-card {
-    position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
-    left: 0;
-    background: var(--root-color--secondary);
-    overflow: hidden;
-    transform-origin: bottom;
-    transform: rotateX(0deg);
-    opacity: 0;
-  }
-
-  .upper-card .flip-card {
-    border-radius: 8px 8px 0 0;
-    border: 2px solid var(--root-color--secondary-dark);
-    border-bottom-width: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--root-font-family--primary);
+    font-size: 4rem;
+    font-weight: var(--root-font-weight--bold);
+    color: var(--root-color--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     background: linear-gradient(to bottom, 
-      var(--root-color--secondary), 
+      var(--root-color--secondary-light), 
       var(--root-color--secondary-dark));
   }
 
-  .lower-card .flip-card {
-    border-radius: 0 0 8px 8px;
-    border: 2px solid var(--root-color--secondary-dark);
-    border-top-width: 1px;
-    background: linear-gradient(to bottom, 
-      var(--root-color--secondary-dark), 
-      var(--root-color--secondary-darkest));
-    transform-origin: top;
-    transform: rotateX(180deg);
+  /* Current nummer - normaal zichtbaar */
+  .flip-unit .number.current {
+    z-index: 1;
   }
 
-  /* Animation classes */
-  .flip-unit.flipping .upper-card .flip-card {
-    animation: flipUpperCard 0.6s ease-in-out;
-    opacity: 1;
+  /* Incoming nummer - start boven het zicht */
+  .flip-unit .number.incoming {
+    transform: translateY(-100%);
     z-index: 2;
   }
 
-  .flip-unit.flipping .lower-card .flip-card {
-    animation: flipLowerCard 0.6s ease-in-out 0.3s;
-    opacity: 1;
-    z-index: 2;
+  /* Tijdens animatie */
+  .flip-unit.changing .number.current {
+    /* Huidige nummer valt naar beneden */
+    animation: fallDown 0.6s ease-in forwards;
   }
 
-  @keyframes flipUpperCard {
+  .flip-unit.changing .number.incoming {
+    /* Nieuwe nummer komt van boven */
+    animation: dropDown 0.6s ease-out forwards;
+  }
+
+  @keyframes fallDown {
     0% {
-      transform: rotateX(0deg);
+      transform: translateY(0);
+      opacity: 1;
     }
     100% {
-      transform: rotateX(-180deg);
+      transform: translateY(100%);
+      opacity: 0.3;
     }
   }
 
-  @keyframes flipLowerCard {
+  @keyframes dropDown {
     0% {
-      transform: rotateX(180deg);
+      transform: translateY(-100%);
+      opacity: 0.95;
     }
     100% {
-      transform: rotateX(0deg);
+      transform: translateY(0);
+      opacity: 1;
     }
   }
+
+  /* Label positioning */
 
   /* Label */
   .label {
@@ -371,24 +275,24 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     // Only animate if value actually changed
     if (oldValue === formattedValue) return;
     
-    // Get all number elements
-    const upperCurrent = flipUnit.querySelector('.upper-card .number[data-current]');
-    const upperNext = flipUnit.querySelector('.upper-card .flip-card .number[data-next]');
-    const lowerCurrent = flipUnit.querySelector('.lower-card .number[data-current]');
-    const lowerNext = flipUnit.querySelector('.lower-card .flip-card .number[data-next]');
+    const currentNumber = flipUnit.querySelector('.number.current');
+    const incomingNumber = flipUnit.querySelector('.number.incoming');
+    
+    if (!currentNumber || !incomingNumber) return;
 
-    // Set the next values
-    if (upperNext) upperNext.textContent = formattedValue;
-    if (lowerNext) lowerNext.textContent = formattedValue;
+    // Zet nieuwe waarde in incoming nummer
+    incomingNumber.textContent = formattedValue;
 
-    // Start flip animation
-    flipUnit.classList.add('flipping');
+    // Start dual animatie
+    flipUnit.classList.add('changing');
 
-    // After animation completes, update current values and reset
+    // Na animatie: wissel de rollen
     setTimeout(() => {
-      if (upperCurrent) upperCurrent.textContent = formattedValue;
-      if (lowerCurrent) lowerCurrent.textContent = formattedValue;
-      flipUnit.classList.remove('flipping');
+      // Current krijgt nieuwe waarde (voor volgende keer)
+      currentNumber.textContent = formattedValue;
+      
+      // Stop animatie (reset posities)
+      flipUnit.classList.remove('changing');
     }, 600);
   }
 
