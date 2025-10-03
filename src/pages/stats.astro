@@ -3,6 +3,7 @@
 import Layout from '../layouts/Layout.astro';
 import StatsChart from '../components/StatsChart.astro';
 import AnimatedGrid from '../components/AnimatedGrid.astro';
+import DiscordButton from '../components/DiscordButton.astro';
 ---
 
 <Layout title="HAK SMP - Server Statistieken">
@@ -10,56 +11,117 @@ import AnimatedGrid from '../components/AnimatedGrid.astro';
     <AnimatedGrid />
     
     <div class="container">
+      <!-- Hero Header -->
       <header class="stats-header">
-        <h1>📊 Server Statistieken</h1>
-        <p class="subtitle">Privacy-vriendelijke community statistieken van Seizoen 4</p>
+        <div class="stats-header__content">
+          <h1 class="stats-header__title">Server Statistieken</h1>
+          <p class="stats-header__subtitle">
+            Privacy-vriendelijke community statistieken van Seizoen 4
+          </p>
+        </div>
       </header>
 
-     <div class="stats-grid">
-  <!-- Playtime Trends -->
-  <StatsChart 
-    chartId="chart-playtime" 
-    title="⏰ Totale Speeltijd per Dag"
-    dataUrl="/data/server-stats.json"
-  />
+      <!-- Summary Statistics -->
+      <div class="stats-summary">
+        <h2 class="stats-summary__title">Belangrijkste Cijfers</h2>
+        <div class="stats-summary__grid">
+          <div class="stat-card stat-card--primary">
+            <div class="stat-card__value">2,451</div>
+            <div class="stat-card__label">Totale Uren Gespeeld</div>
+          </div>
+          
+          <div class="stat-card stat-card--secondary">
+            <div class="stat-card__value">18M</div>
+            <div class="stat-card__label">Blocks Afgelegde Afstand</div>
+          </div>
+          
+          <div class="stat-card stat-card--support">
+            <div class="stat-card__value">5.2M</div>
+            <div class="stat-card__label">Blocks Geplaatst</div>
+          </div>
+          
+          <div class="stat-card stat-card--contrast">
+            <div class="stat-card__value">6.8M</div>
+            <div class="stat-card__label">Blocks Gebroken</div>
+          </div>
+        </div>
+      </div>
 
-  <!-- Active Players -->
-  <StatsChart 
-    chartId="chart-players" 
-    title="👥 Dagelijkse Actieve Spelers"
-    dataUrl="/data/server-stats.json"
-  />
+      <!-- Charts Grid -->
+      <div class="stats-charts">
+        <h2 class="stats-charts__title">Server Activiteit</h2>
+        <p class="stats-charts__subtitle">Laatste 30 dagen - hover over vakjes voor details</p>
+        
+        <div class="stats-charts__single">
+          <StatsChart 
+            chartId="chart-contribution" 
+            title="Dagelijkse Speeltijd"
+            description="Hoe donkerder het vakje, hoe meer er gespeeld is die dag"
+            dataUrl="/data/server-stats.json"
+          />
+        </div>
 
-  <!-- Total Distance -->
-  <StatsChart 
-    chartId="chart-distance" 
-    title="🏃 Totaal Afgelegde Afstand"
-    dataUrl="/data/server-stats.json"
-  />
+        <div class="stats-charts__single">
+          <StatsChart 
+            chartId="chart-overview" 
+            title="Activiteit Overzicht"
+            description="Totale statistieken over de laatste 30 dagen"
+            dataUrl="/data/server-stats.json"
+          />
+        </div>
+      </div>
 
-  <!-- Blocks Placed vs Broken -->
-  <StatsChart 
-    chartId="chart-blocks" 
-    title="⛏️ Blocks Geplaatst vs Gebroken"
-    dataUrl="/data/server-stats.json"
-  />
-</div>
+      <!-- Important Information -->
+      <div class="important-info">
+        <div class="important-info__header">
+          <h3 class="important-info__title">Over deze statistieken</h3>
+        </div>
+        <div class="important-info__content">
+          <p class="important-info__text">
+            Deze statistieken tonen <strong>community-brede</strong> gegevens zonder individuele 
+            spelersinformatie te delen. We respecteren ieders privacy en geheime projecten.
+          </p>
+          
+          <div class="info-grid">
+            <div class="info-section info-section--positive">
+              <h4 class="info-section__title">Wat we wel tonen</h4>
+              <ul class="info-section__list">
+                <li>Totale server activiteit</li>
+                <li>Community trends</li>
+                <li>Algemene statistieken</li>
+                <li>Collectieve prestaties</li>
+              </ul>
+            </div>
+            
+            <div class="info-section info-section--negative">
+              <h4 class="info-section__title">Wat we niet tonen</h4>
+              <ul class="info-section__list">
+                <li>Individuele speler data</li>
+                <li>Specifieke block types</li>
+                <li>Locatie informatie</li>
+                <li>Persoonlijke projecten</li>
+              </ul>
+            </div>
+          </div>
 
-      <!-- Info Box -->
-      <div class="stats-info">
-        <h3>ℹ️ Over deze statistieken</h3>
-        <p>
-          Deze statistieken tonen <strong>community-brede</strong> gegevens zonder individuele spelersinformatie te delen.
-          We respecteren ieders privacy en geheime projecten! 🤐
+          <div class="warning-box">
+            <p class="warning-box__text">
+              <strong>Privacy eerst:</strong> We verzamelen alleen server-brede statistieken. 
+              Individuele prestaties blijven privé voor jou en je team.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="stats-cta">
+        <h3 class="stats-cta__title">Klaar om deel uit te maken van deze community?</h3>
+        <p class="stats-cta__text">
+          Join onze Discord en word onderdeel van het avontuur in Seizoen 4
         </p>
-        <ul>
-          <li>✅ Totale server activiteit</li>
-          <li>✅ Community trends</li>
-          <li>✅ Algemene statistieken</li>
-          <li>❌ Geen individuele speler data</li>
-          <li>❌ Geen specifieke block types</li>
-          <li>❌ Geen locatie informatie</li>
-        </ul>
+        <DiscordButton href="#" size="large">
+          Join Discord
+        </DiscordButton>
       </div>
     </div>
   </section>
@@ -82,75 +144,309 @@ import AnimatedGrid from '../components/AnimatedGrid.astro';
     z-index: 1;
   }
 
+  /* Header */
   .stats-header {
     text-align: center;
     margin-bottom: var(--space-xl);
+    padding: var(--space-xl) var(--space-lg);
+    background: var(--root-color--primary);
+    border: 4px solid var(--root-color--support);
+    box-shadow: 
+      8px 8px 0 var(--root-color--primary-darkest),
+      0 0 0 1px var(--root-color--primary-dark);
+    position: relative;
   }
 
-  .stats-header h1 {
+  .stats-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: var(--root-color--support);
+  }
+
+  .stats-header__title {
     color: var(--root-color--grey);
     margin-bottom: var(--space-sm);
     text-shadow: 4px 4px 0 var(--root-color--primary-darkest);
   }
 
-  .stats-header .subtitle {
+  .stats-header__subtitle {
     font-family: var(--root-font-family--primary);
     font-size: clamp(1rem, 2vw, 1.25rem);
-    color: var(--root-color--support);
+    color: var(--root-color--grey);
+    opacity: 0.9;
   }
 
-  .stats-grid {
-    display: grid;
-    gap: var(--space-lg);
+  /* Summary Statistics */
+  .stats-summary {
     margin-bottom: var(--space-xl);
   }
 
-  @media (min-width: 1024px) {
-    .stats-grid {
+  .stats-summary__title {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: var(--root-heading-2-size);
+    margin-bottom: var(--space-md);
+    text-shadow: 3px 3px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-summary__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-md);
+  }
+
+  /* Stat Cards */
+  .stat-card {
+    background: var(--root-color--primary-dark);
+    border-left: 10px solid var(--root-color--support);
+    padding: var(--space-lg) var(--space-md);
+    position: relative;
+    box-shadow: 6px 6px 0 var(--root-color--primary-darkest);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .stat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 8px 8px 0 var(--root-color--primary-darkest);
+  }
+
+  .stat-card--primary {
+    border-left-color: var(--root-color--primary-light);
+  }
+
+  .stat-card--secondary {
+    border-left-color: var(--root-color--secondary-light);
+  }
+
+  .stat-card--support {
+    border-left-color: var(--root-color--support);
+  }
+
+  .stat-card--contrast {
+    border-left-color: var(--root-color--contrast);
+  }
+
+  .stat-card__value {
+    font-family: var(--root-font-family--primary);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: var(--root-font-weight--bold);
+    color: var(--root-color--grey);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+    text-shadow: 3px 3px 0 var(--root-color--primary-darkest);
+  }
+
+  .stat-card__label {
+    font-family: var(--root-font-family--primary);
+    font-size: 1rem;
+    color: var(--root-color--grey);
+    opacity: 0.9;
+    line-height: 1.4;
+  }
+
+  /* Charts Section */
+  .stats-charts {
+    margin-bottom: var(--space-xl);
+  }
+
+  .stats-charts__title {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: var(--root-heading-2-size);
+    margin-bottom: var(--space-sm);
+    text-shadow: 3px 3px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-charts__subtitle {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: 1rem;
+    margin-bottom: var(--space-lg);
+    opacity: 0.8;
+  }
+
+  .stats-charts__single {
+    margin-bottom: var(--space-lg);
+  }
+
+  .stats-charts__single:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Important Info */
+  .important-info {
+    background: var(--root-color--primary);
+    border: 4px solid var(--root-color--secondary);
+    padding: 0;
+    margin-bottom: var(--space-xl);
+    box-shadow: 8px 8px 0 var(--root-color--primary-darkest);
+  }
+
+  .important-info__header {
+    background: var(--root-color--secondary);
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 3px solid var(--root-color--secondary-dark);
+  }
+
+  .important-info__title {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--white);
+    margin: 0;
+    font-size: var(--root-heading-3-size);
+    text-shadow: 2px 2px 0 var(--root-color--secondary-darkest);
+  }
+
+  .important-info__content {
+    padding: var(--space-lg);
+  }
+
+  .important-info__text {
+    color: var(--root-color--grey);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    font-size: 1.1rem;
+  }
+
+  .info-grid {
+    display: grid;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  @media (min-width: 768px) {
+    .info-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .stats-info {
+  .info-section {
     background: var(--root-color--primary-dark);
-    border: 3px solid var(--root-color--secondary);
-    padding: var(--space-lg);
-    margin-top: var(--space-xl);
-    box-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+    padding: var(--space-md);
+    border-left: 8px solid var(--root-color--support);
   }
 
-  .stats-info h3 {
+  .info-section--positive {
+    border-left-color: var(--root-color--secondary);
+  }
+
+  .info-section--negative {
+    border-left-color: var(--root-color--contrast);
+  }
+
+  .info-section__title {
     font-family: var(--root-font-family--primary);
     color: var(--root-color--grey);
-    margin-bottom: var(--space-md);
-    text-shadow: 2px 2px 0 var(--root-color--primary-darkest);
+    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
   }
 
-  .stats-info p {
-    color: var(--root-color--grey);
-    margin-bottom: var(--space-md);
-    line-height: 1.6;
-  }
-
-  .stats-info ul {
+  .info-section__list {
     list-style: none;
-    display: grid;
-    gap: var(--space-sm);
-    color: var(--root-color--grey);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 
-  .stats-info li {
+  .info-section__list li {
     font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
     font-size: 0.9rem;
+    padding-left: var(--space-md);
+    position: relative;
   }
 
+  .info-section__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--root-color--support);
+    border: 2px solid var(--root-color--support);
+  }
+
+  .info-section--positive .info-section__list li::before {
+    background: var(--root-color--secondary);
+    border-color: var(--root-color--secondary);
+  }
+
+  .info-section--negative .info-section__list li::before {
+    background: var(--root-color--contrast);
+    border-color: var(--root-color--contrast);
+  }
+
+  /* Warning Box */
+  .warning-box {
+    background: var(--root-color--primary-darkest);
+    border: 3px solid var(--root-color--support);
+    padding: var(--space-md);
+  }
+
+  .warning-box__text {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* CTA Section */
+  .stats-cta {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--root-color--primary-dark);
+    border: 4px solid var(--root-color--support);
+    box-shadow: 8px 8px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-cta__title {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: var(--root-heading-2-size);
+    margin-bottom: var(--space-sm);
+    text-shadow: 3px 3px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-cta__text {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: 1.1rem;
+    margin-bottom: var(--space-lg);
+    opacity: 0.9;
+  }
+
+  /* Responsive */
   @media (max-width: 768px) {
     .stats-page {
       padding: var(--space-lg) 0;
     }
 
-    .stats-info {
+    .stats-header {
+      padding: var(--space-lg) var(--space-md);
+      box-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+    }
+
+    .stats-summary__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .important-info {
+      box-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+    }
+
+    .important-info__content {
       padding: var(--space-md);
+    }
+
+    .stats-cta {
+      padding: var(--space-lg) var(--space-md);
+      box-shadow: 4px 4px 0 var(--root-color--primary-darkest);
     }
   }
 </style>
