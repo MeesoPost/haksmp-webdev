@@ -1,0 +1,156 @@
+---
+// src/pages/stats.astro
+import Layout from '../layouts/Layout.astro';
+import StatsChart from '../components/StatsChart.astro';
+import AnimatedGrid from '../components/AnimatedGrid.astro';
+---
+
+<Layout title="HAK SMP - Server Statistieken">
+  <section class="stats-page">
+    <AnimatedGrid />
+    
+    <div class="container">
+      <header class="stats-header">
+        <h1>📊 Server Statistieken</h1>
+        <p class="subtitle">Privacy-vriendelijke community statistieken van Seizoen 4</p>
+      </header>
+
+     <div class="stats-grid">
+  <!-- Playtime Trends -->
+  <StatsChart 
+    chartId="chart-playtime" 
+    title="⏰ Totale Speeltijd per Dag"
+    dataUrl="/data/server-stats.json"
+  />
+
+  <!-- Active Players -->
+  <StatsChart 
+    chartId="chart-players" 
+    title="👥 Dagelijkse Actieve Spelers"
+    dataUrl="/data/server-stats.json"
+  />
+
+  <!-- Total Distance -->
+  <StatsChart 
+    chartId="chart-distance" 
+    title="🏃 Totaal Afgelegde Afstand"
+    dataUrl="/data/server-stats.json"
+  />
+
+  <!-- Blocks Placed vs Broken -->
+  <StatsChart 
+    chartId="chart-blocks" 
+    title="⛏️ Blocks Geplaatst vs Gebroken"
+    dataUrl="/data/server-stats.json"
+  />
+</div>
+
+      <!-- Info Box -->
+      <div class="stats-info">
+        <h3>ℹ️ Over deze statistieken</h3>
+        <p>
+          Deze statistieken tonen <strong>community-brede</strong> gegevens zonder individuele spelersinformatie te delen.
+          We respecteren ieders privacy en geheime projecten! 🤐
+        </p>
+        <ul>
+          <li>✅ Totale server activiteit</li>
+          <li>✅ Community trends</li>
+          <li>✅ Algemene statistieken</li>
+          <li>❌ Geen individuele speler data</li>
+          <li>❌ Geen specifieke block types</li>
+          <li>❌ Geen locatie informatie</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .stats-page {
+    min-height: 100vh;
+    background: linear-gradient(
+      180deg,
+      var(--root-color-background--primary-dark) 0%,
+      var(--root-color-background--primary-darkest) 100%
+    );
+    padding: var(--space-xl) 0;
+    position: relative;
+  }
+
+  .stats-page .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .stats-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+  }
+
+  .stats-header h1 {
+    color: var(--root-color--grey);
+    margin-bottom: var(--space-sm);
+    text-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-header .subtitle {
+    font-family: var(--root-font-family--primary);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--root-color--support);
+  }
+
+  .stats-grid {
+    display: grid;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xl);
+  }
+
+  @media (min-width: 1024px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .stats-info {
+    background: var(--root-color--primary-dark);
+    border: 3px solid var(--root-color--secondary);
+    padding: var(--space-lg);
+    margin-top: var(--space-xl);
+    box-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-info h3 {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    margin-bottom: var(--space-md);
+    text-shadow: 2px 2px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-info p {
+    color: var(--root-color--grey);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+  }
+
+  .stats-info ul {
+    list-style: none;
+    display: grid;
+    gap: var(--space-sm);
+    color: var(--root-color--grey);
+  }
+
+  .stats-info li {
+    font-family: var(--root-font-family--primary);
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .stats-page {
+      padding: var(--space-lg) 0;
+    }
+
+    .stats-info {
+      padding: var(--space-md);
+    }
+  }
+</style>

@@ -1,0 +1,347 @@
+---
+// StatsChart.astro - Privacy-friendly SMP stats visualization
+interface Props {
+  chartId: string;
+  title: string;
+  dataUrl?: string; // Optional: path to JSON stats file
+}
+
+const { chartId, title, dataUrl } = Astro.props;
+---
+
+<div class="stats-chart">
+  <h3 class="stats-chart__title">{title}</h3>
+  <div class="stats-chart__container" id={chartId}></div>
+</div>
+
+<style>
+  .stats-chart {
+    background: var(--root-color--primary-dark);
+    border: 3px solid var(--root-color--support);
+    border-radius: 0;
+    padding: var(--space-md);
+    margin: var(--space-md) 0;
+    box-shadow: 4px 4px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-chart__title {
+    font-family: var(--root-font-family--primary);
+    color: var(--root-color--grey);
+    font-size: var(--root-heading-3-size);
+    margin-bottom: var(--space-sm);
+    text-shadow: 2px 2px 0 var(--root-color--primary-darkest);
+  }
+
+  .stats-chart__container {
+    background: var(--root-color--primary-darkest);
+    padding: var(--space-sm);
+    border: 2px solid var(--root-color--primary);
+    min-height: 300px;
+  }
+
+  @media (max-width: 768px) {
+    .stats-chart {
+      padding: var(--space-sm);
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ chartId, dataUrl }}>
+  // Vega wordt geladen via CDN in de head
+
+  // Generate mock data (replace with real data from your server)
+  function generateMockData() {
+    const days = 30;
+    const data = [];
+    const today = new Date();
+    
+    for (let i = days - 1; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      const dateStr = date.toISOString().split('T')[0];
+      
+      // Simulate realistic SMP activity patterns
+      const dayOfWeek = date.getDay();
+      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+      const baseActivity = isWeekend ? 1.5 : 1.0;
+      
+      data.push({
+        date: dateStr,
+        playtime: Math.floor((8 + Math.random() * 6) * baseActivity),
+        distance: Math.floor((50000 + Math.random() * 30000) * baseActivity),
+        blocksPlaced: Math.floor((20000 + Math.random() * 15000) * baseActivity),
+        blocksBroken: Math.floor((25000 + Math.random() * 18000) * baseActivity),
+        players: Math.floor(6 + Math.random() * 8 + (isWeekend ? 3 : 0))
+      });
+    }
+    
+    return data;
+  }
+
+  // Vega spec based on chart type
+  function getVegaSpec(chartId, data) {
+    // Color scheme from your design system
+    const colors = {
+      primary: '#2b5278',
+      secondary: '#569503',
+      support: '#E87A2F',
+      grey: '#F0F0ED',
+      background: '#1a3a52'
+    };
+
+    const commonConfig = {
+      background: colors.background,
+      title: {
+        color: colors.grey,
+        font: 'Monocraft, monospace',
+        fontSize: 16
+      },
+      axis: {
+        labelColor: colors.grey,
+        titleColor: colors.grey,
+        gridColor: colors.primary,
+        domainColor: colors.support,
+        tickColor: colors.support,
+        labelFont: 'Monocraft, monospace',
+        titleFont: 'Monocraft, monospace'
+      },
+      legend: {
+        labelColor: colors.grey,
+        titleColor: colors.grey,
+        labelFont: 'Monocraft, monospace',
+        titleFont: 'Monocraft, monospace'
+      }
+    };
+
+    // Different chart types
+    if (chartId.includes('playtime')) {
+      return {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        width: 550,
+        height: 350,
+        autosize: {
+          type: 'fit',
+          contains: 'padding'
+        },
+        config: commonConfig,
+        data: { values: data },
+        mark: {
+          type: 'area',
+          line: { color: colors.support },
+          color: {
+            gradient: 'linear',
+            stops: [
+              { offset: 0, color: colors.support },
+              { offset: 1, color: colors.background }
+            ]
+          }
+        },
+        encoding: {
+          x: {
+            field: 'date',
+            type: 'temporal',
+            title: 'Datum',
+            axis: { format: '%d/%m' }
+          },
+          y: {
+            field: 'playtime',
+            type: 'quantitative',
+            title: 'Totale Uren'
+          },
+          tooltip: [
+            { field: 'date', type: 'temporal', title: 'Datum', format: '%d-%m-%Y' },
+            { field: 'playtime', type: 'quantitative', title: 'Totale Speeltijd (uren)' }
+          ]
+        }
+      };
+    }
+
+    if (chartId.includes('distance')) {
+      return {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        width: 550,
+        height: 350,
+        autosize: {
+          type: 'fit',
+          contains: 'padding'
+        },
+        config: commonConfig,
+        data: { values: data },
+        mark: {
+          type: 'bar',
+          color: colors.secondary
+        },
+        encoding: {
+          x: {
+            field: 'date',
+            type: 'temporal',
+            title: 'Datum',
+            axis: { format: '%d/%m' }
+          },
+          y: {
+            field: 'distance',
+            type: 'quantitative',
+            title: 'Afstand (blocks)'
+          },
+          tooltip: [
+            { field: 'date', type: 'temporal', title: 'Datum', format: '%d-%m-%Y' },
+            { field: 'distance', type: 'quantitative', title: 'Totale Afstand (blocks)', format: ',.0f' }
+          ]
+        }
+      };
+    }
+
+    if (chartId.includes('blocks')) {
+      return {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        width: 550,
+        height: 350,
+        autosize: {
+          type: 'fit',
+          contains: 'padding'
+        },
+        config: commonConfig,
+        data: { values: data },
+        transform: [
+          { fold: ['blocksPlaced', 'blocksBroken'], as: ['type', 'count'] }
+        ],
+        mark: 'line',
+        encoding: {
+          x: {
+            field: 'date',
+            type: 'temporal',
+            title: 'Datum',
+            axis: { format: '%d/%m' }
+          },
+          y: {
+            field: 'count',
+            type: 'quantitative',
+            title: 'Aantal Blocks'
+          },
+          color: {
+            field: 'type',
+            type: 'nominal',
+            scale: {
+              domain: ['blocksPlaced', 'blocksBroken'],
+              range: [colors.secondary, colors.support]
+            },
+            legend: {
+              title: 'Type',
+              labelExpr: "datum.value === 'blocksPlaced' ? 'Geplaatst' : 'Gebroken'"
+            }
+          },
+          strokeWidth: { value: 3 },
+          tooltip: [
+            { field: 'date', type: 'temporal', title: 'Datum', format: '%d-%m-%Y' },
+            { field: 'type', type: 'nominal', title: 'Type' },
+            { field: 'count', type: 'quantitative', title: 'Aantal', format: ',.0f' }
+          ]
+        }
+      };
+    }
+
+    if (chartId.includes('players')) {
+      return {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        width: 550,
+        height: 350,
+        autosize: {
+          type: 'fit',
+          contains: 'padding'
+        },
+        config: commonConfig,
+        data: { values: data },
+        mark: {
+          type: 'area',
+          line: true,
+          point: true,
+          color: colors.primary,
+          opacity: 0.7
+        },
+        encoding: {
+          x: {
+            field: 'date',
+            type: 'temporal',
+            title: 'Datum',
+            axis: { format: '%d/%m' }
+          },
+          y: {
+            field: 'players',
+            type: 'quantitative',
+            title: 'Aantal Spelers',
+            scale: { zero: true }
+          },
+          tooltip: [
+            { field: 'date', type: 'temporal', title: 'Datum', format: '%d-%m-%Y' },
+            { field: 'players', type: 'quantitative', title: 'Actieve Spelers' }
+          ]
+        }
+      };
+    }
+
+    // Default fallback
+    return null;
+  }
+
+  // Wait for vegaEmbed to be available
+  function waitForVega() {
+    return new Promise((resolve) => {
+      if (window.vegaEmbed) {
+        resolve();
+      } else {
+        const checkInterval = setInterval(() => {
+          if (window.vegaEmbed) {
+            clearInterval(checkInterval);
+            resolve();
+          }
+        }, 100);
+      }
+    });
+  }
+
+  // Initialize chart when DOM is ready
+  async function initChart() {
+    const container = document.getElementById(chartId);
+    if (!container) {
+      console.error(`Container ${chartId} not found`);
+      return;
+    }
+
+    // Wait for Vega to load
+    await waitForVega();
+
+    try {
+      // Load data (use real data if dataUrl provided, otherwise mock)
+      let data;
+      if (dataUrl) {
+        const response = await fetch(dataUrl);
+        data = await response.json();
+      } else {
+        data = generateMockData();
+      }
+
+      const spec = getVegaSpec(chartId, data);
+      
+      if (spec) {
+        await window.vegaEmbed(`#${chartId}`, spec, {
+          actions: false,
+          renderer: 'canvas'
+        });
+      }
+    } catch (error) {
+      console.error('Error initializing chart:', error);
+      container.innerHTML = `
+        <div style="color: var(--root-color--grey); text-align: center; padding: var(--space-md);">
+          <p>❌ Kon statistieken niet laden</p>
+        </div>
+      `;
+    }
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initChart);
+  } else {
+    initChart();
+  }
+</script>
