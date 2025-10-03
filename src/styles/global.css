@@ -49,6 +49,9 @@
     calc(94% - 30%)
   );
 
+  /* Yellow colors - School bus yellow #FFDD00 */
+  --root-color--yellow: hsl(52, 100%, 50%);
+
   /* Black & dark grey */
   --root-color--black: hsl(0, 0%, 0%);
 
@@ -87,7 +90,7 @@
   /* Interaction colors */
   --root-color-interaction--hover: var(--root-color--secondary-light);
   --root-color-interaction--active: var(--root-color--secondary-dark);
-  --root-color-interaction--focus: var(--root-color--support);
+  --root-color-interaction--focus: var(--root-color--yellow);
 
   /* Font variables */
   --root-font-size: 1rem;
@@ -147,7 +150,7 @@
 
   /* Focus state */
   --focus-outline-width: 3px;
-  --focus-outline-color: var(--root-color--support);
+  --focus-outline-color: var(--root-color--yellow);
   --focus-outline-offset: 2px;
 
   /* Simplified color aliases for easier use */
