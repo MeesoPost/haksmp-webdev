@@ -7,95 +7,37 @@
 
   /* Primary colors - Lapis Lazuli #4682B4 */
   --root-color--primary: hsl(206, 60%, 33%);
-  --root-color--primary-light: hsl(
-    calc(206 + 0%),
-    calc(60% + 0%),
-    calc(33% + 20%)
-  );
-  --root-color--primary-lightest: hsl(
-    calc(206 + 0%),
-    calc(60% + 0%),
-    calc(33% + 40%)
-  );
-  --root-color--primary-dark: hsl(
-    calc(206 + 0%),
-    calc(60% + 0%),
-    calc(33% - 10%)
-  );
-  --root-color--primary-darkest: hsl(
-    calc(206 + 0%),
-    calc(60% + 0%),
-    calc(33% - 20%)
-  );
+  --root-color--primary-light: hsl(206, 60%, 53%); /* 33% + 20% */
+  --root-color--primary-lightest: hsl(206, 60%, 73%); /* 33% + 40% */
+  --root-color--primary-dark: hsl(206, 60%, 23%); /* 33% - 10% */
+  --root-color--primary-darkest: hsl(206, 60%, 13%); /* 33% - 20% */
 
   /* Secondary colors - Avocado #569503 */
   --root-color--secondary: hsl(80, 91%, 27%);
-  --root-color--secondary-light: hsl(
-    calc(80 + 0%),
-    calc(91% + 0%),
-    calc(27% + 20%)
-  );
-  --root-color--secondary-lightest: hsl(
-    calc(80 + 0%),
-    calc(91% + 0%),
-    calc(27% + 40%)
-  );
-  --root-color--secondary-dark: hsl(
-    calc(80 + 0%),
-    calc(91% + 0%),
-    calc(27% - 10%)
-  );
-  --root-color--secondary-darkest: hsl(
-    calc(80 + 0%),
-    calc(91% + 0%),
-    calc(27% - 20%)
-  );
+  --root-color--secondary-light: hsl(80, 91%, 47%); /* 27% + 20% */
+  --root-color--secondary-lightest: hsl(80, 91%, 67%); /* 27% + 40% */
+  --root-color--secondary-dark: hsl(80, 91%, 17%); /* 27% - 10% */
+  --root-color--secondary-darkest: hsl(80, 91%, 7%); /* 27% - 20% */
 
   /* Support colors - Carrot Orange #E87A2F */
   --root-color--support: hsl(29, 89%, 61%);
-  --root-color--support-light: hsl(
-    calc(29 + 0%),
-    calc(89% + 0%),
-    calc(61% + 20%)
-  );
-  --root-color--support-lightest: hsl(
-    calc(29 + 0%),
-    calc(89% + 0%),
-    calc(61% + 40%)
-  );
-  --root-color--support-dark: hsl(
-    calc(29 + 0%),
-    calc(89% + 0%),
-    calc(61% - 10%)
-  );
-  --root-color--support-darkest: hsl(
-    calc(29 + 0%),
-    calc(89% + 0%),
-    calc(61% - 20%)
-  );
+  --root-color--support-light: hsl(29, 89%, 81%); /* 61% + 20% */
+  --root-color--support-lightest: hsl(29, 89%, 100%); /* 61% + 40% = max 100% */
+  --root-color--support-dark: hsl(29, 89%, 51%); /* 61% - 10% */
+  --root-color--support-darkest: hsl(29, 89%, 41%); /* 61% - 20% */
 
   /* Contrast colors - Flame #D14D2B */
   --root-color--contrast: hsl(15, 82%, 51%);
-  --root-color--contrast-light: hsl(
-    calc(15 + 0%),
-    calc(82% + 0%),
-    calc(51% + 20%)
-  );
-  --root-color--contrast-lightest: hsl(
-    calc(15 + 0%),
-    calc(82% + 0%),
-    calc(51% + 40%)
-  );
-  --root-color--contrast-dark: hsl(
-    calc(15 + 0%),
-    calc(82% + 0%),
-    calc(51% - 10%)
-  );
-  --root-color--contrast-darkest: hsl(
-    calc(15 + 0%),
-    calc(82% + 0%),
-    calc(51% - 20%)
-  );
+  --root-color--contrast-light: hsl(15, 82%, 71%); /* 51% + 20% */
+  --root-color--contrast-lightest: hsl(15, 82%, 91%); /* 51% + 40% */
+  --root-color--contrast-dark: hsl(15, 82%, 41%); /* 51% - 10% */
+  --root-color--contrast-darkest: hsl(15, 82%, 31%); /* 51% - 20% */
+
+  /* Grey colors - Isabelline #F0F0ED */
+  --root-color--grey: hsl(48, 16%, 94%);
+  --root-color--grey-light: hsl(48, 16%, 99%); /* 94% + 5% = max 100% */
+  --root-color--grey-dark: hsl(48, 16%, 84%); /* 94% - 10% */
+  --root-color--grey-darkest: hsl(48, 16%, 64%); /* 94% - 30% */
 
   /* Grey colors - Isabelline #F0F0ED */
   --root-color--grey: hsl(48, 16%, 94%);
