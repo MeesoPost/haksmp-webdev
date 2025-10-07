@@ -9,9 +9,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^4.4.0",
     "astro": "^5.14.1",
     "vega": "^6.2.0",
     "vega-embed": "^7.0.2",
     "vega-lite": "^6.4.1"
+  },
+  "devDependencies": {
+    "@utrecht/web-component-library-react": "3.0.9",
+    "@utrecht/web-component-library-stencil": "3.6.0"
   }
 }
