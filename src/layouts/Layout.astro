@@ -13,6 +13,15 @@ const {
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+<script is:inline>
+window.addEventListener('error', function(e) {
+    if (e.message && e.message.includes('runtime.lastError')) {
+      e.preventDefault();
+      e.stopPropagation();
+      return false;
+    }
+  });
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content={description}>
