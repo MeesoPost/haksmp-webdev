@@ -59,14 +59,14 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     padding: var(--space-lg) 0;
   }
 
-  .flip-clock__title {
+.flip-clock__title {
     font-family: var(--root-font-family--primary);
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     color: var(--root-color--grey);
     text-align: center;
     margin-bottom: var(--space-sm);
     text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
-    content-visibility: auto;
+    will-change: auto;
     contain: layout style paint;
   }
 
