@@ -1,17 +1,17 @@
 ---
 // USER: Vul hier je launch datum in!
 // Formaat: 'YYYY-MM-DDTHH:MM:SS+01:00' (Nederlandse tijd)
-const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
+const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
 ---
 
 <div class="flip-clock">
-  <h2 class="flip-clock__title">Seizoen 4 Start Over:</h2>
+  <h3 class="flip-clock__title">Seizoen 4 Start Over:</h3>
     
     <div class="flip-clock__cards" id="flip-clock-cards">
     <!-- Dagen -->
     <div class="flip-unit" data-unit="days">
-      <div class="number current">60</div>
-      <div class="number incoming">60</div>
+      <div class="number current">--</div>
+      <div class="number incoming">--</div>
       <div class="label">DAGEN</div>
     </div>
 
@@ -19,8 +19,8 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     <!-- Uren -->
     <div class="flip-unit" data-unit="hours">
-      <div class="number current">04</div>
-      <div class="number incoming">04</div>
+      <div class="number current">--</div>
+      <div class="number incoming">--</div>
       <div class="label">UREN</div>
     </div>
 
@@ -28,8 +28,8 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     <!-- Minuten -->
     <div class="flip-unit" data-unit="minutes">
-      <div class="number current">49</div>
-      <div class="number incoming">49</div>
+      <div class="number current">--</div>
+      <div class="number incoming">--</div>
       <div class="label">MINUTEN</div>
     </div>
 
@@ -37,18 +37,11 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
 
     <!-- Seconden -->
     <div class="flip-unit" data-unit="seconds">
-      <div class="number current">23</div>
-      <div class="number incoming">23</div>
+      <div class="number current">--</div>
+      <div class="number incoming">--</div>
       <div class="label">SECONDEN</div>
     </div>
-  </div>
-
-  <!-- Live status -->
-  <div class="flip-clock__live" id="flip-clock-live" style="display: none;">
-    <span class="flip-clock__live-indicator">●</span>
-    <span class="flip-clock__live-text">🎉 LIVE NOW!</span>
-  </div>
-</div>
+  </div>  
 
 <style>
   .flip-clock {
@@ -295,20 +288,27 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     return num.toString().padStart(2, '0');
   }
 
-  function updateFlipUnit(unit, newValue) {
+  function updateFlipUnit(unit, newValue, forceUpdate = false) {
     const flipUnit = document.querySelector(`[data-unit="${unit}"]`);
     if (!flipUnit) return;
 
     const formattedValue = padNumber(newValue);
     const oldValue = previousValues[unit] === -1 ? formattedValue : padNumber(previousValues[unit]);
     
-    // Only animate if value actually changed
-    if (oldValue === formattedValue) return;
-    
     const currentNumber = flipUnit.querySelector('.number.current');
     const incomingNumber = flipUnit.querySelector('.number.incoming');
     
     if (!currentNumber || !incomingNumber) return;
+
+    // Voor eerste keer laden of geforceerde update - zet direct zonder animatie
+    if (forceUpdate || previousValues[unit] === -1) {
+      currentNumber.textContent = formattedValue;
+      incomingNumber.textContent = formattedValue;
+      return;
+    }
+
+    // Only animate if value actually changed
+    if (oldValue === formattedValue) return;
 
     // Zet nieuwe waarde in incoming nummer
     incomingNumber.textContent = formattedValue;
@@ -321,7 +321,7 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
       // Current krijgt nieuwe waarde (voor volgende keer)
       currentNumber.textContent = formattedValue;
       
-      // Stop animatie (reset posities)
+      // Stop animatie (reset positions)
       flipUnit.classList.remove('changing');
     }, 600);
   }
@@ -330,38 +330,40 @@ const LAUNCH_DATE = '2025-12-01T18:00:00+01:00'; // ← AANPASSEN!
     const now = new Date();
     const diff = targetDate - now;
 
-    // Check if launch has happened
+    // Calculate time units - zelfs als negatief, toon 00:00:00:00
+    let days, hours, minutes, seconds;
+    
     if (diff <= 0) {
-      const liveElement = document.getElementById('flip-clock-live');
-      const cardsElement = document.getElementById('flip-clock-cards');
-      
-      if (liveElement) liveElement.style.display = 'flex';
-      if (cardsElement) cardsElement.style.display = 'none';
-      
-      return; // Stop countdown
+      // Als de datum is bereikt, toon gewoon nullen
+      days = 0;
+      hours = 0;
+      minutes = 0;
+      seconds = 0;
+    } else {
+      // Normale countdown berekening
+      days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      seconds = Math.floor((diff % (1000 * 60)) / 1000);
     }
 
-    // Calculate time units
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-    // Update cards only if value changed
-    if (days !== previousValues.days) {
-      updateFlipUnit('days', days);
+    // Update cards - eerste keer of als waarde veranderd
+    const isFirstRun = previousValues.days === -1;
+    
+    if (days !== previousValues.days || isFirstRun) {
+      updateFlipUnit('days', days, isFirstRun);
       previousValues.days = days;
     }
-    if (hours !== previousValues.hours) {
-      updateFlipUnit('hours', hours);
+    if (hours !== previousValues.hours || isFirstRun) {
+      updateFlipUnit('hours', hours, isFirstRun);
       previousValues.hours = hours;
     }
-    if (minutes !== previousValues.minutes) {
-      updateFlipUnit('minutes', minutes);
+    if (minutes !== previousValues.minutes || isFirstRun) {
+      updateFlipUnit('minutes', minutes, isFirstRun);
       previousValues.minutes = minutes;
     }
-    if (seconds !== previousValues.seconds) {
-      updateFlipUnit('seconds', seconds);
+    if (seconds !== previousValues.seconds || isFirstRun) {
+      updateFlipUnit('seconds', seconds, isFirstRun);
       previousValues.seconds = seconds;
     }
   }
