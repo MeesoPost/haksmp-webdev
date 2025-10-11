@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PluginsList from '../components/PluginsList.astro';
+---
+
+<Layout title="Mods & Plugins - Hak SMP">
+  <div class="page-wrapper">
+    <main class="utrecht-page">
+      <PluginsList />
+    </main>
+  </div>
+</Layout>
+
+<style>
+  .page-wrapper {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  }
+
+  .utrecht-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  }
+
+  @media (min-width: 768px) {
+    .utrecht-page {
+      padding: 0 48px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .utrecht-page {
+      padding: 0 64px;
+    }
+  }
+</style>

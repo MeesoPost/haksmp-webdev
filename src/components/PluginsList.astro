@@ -1,0 +1,760 @@
+---
+import { plugins, modpacks, modpackInfo } from '../data/plugins.js';
+---
+
+<div class="utrecht-document">
+  <div class="utrecht-document__body">
+    <div class="utrecht-page-header">
+      <h1 class="utrecht-heading-1">Mods & Plugins</h1>
+      <p class="utrecht-paragraph utrecht-paragraph--lead">
+        Alle mods en plugins die we draaien op Hak SMP Season 4.
+      </p>
+    </div>
+
+    <div class="utrecht-page-content">
+      <section class="modpack-info">
+        <h2 class="utrecht-heading-2">{modpackInfo.name}</h2>
+        <dl class="utrecht-data-list modpack-details">
+          <div class="utrecht-data-list__item">
+            <dt class="utrecht-data-list__key">Modpack versie</dt>
+            <dd class="utrecht-data-list__value">{modpackInfo.version}</dd>
+          </div>
+          <div class="utrecht-data-list__item">
+            <dt class="utrecht-data-list__key">Minecraft versie</dt>
+            <dd class="utrecht-data-list__value">{modpackInfo.minecraftVersion}</dd>
+          </div>
+          <div class="utrecht-data-list__item">
+            <dt class="utrecht-data-list__key">Forge versie</dt>
+            <dd class="utrecht-data-list__value">{modpackInfo.forgeVersion}</dd>
+          </div>
+          <div class="utrecht-data-list__item">
+            <dt class="utrecht-data-list__key">Aantal mods</dt>
+            <dd class="utrecht-data-list__value">{modpackInfo.totalMods}</dd>
+          </div>
+          <div class="utrecht-data-list__item">
+            <dt class="utrecht-data-list__key">Laatst bijgewerkt</dt>
+            <dd class="utrecht-data-list__value">{modpackInfo.lastUpdated}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="download-section">
+        <h2 class="utrecht-heading-3">Download Modpack</h2>
+        <p class="utrecht-paragraph">
+          Download hier het volledige modpack met alle mods en plugins die hieronder staan. Voor de installatie check je gewoon even de <u>Discord</u>.
+        </p>
+        
+        <p class="utrecht-paragraph modpack-explanation">
+          * Performance Pack is speciaal gemaakt voor wie een iets mindere PC heeft - minder zware mods en betere fps.
+        </p>
+        
+        <div class="utrecht-button-group">
+          {modpacks.map((modpack) => (
+            <a 
+              href={modpack.downloadUrl} 
+              class={`tactile-button tactile-button--${modpack.type}`}
+              role="button"
+            >
+              <span class="button-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7,10 12,15 17,10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </span>
+              <span class="button-content">
+                <span class="button-title">
+                  {modpack.type === 'enhanced' ? 'Download Modpack' : 'Download Performance Pack'}
+                </span>
+                <span class="button-subtitle">v{modpack.version}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+
+
+      </section>        <section class="plugins-list">
+          <h2 class="utrecht-heading-2">Alle mods en plugins</h2>
+          
+          <div class="pack-legend">
+            <p class="utrecht-paragraph">
+              <strong>Pack iconen:</strong>
+              <span class="legend-item">
+                <span class="pack-indicator pack-indicator--normal">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </span>
+                Normal Pack
+              </span>
+              <span class="legend-item">
+                <span class="pack-indicator pack-indicator--performance">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.07,17.93L17.54,16.5C16.18,18.18 14.21,19 12,19Z"/>
+                  </svg>
+                </span>
+                Performance Pack
+              </span>
+            </p>
+          </div>
+          
+          <div class="plugins-table">
+            <table class="utrecht-table">
+              <caption class="utrecht-table__caption">
+                Hier staan alle mods en plugins
+              </caption>
+              <thead class="utrecht-table__header">
+                <tr class="utrecht-table__row">
+                  <th scope="col" class="utrecht-table__header-cell">Mod/Plugin</th>
+                  <th scope="col" class="utrecht-table__header-cell">Beschrijving</th>
+                  <th scope="col" class="utrecht-table__header-cell">Versie</th>
+                  <th scope="col" class="utrecht-table__header-cell">Packs</th>
+                  <th scope="col" class="utrecht-table__header-cell">Status</th>
+                </tr>
+              </thead>
+              <tbody class="utrecht-table__body">
+                {plugins.map((plugin) => (
+                  <tr class="utrecht-table__row">
+                    <th scope="row" class="utrecht-table__header-cell plugin-name">
+                      {plugin.name}
+                      <div class="plugin-author">{plugin.author}</div>
+                    </th>
+                    <td class="utrecht-table__cell">
+                      <p class="plugin-description">{plugin.description}</p>
+                    </td>
+                    <td class="utrecht-table__cell">
+                      <code class="version-code">{plugin.version}</code>
+                    </td>
+                    <td class="utrecht-table__cell">
+                      <div class="pack-indicators">
+                        {plugin.inNormalPack && (
+                          <span class="pack-indicator pack-indicator--normal" title="In Normal Pack">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                          </span>
+                        )}
+                        {plugin.inPerformancePack && (
+                          <span class="pack-indicator pack-indicator--performance" title="In Performance Pack">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                              <path d="M13,2.05V5.08C16.39,5.57 19,8.47 19,12C19,12.9 18.82,13.75 18.5,14.54L21.12,16.07C21.68,14.83 22,13.45 22,12C22,6.82 18.05,2.55 13,2.05M12,19A7,7 0 0,1 5,12C5,8.47 7.61,5.57 11,5.08V2.05C5.94,2.55 2,6.81 2,12A10,10 0 0,0 12,22C15.3,22 18.23,20.39 20.07,17.93L17.54,16.5C16.18,18.18 14.21,19 12,19Z"/>
+                            </svg>
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td class="utrecht-table__cell">
+                      {plugin.required ? (
+                        <span class="utrecht-badge utrecht-badge--danger">Verplicht</span>
+                      ) : (
+                        <span class="utrecht-badge utrecht-badge--neutral">Optioneel</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Utrecht Design System inspired styles with Minecraft theme */
+  
+  /* Base document styling */
+  .utrecht-document {
+    background: transparent;
+    color: #ffffff;
+    font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 40px 0;
+  }
+
+  .utrecht-document__body {
+    max-width: none;
+    padding: 0;
+  }
+
+  /* Page structure */
+  .utrecht-page-header {
+    margin-bottom: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .utrecht-page-content {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  /* Typography */
+  .utrecht-heading-1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 16px 0;
+    color: #00ff88;
+    letter-spacing: -0.02em;
+  }
+
+  .utrecht-heading-2 {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0 0 16px 0;
+    color: #ffffff;
+    letter-spacing: -0.01em;
+  }
+
+  .utrecht-heading-3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin: 0 0 16px 0;
+    color: #ffffff;
+  }
+
+  .utrecht-paragraph {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+    color: #e0e0e0;
+  }
+
+  .utrecht-paragraph--lead {
+    font-size: 1.25rem;
+    color: #b3b3b3;
+  }
+
+  /* Sections */
+  section {
+    background: transparent;
+  }
+
+  .modpack-info {
+    padding: 32px 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .download-section {
+    padding: 32px 0;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .plugins-list {
+    padding: 32px 0 0;
+  }
+
+  /* Modpack explanation */
+  .modpack-explanation {
+    font-size: 0.9rem;
+    color: #b3b3b3;
+    font-style: italic;
+    margin: 16px 0 24px 0;
+  }
+
+  /* Utrecht Button Group */
+  .utrecht-button-group {
+    display: flex;
+    gap: 16px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+
+
+
+  /* Data Lists (Utrecht style) */
+  .utrecht-data-list {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .utrecht-data-list__item {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .utrecht-data-list__key {
+    font-weight: 600;
+    width: 200px;
+    flex-shrink: 0;
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .utrecht-data-list__value {
+    color: #ffffff;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  /* Download Section */
+  .download-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .download-link {
+    color: #00ccff;
+    text-decoration: underline;
+    font-size: 0.9rem;
+  }
+
+  .download-link:hover {
+    color: #00a3cc;
+  }
+
+  /* Utrecht Badges */
+  .utrecht-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+
+  .utrecht-badge--danger {
+    background-color: #dc3545;
+    color: #ffffff;
+    border-color: #dc3545;
+  }
+
+  .utrecht-badge--warning {
+    background-color: #ffc107;
+    color: #000000;
+    border-color: #ffc107;
+  }
+
+  .utrecht-badge--success {
+    background-color: #198754;
+    color: #ffffff;
+    border-color: #198754;
+  }
+
+  .utrecht-badge--info {
+    background-color: #0dcaf0;
+    color: #000000;
+    border-color: #0dcaf0;
+  }
+
+  .utrecht-badge--neutral {
+    background-color: #6c757d;
+    color: #ffffff;
+    border-color: #6c757d;
+  }
+
+  /* Tactile Download Buttons - Discord Button Style */
+  .tactile-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px 8px 16px;
+    border: 2px solid;
+    border-radius: 0;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: none;
+    position: relative;
+    min-width: 120px;
+    flex: 0 0 auto;
+    box-shadow: 0 3px 0 #0b0c0c;
+    min-height: 40px;
+  }
+
+  .tactile-button--enhanced {
+    border-color: #00ff88;
+    background: #00ff88;
+    color: #1a1a2e;
+  }
+
+  .tactile-button--lite {
+    border-color: #00ff88;
+    background: transparent;
+    color: #00ff88;
+  }
+
+  .tactile-button:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 0 #0b0c0c;
+  }
+
+  .tactile-button--enhanced:hover:not(:disabled) {
+    background: #00e679;
+    border-color: #00e679;
+  }
+
+  .tactile-button--lite:hover:not(:disabled) {
+    background: #00ff88;
+    border-color: #00ff88;
+    color: #1a1a2e;
+  }
+
+  .tactile-button:active:not(:disabled) {
+    transform: translateY(3px);
+    box-shadow: 0 0 0 #0b0c0c;
+  }
+
+  /* Focus states */
+  .tactile-button:focus {
+    outline: 3px dotted #ffdd00;
+    outline-offset: 2px;
+  }
+
+  .tactile-button:focus-visible {
+    outline: 3px dotted #ffdd00;
+    outline-offset: 2px;
+  }
+
+  .button-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+
+  .button-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .button-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1px;
+  }
+
+  .button-subtitle {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    font-weight: 400;
+  }
+
+  .tactile-button--enhanced .button-title {
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  .tactile-button--lite .button-title {
+    color: #00ff88;
+    font-weight: 600;
+  }
+
+  .tactile-button--lite:hover .button-title {
+    color: #1a1a2e;
+    font-weight: 700;
+  }
+
+  /* Utrecht Links */
+  .utrecht-link {
+    color: #00ccff;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .utrecht-link:hover {
+    color: #00a3cc;
+  }
+
+  /* Utrecht Tables */
+  .utrecht-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .utrecht-table__caption {
+    text-align: left;
+    font-weight: 600;
+    padding: 16px;
+    color: #b3b3b3;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.02);
+  }
+
+  .utrecht-table__header {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .utrecht-table__header-cell {
+    font-weight: 700;
+    text-align: left;
+    color: #ffffff;
+    padding: 16px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  .utrecht-table__body .utrecht-table__header-cell,
+  .utrecht-table__cell {
+    text-align: left;
+    padding: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    vertical-align: top;
+    color: #e0e0e0;
+  }
+
+  .utrecht-table__row:hover {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .utrecht-table__row:last-child .utrecht-table__cell,
+  .utrecht-table__row:last-child .utrecht-table__header-cell {
+    border-bottom: none;
+  }
+
+  /* Plugin specific styling */
+  .plugin-name {
+    color: #00ff88 !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+  }
+
+  .plugin-author {
+    font-weight: 400;
+    color: #b3b3b3;
+    font-size: 0.8rem;
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  .plugin-description {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: #e0e0e0;
+    max-width: 300px;
+  }
+
+  .version-code {
+    font-family: "JetBrains Mono", "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
+    background: rgba(0, 204, 255, 0.1);
+    color: #00ccff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 204, 255, 0.2);
+  }
+
+  /* Pack Indicators */
+  .pack-indicators {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .pack-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    cursor: help;
+  }
+
+  .pack-indicator--normal {
+    background: rgba(0, 255, 136, 0.15);
+    color: #00ff88;
+    border: 1px solid rgba(0, 255, 136, 0.3);
+  }
+
+  .pack-indicator--performance {
+    background: rgba(255, 204, 0, 0.15);
+    color: #ffcc00;
+    border: 1px solid rgba(255, 204, 0, 0.3);
+  }
+
+  .pack-indicator:hover {
+    transform: scale(1.1);
+  }
+
+  .pack-indicator--normal:hover {
+    background: rgba(0, 255, 136, 0.25);
+    border-color: rgba(0, 255, 136, 0.5);
+  }
+
+  .pack-indicator--performance:hover {
+    background: rgba(255, 204, 0, 0.25);
+    border-color: rgba(255, 204, 0, 0.5);
+  }
+
+  /* Pack Legend */
+  .pack-legend {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .pack-legend .utrecht-paragraph {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+  }
+
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .utrecht-document {
+      padding: 24px 0;
+    }
+
+    .utrecht-heading-1 {
+      font-size: 2rem;
+    }
+
+    .utrecht-heading-2 {
+      font-size: 1.5rem;
+    }
+
+    .utrecht-heading-3 {
+      font-size: 1.25rem;
+    }
+
+    .utrecht-paragraph--lead {
+      font-size: 1.125rem;
+    }
+
+    .utrecht-button-group {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .tactile-button {
+      min-width: auto;
+      width: 100%;
+    }
+
+    .utrecht-data-list__item {
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .utrecht-data-list__key {
+      width: auto;
+      font-size: 0.8rem;
+    }
+
+    /* Mobile table: Transform to cards */
+    .utrecht-table__caption,
+    .utrecht-table__header {
+      display: none;
+    }
+
+    .utrecht-table,
+    .utrecht-table__body,
+    .utrecht-table__row {
+      display: block;
+      width: 100%;
+    }
+
+    .utrecht-table {
+      border: none;
+      background: transparent;
+    }
+
+    .utrecht-table__row {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      margin-bottom: 16px;
+      padding: 16px;
+      display: block;
+    }
+
+    .utrecht-table__header-cell,
+    .utrecht-table__cell {
+      display: block;
+      border: none;
+      padding: 8px 0;
+      text-align: left;
+      width: 100%;
+    }
+
+    .utrecht-table__header-cell {
+      font-size: 1.1rem !important;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .plugin-description {
+      max-width: none;
+    }
+
+    .pack-indicators {
+      margin-top: 4px;
+    }
+
+    .pack-legend .utrecht-paragraph {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .legend-item {
+      font-size: 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .utrecht-document {
+      padding: 16px 0;
+    }
+
+    .utrecht-page-header {
+      margin-bottom: 32px;
+    }
+
+    .modpack-info,
+    .download-section {
+      padding: 24px 0;
+    }
+
+    .plugins-list {
+      padding: 24px 0 0;
+    }
+  }
+</style>
