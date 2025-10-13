@@ -7,6 +7,11 @@ export default defineConfig({
     ssr: {
       // Exclude Utrecht from SSR to prevent DOM access issues
       external: ["@utrecht/web-component-library-stencil"],
+      noExternal: [],
+    },
+    optimizeDeps: {
+      // Exclude Utrecht from dependency optimization during development
+      exclude: ["@utrecht/web-component-library-stencil"],
     },
   },
   server: {

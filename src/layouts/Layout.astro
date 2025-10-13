@@ -38,6 +38,12 @@ const {
   
   <!-- Tabler Icons CSS -->
   <link rel="stylesheet" href="/node_modules/@tabler/icons-webfont/dist/tabler-icons-outline.min.css">
+  
+  <!-- Prevent FOUC by hiding content until Utrecht components load -->
+  <style>
+    body { visibility: hidden; }
+    body.utrecht-ready { visibility: visible; }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Spring naar content</a>
@@ -45,6 +51,34 @@ const {
   <main id="main-content">
     <slot />
   </main>
+  
+  <!-- Load Utrecht components with proper timing -->
+  <script type="module">
+    // Load Utrecht components before showing content
+    (async () => {
+      try {
+        // Import Utrecht components
+        await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
+        
+        // Wait for key components to be defined
+        await Promise.all([
+          customElements.whenDefined('utrecht-document'),
+          customElements.whenDefined('utrecht-heading'),
+          customElements.whenDefined('utrecht-paragraph'),
+          customElements.whenDefined('utrecht-table'),
+          customElements.whenDefined('utrecht-badge')
+        ]);
+        
+        // Show content after components are ready
+        document.body.classList.add('utrecht-ready');
+        console.log('Utrecht components loaded and ready');
+      } catch (error) {
+        console.error('Failed to load Utrecht components:', error);
+        // Show content anyway if loading fails
+        document.body.classList.add('utrecht-ready');
+      }
+    })();
+  </script>
 </body>
 </html>
 
