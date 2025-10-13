@@ -46,12 +46,17 @@ const {
     <slot />
   </main>
 
-  <!-- Load Utrecht web components on client-side only -->
+  <!-- Initialize Utrecht components on client side -->
   <script>
-    // Only load Utrecht components in the browser
-    if (typeof window !== 'undefined') {
-      import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
-    }
+    // Load Utrecht components when DOM is ready
+    document.addEventListener('DOMContentLoaded', async () => {
+      try {
+        await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
+        console.log('Utrecht components loaded');
+      } catch (error) {
+        console.error('Failed to load Utrecht components:', error);
+      }
+    });
   </script>
 </body>
 </html>
