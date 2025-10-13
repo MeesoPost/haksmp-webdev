@@ -41,8 +41,9 @@ const {
   
   <!-- Prevent FOUC for Utrecht components -->
   <style>
-    [class*="utrecht-"]:not(.utrecht-ready) { 
-      visibility: hidden; 
+    /* Show Utrecht elements immediately with CSS styling, enhance with JS when available */
+    [class*="utrecht-"] { 
+      visibility: visible; 
     }
   </style>
 </head>
@@ -53,24 +54,19 @@ const {
     <slot />
   </main>
   
-  <!-- Load Utrecht components only on client-side -->
-  <script type="module" is:inline>
-    // Check if we're in browser environment
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      // Load Utrecht components dynamically
-      import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js')
-        .then(() => {
-          // Mark Utrecht elements as ready
-          const utrechtElements = document.querySelectorAll('[class*="utrecht-"]');
-          utrechtElements.forEach(el => el.classList.add('utrecht-ready'));
-          console.log('Utrecht components loaded');
-        })
-        .catch(error => {
-          console.warn('Utrecht loading failed, showing content anyway:', error);
-          // Show content even if Utrecht fails to load
-          const utrechtElements = document.querySelectorAll('[class*="utrecht-"]');
-          utrechtElements.forEach(el => el.classList.add('utrecht-ready'));
+  <!-- Client-side Utrecht loading handled by UtrechtLoader component -->
+  <script is:inline>
+    // Fallback visibility for Utrecht elements during loading
+    if (typeof document !== 'undefined') {
+      document.addEventListener('DOMContentLoaded', function() {
+        // Set initial visibility for Utrecht elements
+        const utrechtElements = document.querySelectorAll('[class*="utrecht-"]');
+        utrechtElements.forEach(el => {
+          if (!el.classList.contains('utrecht-loaded') && !el.classList.contains('utrecht-fallback')) {
+            el.style.visibility = 'hidden';
+          }
         });
+      });
     }
   </script>
 </body>
@@ -82,4 +78,5 @@ const {
   @import '../styles/minecraft.css';
   @import '../styles/animations.css';
   @import '../styles/components/discord-button.css';
+  @import '../styles/utrecht-fallback.css';
 </style>

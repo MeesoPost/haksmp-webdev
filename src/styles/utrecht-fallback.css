@@ -1,0 +1,47 @@
+@charset "UTF-8";
+
+/* Utrecht CSS-only fallback styles */
+@import "@utrecht/component-library-css/dist/index.css";
+@import "@utrecht/design-tokens/dist/index.css";
+
+/* Ensure Utrecht classes have proper styling even without web components */
+.utrecht-button-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.utrecht-link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  text-align: center;
+}
+
+.utrecht-link-button--large {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.utrecht-page {
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+/* Ensure visibility for Utrecht elements */
+[class*="utrecht-"] {
+  visibility: visible !important;
+}
+
+.utrecht-loaded,
+.utrecht-fallback {
+  visibility: visible !important;
+}

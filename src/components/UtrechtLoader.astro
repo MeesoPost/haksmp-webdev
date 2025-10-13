@@ -1,45 +1,56 @@
 ---
-// This component loads Utrecht components only on the client side
+// This component handles Utrecht components loading safely
+// Uses CSS-first approach with JavaScript enhancement
 ---
 
-<div id="utrecht-components-loader" style="display: none;">
-  <slot />
-</div>
+<slot />
 
-<script>
-  // Define a custom element to handle Utrecht loading
-  class UtrechtLoader extends HTMLElement {
-    async connectedCallback() {
-      try {
-        // Only load Utrecht in browser environment
-        if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-          // Import Utrecht components
-          await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
-          
-          // Show the content once Utrecht is loaded
-          const loader = document.getElementById('utrecht-components-loader');
-          if (loader) {
-            loader.style.display = 'block';
+<script is:inline>
+  // Progressive enhancement for Utrecht components
+  // Only run in browser environment to avoid SSR issues
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    
+    function initializeUtrechtEnhancement() {
+      // First ensure all Utrecht elements are visible (CSS fallback working)
+      const utrechtElements = document.querySelectorAll('[class*="utrecht-"]');
+      utrechtElements.forEach(el => {
+        el.style.visibility = 'visible';
+        el.classList.add('utrecht-css-ready');
+      });
+      
+      // Then try to enhance with web components (optional)
+      const loadEnhancement = async () => {
+        try {
+          // Only enhance if web components are supported
+          if ('customElements' in window) {
+            await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
+            console.log('Utrecht web components enhancement loaded');
+            
+            // Mark enhanced elements
+            utrechtElements.forEach(el => {
+              el.classList.add('utrecht-enhanced');
+            });
           }
-          
-          console.log('Utrecht components successfully loaded');
+        } catch (error) {
+          console.info('Utrecht enhancement not available, using CSS fallback:', error.message);
+          // This is fine - CSS fallback is already working
         }
-      } catch (error) {
-        console.error('Failed to load Utrecht components:', error);
-        // Show content anyway in case of error
-        const loader = document.getElementById('utrecht-components-loader');
-        if (loader) {
-          loader.style.display = 'block';
-        }
-      }
+      };
+      
+      // Load enhancement with timeout to prevent blocking
+      Promise.race([
+        loadEnhancement(),
+        new Promise(resolve => setTimeout(resolve, 2000))
+      ]).then(() => {
+        console.log('Utrecht initialization complete');
+      });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeUtrechtEnhancement);
+    } else {
+      initializeUtrechtEnhancement();
     }
   }
-  
-  // Only define the custom element in browser
-  if (typeof window !== 'undefined' && typeof customElements !== 'undefined') {
-    customElements.define('utrecht-loader', UtrechtLoader);
-  }
 </script>
-
-<!-- Initialize the loader -->
-<utrecht-loader></utrecht-loader>

@@ -1,0 +1,2 @@
+# Ignore Utrecht web components during Vercel build to prevent SSR issues
+node_modules/@utrecht/web-component-library-stencil/dist/**/*.js

@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "app/**/*": {
+      "runtime": "nodejs22.x"
+    }
+  },
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=4096"
+    }
+  },
+  "buildCommand": "npm run build"
+}
