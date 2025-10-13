@@ -16,7 +16,7 @@
   color: var(--discord-white);
   border: 3px solid var(--discord-blurple);
   border-radius: 0;
-  font: inherit;
+  font-family: var(--font-family-secondary);
   font-weight: 400;
   text-decoration: none;
   cursor: pointer;

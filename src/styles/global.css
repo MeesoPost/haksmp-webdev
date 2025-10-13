@@ -1,3 +1,52 @@
+/* Font Face Declarations */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/geist-v4-latin-300.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/geist-v4-latin-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/geist-v4-latin-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/geist-v4-latin-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist/geist-v4-latin-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Monocraft";
+  src: url("/fonts/Minecraft%20Seven/Minecraft-Seven_v2.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Color transformations */
   --lightTransformation: 0% 0% 20%;
@@ -82,14 +131,19 @@
 
   /* Font variables */
   --root-font-size: 1rem;
-  --root-font-family--primary: "Monocraft", "Courier New", monospace;
-  --root-font-family--secondary: system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", sans-serif;
+  --root-font-family--primary: "Geist", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, sans-serif;
+  --root-font-family--secondary: "Monocraft", "Minecraft-Seven", "Courier New",
+    monospace;
   --root-font-weight--light: 400;
   --root-font-weight--normal: 400;
   --root-font-weight--semi-bold: 700;
   --root-font-weight--bold: 700;
   --root-line-height: 1.6;
+
+  /* Font family aliases for easier use */
+  --font-family-primary: var(--root-font-family--primary);
+  --font-family-secondary: var(--root-font-family--secondary);
 
   /* Heading colors */
   --root-heading-1-color: var(--root-color--grey);
@@ -98,10 +152,10 @@
   --root-heading-4-color: var(--root-color-text);
 
   /* Heading families */
-  --root-heading-1-family: var(--root-font-family--primary);
-  --root-heading-2-family: var(--root-font-family--primary);
-  --root-heading-3-family: var(--root-font-family--primary);
-  --root-heading-4-family: var(--root-font-family--secondary);
+  --root-heading-1-family: var(--root-font-family--secondary);
+  --root-heading-2-family: var(--root-font-family--secondary);
+  --root-heading-3-family: var(--root-font-family--secondary);
+  --root-heading-4-family: var(--root-font-family--primary);
 
   /* Heading sizes */
   --root-heading-1-size: clamp(2.5rem, 6vw, 4.5rem);
@@ -201,7 +255,7 @@
 
 /* Body styling */
 body {
-  font-family: var(--root-font-family--secondary);
+  font-family: var(--root-font-family--primary);
   font-size: var(--root-font-size);
   line-height: var(--root-line-height);
   color: var(--root-color-text);
@@ -247,9 +301,9 @@ a {
   transition: color 0.2s ease;
 }
 
-a:hover {
+/* a:hover {
   color: var(--root-color-text-link--hover);
-}
+} */
 
 /* Container */
 .container {
@@ -270,7 +324,7 @@ a:hover {
   color: var(--root-color--white);
   text-decoration: none;
   font-weight: var(--root-font-weight--bold);
-  font-family: var(--root-font-family--primary);
+  font-family: var(--root-font-family--secondary);
 }
 
 .skip-link:focus {
@@ -360,7 +414,7 @@ a:hover {
 }
 
 .subtitle {
-  font-family: var(--root-font-family--primary);
+  font-family: var(--root-font-family--secondary);
   font-size: clamp(1rem, 2vw, 1.5rem);
   color: var(--root-color--support);
   margin-bottom: var(--space-xl);
