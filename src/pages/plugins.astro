@@ -1,13 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PluginsList from '../components/PluginsList.astro';
+import UtrechtLoader from '../components/UtrechtLoader.astro';
 ---
 
 <Layout title="Mods & Plugins - Hak SMP">
   <div class="page-wrapper">
-    <main class="utrecht-page">
-      <PluginsList />
-    </main>
+    <UtrechtLoader>
+      <main class="utrecht-page">
+        <PluginsList />
+      </main>
+    </UtrechtLoader>
   </div>
 </Layout>
 

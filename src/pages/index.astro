@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import FlipClock from '../components/FlipClock.astro';
 import DiscordButton from '../components/DiscordButton.astro';
 import AnimatedGrid from '../components/AnimatedGrid.astro';
+import UtrechtLoader from '../components/UtrechtLoader.astro';
 ---
 
 <Layout>
@@ -14,15 +15,17 @@ import AnimatedGrid from '../components/AnimatedGrid.astro';
       
       <FlipClock />
       
-      <div class="utrecht-button-group">
-        <DiscordButton href="#" size="large">
-          Join alvast de Discord
-        </DiscordButton>
-        
-        <a href="/plugins" class="utrecht-link-button utrecht-link-button--large plugins-button">
-          Bekijk Mods & Plugins
-        </a>
-      </div>
+      <UtrechtLoader>
+        <div class="utrecht-button-group">
+          <DiscordButton href="#" size="large">
+            Join alvast de Discord
+          </DiscordButton>
+          
+          <a href="/plugins" class="utrecht-link-button utrecht-link-button--large plugins-button">
+            Bekijk Mods & Plugins
+          </a>
+        </div>
+      </UtrechtLoader>
     </div>
   </section>
 </Layout>

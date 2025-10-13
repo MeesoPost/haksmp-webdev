@@ -3,15 +3,21 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  output: "static",
   vite: {
     ssr: {
-      // Exclude Utrecht from SSR to prevent DOM access issues
+      // Exclude Utrecht from SSR to prevent DOM access issues during build
       external: ["@utrecht/web-component-library-stencil"],
       noExternal: [],
     },
     optimizeDeps: {
       // Exclude Utrecht from dependency optimization during development
       exclude: ["@utrecht/web-component-library-stencil"],
+    },
+    define: {
+      // Provide a mock document object during SSR
+      "global.document": "undefined",
+      "global.window": "undefined",
     },
   },
   server: {
