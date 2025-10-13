@@ -1,0 +1,45 @@
+---
+// This component loads Utrecht components only on the client side
+---
+
+<div id="utrecht-components-loader" style="display: none;">
+  <slot />
+</div>
+
+<script>
+  // Define a custom element to handle Utrecht loading
+  class UtrechtLoader extends HTMLElement {
+    async connectedCallback() {
+      try {
+        // Only load Utrecht in browser environment
+        if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+          // Import Utrecht components
+          await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
+          
+          // Show the content once Utrecht is loaded
+          const loader = document.getElementById('utrecht-components-loader');
+          if (loader) {
+            loader.style.display = 'block';
+          }
+          
+          console.log('Utrecht components successfully loaded');
+        }
+      } catch (error) {
+        console.error('Failed to load Utrecht components:', error);
+        // Show content anyway in case of error
+        const loader = document.getElementById('utrecht-components-loader');
+        if (loader) {
+          loader.style.display = 'block';
+        }
+      }
+    }
+  }
+  
+  // Only define the custom element in browser
+  if (typeof window !== 'undefined' && typeof customElements !== 'undefined') {
+    customElements.define('utrecht-loader', UtrechtLoader);
+  }
+</script>
+
+<!-- Initialize the loader -->
+<utrecht-loader></utrecht-loader>

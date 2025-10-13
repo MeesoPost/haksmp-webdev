@@ -45,19 +45,6 @@ const {
   <main id="main-content">
     <slot />
   </main>
-
-  <!-- Initialize Utrecht components on client side -->
-  <script>
-    // Load Utrecht components when DOM is ready
-    document.addEventListener('DOMContentLoaded', async () => {
-      try {
-        await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
-        console.log('Utrecht components loaded');
-      } catch (error) {
-        console.error('Failed to load Utrecht components:', error);
-      }
-    });
-  </script>
 </body>
 </html>
 

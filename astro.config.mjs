@@ -6,7 +6,6 @@ export default defineConfig({
   vite: {
     ssr: {
       // Exclude Utrecht from SSR to prevent DOM access issues
-      noExternal: [],
       external: ["@utrecht/web-component-library-stencil"],
     },
   },
