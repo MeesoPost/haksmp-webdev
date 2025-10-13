@@ -8,9 +8,6 @@ const {
   title = "HAK - Seizoen 4 | Het Landen Systeem",
   description = "Join HAK Seizoen 4: Het Landen Systeem. Bouw je eigen koninkrijk met vrienden, unlock territorium, en creëer epische avonturen!"
 } = Astro.props;
-
-// Import Utrecht web components
-import '@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js';
 ---
 
 <!DOCTYPE html>
@@ -48,6 +45,14 @@ import '@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js';
   <main id="main-content">
     <slot />
   </main>
+
+  <!-- Load Utrecht web components on client-side only -->
+  <script>
+    // Only load Utrecht components in the browser
+    if (typeof window !== 'undefined') {
+      import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
+    }
+  </script>
 </body>
 </html>
 
