@@ -39,16 +39,6 @@
   --root-color--grey-dark: hsl(48, 16%, 84%); /* 94% - 10% */
   --root-color--grey-darkest: hsl(48, 16%, 64%); /* 94% - 30% */
 
-  /* Grey colors - Isabelline #F0F0ED */
-  --root-color--grey: hsl(48, 16%, 94%);
-  --root-color--grey-light: hsl(calc(48 + 0%), calc(16% + 0%), calc(94% + 5%));
-  --root-color--grey-dark: hsl(calc(48 + 0%), calc(16% + 0%), calc(94% - 10%));
-  --root-color--grey-darkest: hsl(
-    calc(48 + 0%),
-    calc(16% + 0%),
-    calc(94% - 30%)
-  );
-
   /* Yellow colors - School bus yellow #FFDD00 */
   --root-color--yellow: hsl(52, 100%, 50%);
 
@@ -68,8 +58,6 @@
   --root-color-background--secondary: var(--root-color--secondary);
   --root-color-background--support: var(--root-color--support-lightest);
   --root-color-background--grey: var(--root-color--grey);
-  --root-color-background--dark: hsl(210, 11%, 8%);
-  --root-color-background--dark-secondary: hsl(210, 11%, 12%);
   --root-color-background--dark: hsl(210, 11%, 8%);
   --root-color-background--dark-secondary: hsl(210, 11%, 12%);
 

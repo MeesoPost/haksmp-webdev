@@ -1,4 +1,6 @@
-/* Minecraft button --- NOT IN USE --- */
+/* Minecraft-specific styles - currently unused but kept for future use */
+
+/*
 .btn-minecraft {
   display: inline-block;
   padding: var(--space-sm) var(--space-md);
@@ -27,7 +29,8 @@
   background: hsl(80, 91%, 7%) !important;
 }
 
-/* .btn-minecraft:focus-visible {
+.btn-minecraft:focus-visible {
   outline: var(--focus-outline-width) dotted var(--focus-outline-color);
   outline-offset: var(--focus-outline-offset);
-} */
+}
+*/
