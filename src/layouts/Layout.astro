@@ -41,9 +41,23 @@ const {
   
   <!-- Prevent FOUC for Utrecht components -->
   <style>
-    /* Show Utrecht elements immediately with CSS styling, enhance with JS when available */
+    /* Hide Utrecht elements until components are loaded */
     [class*="utrecht-"] { 
-      visibility: visible; 
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* Show Utrecht elements when ready */
+    .utrecht-ready [class*="utrecht-"] {
+      visibility: visible;
+      opacity: 1;
+    }
+    
+    /* Fallback if Utrecht fails to load */
+    .utrecht-error [class*="utrecht-"] {
+      visibility: visible;
+      opacity: 1;
     }
   </style>
 </head>
@@ -54,19 +68,38 @@ const {
     <slot />
   </main>
   
-  <!-- Client-side Utrecht loading handled by UtrechtLoader component -->
-  <script is:inline>
-    // Fallback visibility for Utrecht elements during loading
-    if (typeof document !== 'undefined') {
-      document.addEventListener('DOMContentLoaded', function() {
-        // Set initial visibility for Utrecht elements
-        const utrechtElements = document.querySelectorAll('[class*="utrecht-"]');
-        utrechtElements.forEach(el => {
-          if (!el.classList.contains('utrecht-loaded') && !el.classList.contains('utrecht-fallback')) {
-            el.style.visibility = 'hidden';
-          }
-        });
-      });
+  <!-- Utrecht CSS for proper styling -->
+  <link rel="stylesheet" href="/node_modules/@utrecht/component-library-css/dist/index.css">
+  
+  <!-- Utrecht initialization script -->
+  <script type="module">
+    // Load and initialize Utrecht components properly
+    if (typeof window !== 'undefined') {
+      async function loadUtrecht() {
+        try {
+          // Import the loader function
+          const { defineCustomElements } = await import('@utrecht/web-component-library-stencil/loader');
+          
+          // Define all Utrecht custom elements
+          await defineCustomElements(window);
+          
+          console.log('Utrecht components loaded and defined');
+          
+          // Mark body as Utrecht ready
+          document.body.classList.add('utrecht-ready');
+          
+        } catch (error) {
+          console.error('Utrecht loading failed:', error);
+          document.body.classList.add('utrecht-error');
+        }
+      }
+      
+      // Load Utrecht when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadUtrecht);
+      } else {
+        loadUtrecht();
+      }
     }
   </script>
 </body>

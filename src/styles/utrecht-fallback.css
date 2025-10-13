@@ -1,10 +1,6 @@
-@charset "UTF-8";
+/* Custom Utrecht overrides and enhancements */
 
-/* Utrecht CSS-only fallback styles */
-@import "@utrecht/component-library-css/dist/index.css";
-@import "@utrecht/design-tokens/dist/index.css";
-
-/* Ensure Utrecht classes have proper styling even without web components */
+/* Ensure proper styling for custom usage */
 .utrecht-button-group {
   display: flex;
   gap: 1rem;
@@ -34,14 +30,4 @@
 .utrecht-page {
   min-height: 100vh;
   padding: 1rem;
-}
-
-/* Ensure visibility for Utrecht elements */
-[class*="utrecht-"] {
-  visibility: visible !important;
-}
-
-.utrecht-loaded,
-.utrecht-fallback {
-  visibility: visible !important;
 }

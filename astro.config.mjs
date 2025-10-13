@@ -6,27 +6,15 @@ export default defineConfig({
   output: "static",
   vite: {
     ssr: {
-      // Completely exclude Utrecht from SSR to prevent any server-side loading
+      // Exclude Utrecht from SSR to prevent server-side DOM access
       external: [
         "@utrecht/web-component-library-stencil",
-        "@utrecht/web-component-library-stencil/**",
+        "@utrecht/web-component-library-stencil/loader",
       ],
-      noExternal: [],
     },
     optimizeDeps: {
-      // Exclude Utrecht from dependency optimization during development
-      exclude: ["@utrecht/web-component-library-stencil"],
-    },
-    build: {
-      rollupOptions: {
-        external: ["@utrecht/web-component-library-stencil"],
-      },
-    },
-    define: {
-      // Provide safe globals during SSR
-      "global.document": "undefined",
-      "global.window": "undefined",
-      "global.navigator": "undefined",
+      // Include Utrecht in optimization for client-side
+      include: ["@utrecht/web-component-library-stencil/loader"],
     },
   },
   server: {

@@ -1,56 +1,36 @@
 ---
-// This component handles Utrecht components loading safely
-// Uses CSS-first approach with JavaScript enhancement
+// Utrecht web components loader - properly initializes Utrecht components
 ---
 
 <slot />
 
-<script is:inline>
-  // Progressive enhancement for Utrecht components
-  // Only run in browser environment to avoid SSR issues
-  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-    
-    function initializeUtrechtEnhancement() {
-      // First ensure all Utrecht elements are visible (CSS fallback working)
-      const utrechtElements = document.querySelectorAll('[class*="utrecht-"]');
-      utrechtElements.forEach(el => {
-        el.style.visibility = 'visible';
-        el.classList.add('utrecht-css-ready');
-      });
-      
-      // Then try to enhance with web components (optional)
-      const loadEnhancement = async () => {
-        try {
-          // Only enhance if web components are supported
-          if ('customElements' in window) {
-            await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
-            console.log('Utrecht web components enhancement loaded');
-            
-            // Mark enhanced elements
-            utrechtElements.forEach(el => {
-              el.classList.add('utrecht-enhanced');
-            });
-          }
-        } catch (error) {
-          console.info('Utrecht enhancement not available, using CSS fallback:', error.message);
-          // This is fine - CSS fallback is already working
-        }
-      };
-      
-      // Load enhancement with timeout to prevent blocking
-      Promise.race([
-        loadEnhancement(),
-        new Promise(resolve => setTimeout(resolve, 2000))
-      ]).then(() => {
-        console.log('Utrecht initialization complete');
-      });
+<script>
+  // Only run in browser environment
+  if (typeof window !== 'undefined') {
+    // Define initialization function
+    async function initializeUtrecht() {
+      try {
+        // Import Utrecht components
+        const { defineCustomElements } = await import('@utrecht/web-component-library-stencil/loader');
+        
+        // Initialize the custom elements
+        defineCustomElements(window);
+        
+        console.log('Utrecht web components initialized successfully');
+        
+        // Dispatch ready event
+        window.dispatchEvent(new CustomEvent('utrecht-ready'));
+        
+      } catch (error) {
+        console.error('Failed to initialize Utrecht components:', error);
+      }
     }
     
     // Initialize when DOM is ready
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeUtrechtEnhancement);
+      document.addEventListener('DOMContentLoaded', initializeUtrecht);
     } else {
-      initializeUtrechtEnhancement();
+      initializeUtrecht();
     }
   }
 </script>
