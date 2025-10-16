@@ -1,4 +1,7 @@
 ---
+// Import Utrecht CSS
+import '@utrecht/component-library-css/dist/index.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -68,39 +71,15 @@ const {
     <slot />
   </main>
   
-  <!-- Utrecht CSS for proper styling -->
-  <link rel="stylesheet" href="/node_modules/@utrecht/component-library-css/dist/index.css">
+  <!-- Utrecht CSS included via import -->
   
-  <!-- Utrecht initialization script -->
+  <!-- Utrecht components are loaded by UtrechtLoader component -->
   <script type="module">
-    // Load and initialize Utrecht components properly
-    if (typeof window !== 'undefined') {
-      async function loadUtrecht() {
-        try {
-          // Import the loader function
-          const { defineCustomElements } = await import('@utrecht/web-component-library-stencil/loader');
-          
-          // Define all Utrecht custom elements
-          await defineCustomElements(window);
-          
-          console.log('Utrecht components loaded and defined');
-          
-          // Mark body as Utrecht ready
-          document.body.classList.add('utrecht-ready');
-          
-        } catch (error) {
-          console.error('Utrecht loading failed:', error);
-          document.body.classList.add('utrecht-error');
-        }
-      }
-      
-      // Load Utrecht when DOM is ready
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadUtrecht);
-      } else {
-        loadUtrecht();
-      }
-    }
+    // Wait for Utrecht components to be ready
+    document.addEventListener('utrecht-ready', () => {
+      console.log('Utrecht components are ready!');
+      document.body.classList.add('utrecht-ready');
+    });
   </script>
 </body>
 </html>

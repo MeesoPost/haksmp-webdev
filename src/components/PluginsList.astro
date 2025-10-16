@@ -152,19 +152,7 @@ import { plugins, modpacks, modpackInfo } from '../data/plugins.js';
 </utrecht-document>
 </div>
 
-<script>
-  // Load Utrecht components immediately when this script runs
-  (async () => {
-    try {
-      if (typeof window !== 'undefined') {
-        await import('@utrecht/web-component-library-stencil/dist/utrecht/utrecht.esm.js');
-        console.log('Utrecht components loaded for plugins page');
-      }
-    } catch (error) {
-      console.error('Failed to load Utrecht components:', error);
-    }
-  })();
-</script>
+<!-- Utrecht components are loaded by UtrechtLoader wrapper -->
 
 <style>
   /* Utrecht Design System web components styling */

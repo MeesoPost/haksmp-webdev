@@ -1,36 +1,33 @@
----
-// Utrecht web components loader - properly initializes Utrecht components
----
-
-<slot />
+<!-- Wait for components to be ready before showing content -->
+<div id="utrecht-wrapper" style="opacity: 0; transition: opacity 0.3s ease;">
+  <slot />
+</div>
 
 <script>
-  // Only run in browser environment
-  if (typeof window !== 'undefined') {
-    // Define initialization function
-    async function initializeUtrecht() {
-      try {
-        // Import Utrecht components
-        const { defineCustomElements } = await import('@utrecht/web-component-library-stencil/loader');
-        
-        // Initialize the custom elements
-        defineCustomElements(window);
-        
-        console.log('Utrecht web components initialized successfully');
-        
-        // Dispatch ready event
-        window.dispatchEvent(new CustomEvent('utrecht-ready'));
-        
-      } catch (error) {
-        console.error('Failed to initialize Utrecht components:', error);
-      }
-    }
+  import { defineCustomElements } from '@utrecht/web-component-library-stencil/loader';
+  
+  // Initialize Utrecht components immediately
+  try {
+    defineCustomElements();
+    console.log('Utrecht web components loaded and defined');
     
-    // Initialize when DOM is ready
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initializeUtrecht);
-    } else {
-      initializeUtrecht();
+    // Small delay to let components register
+    setTimeout(() => {
+      const wrapper = document.getElementById('utrecht-wrapper');
+      if (wrapper) {
+        wrapper.style.opacity = '1';
+      }
+      
+      // Dispatch ready event
+      document.dispatchEvent(new CustomEvent('utrecht-ready'));
+    }, 100);
+    
+  } catch (error) {
+    console.error('Failed to load Utrecht components:', error);
+    // Show content anyway to prevent blank page
+    const wrapper = document.getElementById('utrecht-wrapper');
+    if (wrapper) {
+      wrapper.style.opacity = '1';
     }
   }
 </script>

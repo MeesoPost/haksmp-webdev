@@ -4,19 +4,6 @@ import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  vite: {
-    ssr: {
-      // Exclude Utrecht from SSR to prevent server-side DOM access
-      external: [
-        "@utrecht/web-component-library-stencil",
-        "@utrecht/web-component-library-stencil/loader",
-      ],
-    },
-    optimizeDeps: {
-      // Include Utrecht in optimization for client-side
-      include: ["@utrecht/web-component-library-stencil/loader"],
-    },
-  },
   server: {
     headers: {
       // Content Security Policy
