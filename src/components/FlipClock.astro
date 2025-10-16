@@ -81,7 +81,7 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
     align-self: center;
   }
 
-  /* Flip unit container - simplified */
+  /* Flip unit container */
   .flip-unit {
     position: relative;
     width: 100px;
@@ -92,6 +92,8 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.4);
     overflow: hidden;
+    will-change: contents;
+    contain: layout style paint;
   }
 
   /* Basis nummer styling */
@@ -110,6 +112,7 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
     color: var(--root-color--white);
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     background: var(--root-color--secondary);
+    will-change: transform;
   }
 
   /* Current nummer - normaal zichtbaar */
@@ -125,13 +128,11 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
 
   /* Tijdens animatie */
   .flip-unit.changing .number.current {
-    /* Huidige nummer valt naar beneden */
-    animation: fallDown 0.4s ease-in forwards;
+    animation: fallDown 0.4s cubic-bezier(0.45, 0, 1, 1) forwards;
   }
 
   .flip-unit.changing .number.incoming {
-    /* Nieuwe nummer komt van boven */
-    animation: dropDown 0.4s ease-out forwards;
+    animation: dropDown 0.4s cubic-bezier(0, 0, 0.55, 1) forwards;
   }
 
   @keyframes fallDown {
@@ -157,8 +158,6 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
   }
 
   /* Label positioning */
-
-  /* Label */
   .label {
     position: absolute;
     bottom: -25px;
@@ -170,31 +169,6 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
     text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: var(--root-font-weight--bold);
-  }
-
-  /* Live indicator */
-  .flip-clock__live {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
-    background: var(--root-color--secondary);
-    color: var(--root-color--white);
-    border-radius: 8px;
-    font-family: var(--root-font-family--secondary);
-    font-size: 1.5rem;
-    font-weight: var(--root-font-weight--bold);
-    animation: pulse-live 1.5s ease-in-out infinite;
-  }
-
-  @keyframes pulse-live {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-  }
-
-  .flip-clock__live-indicator {
-    font-size: 2rem;
-    color: var(--root-color--support);
   }
 
   /* Responsive */
@@ -275,23 +249,40 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
 </style>
 
 <script define:vars={{ LAUNCH_DATE }}>
-  // Countdown logic
   const targetDate = new Date(LAUNCH_DATE);
+  
+  // Cache DOM references
+  const flipUnits = {
+    days: null,
+    hours: null,
+    minutes: null,
+    seconds: null
+  };
+  
   let previousValues = {
     days: -1,
     hours: -1,
     minutes: -1,
     seconds: -1
   };
-
+  
+  let animationFrameId = null;
+  let lastUpdateTime = 0;
+  
   function padNumber(num) {
     return num.toString().padStart(2, '0');
   }
-
+  
+  function cacheElements() {
+    Object.keys(flipUnits).forEach(unit => {
+      flipUnits[unit] = document.querySelector(`[data-unit="${unit}"]`);
+    });
+  }
+  
   function updateFlipUnit(unit, newValue, forceUpdate = false) {
-    const flipUnit = document.querySelector(`[data-unit="${unit}"]`);
+    const flipUnit = flipUnits[unit];
     if (!flipUnit) return;
-
+    
     const formattedValue = padNumber(newValue);
     const oldValue = previousValues[unit] === -1 ? formattedValue : padNumber(previousValues[unit]);
     
@@ -299,80 +290,105 @@ const LAUNCH_DATE = '2025-10-20T15:00:00+02:00'; // ← 20 oktober 2025 launch!
     const incomingNumber = flipUnit.querySelector('.number.incoming');
     
     if (!currentNumber || !incomingNumber) return;
-
-    // Voor eerste keer laden of geforceerde update - zet direct zonder animatie
+    
+    // First load or forced update - set directly without animation
     if (forceUpdate || previousValues[unit] === -1) {
       currentNumber.textContent = formattedValue;
       incomingNumber.textContent = formattedValue;
+      previousValues[unit] = newValue;
       return;
     }
-
+    
     // Only animate if value actually changed
     if (oldValue === formattedValue) return;
-
-    // Zet nieuwe waarde in incoming nummer
+    
+    // Remove existing changing class to reset animation
+    flipUnit.classList.remove('changing');
+    
+    // Set new value in incoming
     incomingNumber.textContent = formattedValue;
-
-    // Start dual animatie
+    
+    // Trigger reflow to restart animation
+    void flipUnit.offsetHeight;
+    
+    // Add changing class to start animation
     flipUnit.classList.add('changing');
-
-    // Na animatie: wissel de rollen
-    setTimeout(() => {
-      // Current krijgt nieuwe waarde (voor volgende keer)
+    
+    // After animation completes, swap positions
+    const animationTimeout = setTimeout(() => {
       currentNumber.textContent = formattedValue;
-      
-      // Stop animatie (reset positions)
       flipUnit.classList.remove('changing');
-    }, 600);
+      previousValues[unit] = newValue;
+    }, 400);
   }
-
-  function updateCountdown() {
+  
+  function calculateCountdown() {
     const now = new Date();
     const diff = targetDate - now;
-
-    // Calculate time units - zelfs als negatief, toon 00:00:00:00
+    
     let days, hours, minutes, seconds;
     
     if (diff <= 0) {
-      // Als de datum is bereikt, toon gewoon nullen
-      days = 0;
-      hours = 0;
-      minutes = 0;
-      seconds = 0;
+      days = hours = minutes = seconds = 0;
     } else {
-      // Normale countdown berekening
       days = Math.floor(diff / (1000 * 60 * 60 * 24));
       hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       seconds = Math.floor((diff % (1000 * 60)) / 1000);
     }
-
-    // Update cards - eerste keer of als waarde veranderd
-    const isFirstRun = previousValues.days === -1;
     
-    if (days !== previousValues.days || isFirstRun) {
+    return { days, hours, minutes, seconds };
+  }
+  
+  function updateCountdown(isFirstRun = false) {
+    const { days, hours, minutes, seconds } = calculateCountdown();
+    
+    if (days !== previousValues.days) {
       updateFlipUnit('days', days, isFirstRun);
-      previousValues.days = days;
     }
-    if (hours !== previousValues.hours || isFirstRun) {
+    if (hours !== previousValues.hours) {
       updateFlipUnit('hours', hours, isFirstRun);
-      previousValues.hours = hours;
     }
-    if (minutes !== previousValues.minutes || isFirstRun) {
+    if (minutes !== previousValues.minutes) {
       updateFlipUnit('minutes', minutes, isFirstRun);
-      previousValues.minutes = minutes;
     }
-    if (seconds !== previousValues.seconds || isFirstRun) {
+    if (seconds !== previousValues.seconds) {
       updateFlipUnit('seconds', seconds, isFirstRun);
-      previousValues.seconds = seconds;
     }
   }
-
-  // Initial setup
-  setTimeout(() => {
-    updateCountdown();
-  }, 100);
-
-  // Update every second
-  setInterval(updateCountdown, 1000);
+  
+  function tick(currentTime) {
+    // Update only once per second (1000ms)
+    if (currentTime - lastUpdateTime >= 1000) {
+      updateCountdown(false);
+      lastUpdateTime = currentTime;
+    }
+    
+    // Continue the animation loop
+    animationFrameId = requestAnimationFrame(tick);
+  }
+  
+  function init() {
+    cacheElements();
+    updateCountdown(true);
+    
+    // Start animation loop
+    animationFrameId = requestAnimationFrame(tick);
+  }
+  
+  // Initialize when ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(init, 100);
+    });
+  } else {
+    setTimeout(init, 100);
+  }
+  
+  // Cleanup on page hide
+  window.addEventListener('pagehide', () => {
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+  });
 </script>

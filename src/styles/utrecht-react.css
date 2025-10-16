@@ -462,3 +462,151 @@ section {
     padding: 24px 0 0;
   }
 }
+/* Footer Styling - GOV.UK Inspired */
+.utrecht-page-footer {
+  background: #1a1a1a;
+  border-top: 10px solid var(--root-color--secondary);
+  padding: 0;
+  margin-top: auto;
+}
+
+.footer-wrapper {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 48px var(--container-padding) 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-heading {
+  font-family: var(--root-font-family--secondary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 12px 0 !important;
+  line-height: 1.2;
+}
+
+.footer-description {
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  margin: 0 !important;
+  line-height: 1.5;
+}
+
+.footer-section-heading {
+  font-family: var(--root-font-family--primary);
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 16px 0 !important;
+  line-height: 1.2;
+}
+
+.footer-nav {
+  display: block;
+}
+
+.footer-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.footer-nav-item {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-link {
+  display: inline-block;
+  color: #b3b3b3;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  transition: color 0.15s ease;
+  padding: 4px 0;
+}
+
+.footer-link:hover {
+  color: var(--root-color--secondary);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.footer-link:focus-visible {
+  outline: 3px solid var(--root-color--yellow);
+  outline-offset: 0;
+  background-color: var(--root-color--yellow);
+  color: #000000;
+  text-decoration: none;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 16px;
+}
+
+.footer-copyright {
+  font-size: 0.75rem;
+  color: #999999;
+  margin: 0 !important;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-wrapper {
+    padding: 32px var(--container-padding) 24px;
+  }
+
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 24px;
+    padding-bottom: 24px;
+  }
+
+  .footer-section-heading {
+    font-size: 0.9375rem;
+  }
+
+  .footer-nav-list {
+    gap: 24px;
+  }
+
+  .footer-link {
+    font-size: 0.8125rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-wrapper {
+    padding: 24px var(--container-padding) 16px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer-heading {
+    font-size: 1.125rem;
+  }
+
+  .footer-nav-list {
+    gap: 8px;
+  }
+}
