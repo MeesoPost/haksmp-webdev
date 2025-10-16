@@ -1,4 +1,4 @@
-/* Utrecht React Components Styling */
+/* Utrecht React Components Styling - Clean & No !important */
 
 /* Document & Page Structure */
 .utrecht-document {
@@ -48,9 +48,8 @@
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
 }
 
-/* Override font for specific modpack name heading */
 .modpack-name-heading {
-  font-family: var(--font-family-primary) !important;
+  font-family: var(--font-family-primary);
 }
 
 /* Paragraphs */
@@ -132,19 +131,16 @@ section {
 .utrecht-badge--danger {
   background-color: #dc3545;
   color: #ffffff;
-  border-color: #dc3545;
 }
 
 .utrecht-badge--neutral {
   background-color: #6c757d;
   color: #ffffff;
-  border-color: #6c757d;
 }
 
 .utrecht-badge--info {
   background-color: #0dcaf0;
   color: #000000;
-  border-color: #0dcaf0;
 }
 
 /* Tables */
@@ -218,7 +214,6 @@ section {
 }
 
 /* Code */
-.utrecht-code,
 .version-code {
   font-family: var(--font-family-primary);
   background: #2a2d31;
@@ -233,15 +228,15 @@ section {
 }
 
 /* Plugin specific styling */
-.plugin-name {
-  color: #00ff88 !important;
-  font-weight: 600 !important;
-  font-size: 0.95rem !important;
-  font-family: var(--font-family-primary) !important;
+table .plugin-name {
+  color: #00ff88;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-family-primary);
   letter-spacing: 0.01em;
 }
 
-.plugin-author {
+table .plugin-author {
   font-weight: 400;
   color: #999999;
   font-size: 0.75rem;
@@ -251,11 +246,11 @@ section {
   font-family: var(--font-family-primary);
 }
 
-.plugin-description {
-  margin: 0 !important;
+table .plugin-description {
+  margin: 0;
   font-size: 0.85rem;
   line-height: 1.4;
-  color: #e0e0e0 !important;
+  color: #e0e0e0;
   max-width: 300px;
   font-family: var(--font-family-primary);
 }
@@ -337,6 +332,14 @@ section {
   align-items: flex-start;
 }
 
+.btn-download {
+  width: 100%;
+  max-width: 450px;
+  justify-content: center;
+  padding: 16px 24px 12px 24px;
+  min-height: 52px;
+}
+
 .version-badge {
   font-size: 0.7rem;
   padding: 2px 6px;
@@ -344,13 +347,14 @@ section {
 
 .modpack-explanation {
   font-size: 0.9rem;
-  color: #b3b3b3 !important;
+  color: #b3b3b3;
   font-style: italic;
-  margin: 24px 0 24px 0;
+  margin: 24px 0;
   display: block;
 }
 
-/* Responsive design */
+/* RESPONSIVE DESIGN */
+
 @media (max-width: 768px) {
   .utrecht-document {
     padding: 24px 0;
@@ -378,12 +382,19 @@ section {
     align-items: stretch;
   }
 
-  .btn-download {
-    min-width: auto;
+  .download-item {
     width: 100%;
-    justify-content: center;
+    align-items: stretch;
+  }
+
+  .btn-download {
+    max-width: 100%;
+    width: 100%;
     padding: 16px 20px 12px 20px;
-    min-height: 52px;
+  }
+
+  .version-badge {
+    margin-top: 8px;
   }
 
   .utrecht-data-list-item {
@@ -396,51 +407,85 @@ section {
     font-size: 0.8rem;
   }
 
-  /* Mobile table: Transform to cards */
-  .utrecht-table__caption,
-  .utrecht-table__header {
+  /* TABLE MOBILE CONVERSION */
+  .plugins-table .utrecht-table__caption {
     display: none;
   }
 
-  .utrecht-table,
-  .utrecht-table__body,
-  .utrecht-table__row {
+  .plugins-table .utrecht-table__header {
+    display: none;
+  }
+
+  .plugins-table .utrecht-table,
+  .plugins-table .utrecht-table__body {
     display: block;
     width: 100%;
   }
 
-  .utrecht-table {
-    border: none;
-    background: transparent;
-  }
-
-  .utrecht-table__row {
+  .plugins-table .utrecht-table__row {
+    display: block;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 16px;
-    padding: 16px;
-    display: block;
+    padding: 20px;
+    width: 100%;
   }
 
-  .utrecht-table__header-cell,
-  .utrecht-table__cell {
+  .plugins-table .utrecht-table__row:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .plugins-table .plugin-name {
     display: block;
+    color: #00ff88;
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0 0 12px 0;
+    padding: 0 0 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+  }
+
+  .plugins-table .plugin-author {
+    display: block;
+    margin: -10px 0 12px 0;
+  }
+
+  .plugins-table .plugin-description {
+    display: block;
+    margin: 12px 0;
+    max-width: none;
+  }
+
+  .plugins-table .version-code {
+    display: inline-block;
+    margin: 8px 0;
+  }
+
+  .plugins-table .pack-indicators {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0;
+    width: 100%;
+  }
+
+  .plugins-table .utrecht-badge {
+    display: inline-block;
+    margin: 12px 0;
+  }
+
+  .plugins-table .utrecht-table__cell {
+    display: block;
+    padding: 0;
     border: none;
-    padding: 8px 0;
+    margin-bottom: 12px;
     text-align: left;
     width: 100%;
   }
 
-  .utrecht-table__header-cell {
-    font-size: 1.1rem;
-    margin-bottom: 12px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  .plugin-description {
-    max-width: none;
+  .plugins-table .utrecht-table__cell:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -449,20 +494,58 @@ section {
     padding: 16px 0;
   }
 
-  .utrecht-page-header {
-    margin-bottom: 32px;
+  .button-group {
+    gap: 12px;
   }
 
-  .modpack-info,
-  .download-section {
-    padding: 24px 0;
+  .btn-download {
+    font-size: 0.95rem;
+    padding: 12px 16px 8px 16px;
+    min-height: 48px;
   }
 
-  .plugins-list {
-    padding: 24px 0 0;
+  .download-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .button-title {
+    font-size: 0.9rem;
+  }
+
+  .plugins-table .utrecht-table__row {
+    padding: 16px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+  }
+
+  .plugins-table .plugin-name {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .plugins-table .plugin-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .plugins-table .version-code {
+    font-size: 0.7rem;
+  }
+
+  .plugins-table .pack-indicator {
+    width: 18px;
+    height: 18px;
+  }
+
+  .plugins-table .pack-indicator i {
+    font-size: 12px;
   }
 }
-/* Footer Styling - GOV.UK Inspired */
+
+/* FOOTER STYLING */
+
 .utrecht-page-footer {
   background: #1a1a1a;
   border-top: 10px solid var(--root-color--secondary);
@@ -491,14 +574,15 @@ section {
   font-family: var(--root-font-family--secondary);
   font-size: 1.25rem;
   font-weight: 700;
-  margin: 0 0 12px 0 !important;
+  margin: 0 0 12px 0;
   line-height: 1.2;
+  color: var(--root-color--secondary);
 }
 
 .footer-description {
   font-size: 0.875rem;
   color: #b3b3b3;
-  margin: 0 !important;
+  margin: 0;
   line-height: 1.5;
 }
 
@@ -507,7 +591,7 @@ section {
   font-size: 1rem;
   font-weight: 700;
   color: #ffffff;
-  margin: 0 0 16px 0 !important;
+  margin: 0 0 16px 0;
   line-height: 1.2;
 }
 
@@ -563,11 +647,10 @@ section {
 .footer-copyright {
   font-size: 0.75rem;
   color: #999999;
-  margin: 0 !important;
+  margin: 0;
   line-height: 1.5;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .footer-wrapper {
     padding: 32px var(--container-padding) 24px;
