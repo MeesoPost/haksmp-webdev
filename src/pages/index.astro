@@ -62,6 +62,7 @@ import Footer from '../components/Footer';
     min-height: 44px;
     min-width: 44px;
     flex: 0 0 auto;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .utrecht-link-button.plugins-button:hover:not(:disabled) {
@@ -78,6 +79,7 @@ import Footer from '../components/Footer';
     box-shadow: 0 0 0 #0b0c0c;
   }
 
+  /* Focus visible on ALL devices including mobile */
   .utrecht-link-button.plugins-button:focus {
     outline: 3px dotted #ffdd00;
     outline-offset: 2px;
@@ -86,6 +88,19 @@ import Footer from '../components/Footer';
   .utrecht-link-button.plugins-button:focus-visible {
     outline: 3px dotted #ffdd00;
     outline-offset: 2px;
+  }
+
+  /* Ensure focus is visible on tap for mobile */
+  @media (hover: none) and (pointer: coarse) {
+    .utrecht-link-button.plugins-button:focus {
+      outline: 3px dotted #ffdd00;
+      outline-offset: 2px;
+    }
+    
+    .utrecht-link-button.plugins-button:active:focus {
+      outline: 3px dotted #ffdd00;
+      outline-offset: 2px;
+    }
   }
 
   .utrecht-link-button.plugins-button:disabled,
@@ -116,4 +131,3 @@ import Footer from '../components/Footer';
     }
   }
 </style>
-

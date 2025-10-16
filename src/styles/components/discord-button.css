@@ -24,6 +24,7 @@
   min-width: 44px;
   box-shadow: 0 4px 0 var(--govuk-shadow);
   position: relative;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn-discord--large {
@@ -50,15 +51,30 @@
   box-shadow: 0 0 0 var(--govuk-shadow);
 }
 
-/* Focus states - ensure focus ring shows on click */
+/* Focus states - visible on all devices including mobile */
 .btn-discord:focus {
-  outline: var(--focus-outline-width) dotted var(--focus-outline-color);
-  outline-offset: var(--focus-outline-offset);
+  outline: var(--focus-outline-width, 3px) dotted
+    var(--focus-outline-color, #ffdd00);
+  outline-offset: var(--focus-outline-offset, 2px);
 }
 
 .btn-discord:focus-visible {
-  outline: var(--focus-outline-width) dotted var(--focus-outline-color);
-  outline-offset: var(--focus-outline-offset);
+  outline: var(--focus-outline-width, 3px) dotted
+    var(--focus-outline-color, #ffdd00);
+  outline-offset: var(--focus-outline-offset, 2px);
+}
+
+/* Ensure focus is visible on tap for mobile */
+@media (hover: none) and (pointer: coarse) {
+  .btn-discord:focus {
+    outline: 3px dotted #ffdd00;
+    outline-offset: 2px;
+  }
+
+  .btn-discord:active:focus {
+    outline: 3px dotted #ffdd00;
+    outline-offset: 2px;
+  }
 }
 
 .btn-discord:disabled,

@@ -343,6 +343,7 @@ table .plugin-description {
 .version-badge {
   font-size: 0.7rem;
   padding: 2px 6px;
+  align-self: flex-start;
 }
 
 .modpack-explanation {
@@ -384,7 +385,7 @@ table .plugin-description {
 
   .download-item {
     width: 100%;
-    align-items: stretch;
+    align-items: flex-start;
   }
 
   .btn-download {
@@ -395,6 +396,8 @@ table .plugin-description {
 
   .version-badge {
     margin-top: 8px;
+    align-self: flex-start;
+    width: auto;
   }
 
   .utrecht-data-list-item {
@@ -467,12 +470,13 @@ table .plugin-description {
     display: flex;
     gap: 8px;
     margin: 12px 0;
-    width: 100%;
+    width: auto;
   }
 
   .plugins-table .utrecht-badge {
     display: inline-block;
     margin: 12px 0;
+    width: auto;
   }
 
   .plugins-table .utrecht-table__cell {
@@ -549,14 +553,15 @@ table .plugin-description {
 .utrecht-page-footer {
   background: #1a1a1a;
   border-top: 10px solid var(--root-color--secondary);
-  padding: 0;
+  padding: 0 0 env(safe-area-inset-bottom, 0);
   margin-top: auto;
 }
 
 .footer-wrapper {
   max-width: var(--container-max);
   margin: 0 auto;
-  padding: 48px var(--container-padding) 32px;
+  padding: 48px max(var(--container-padding), env(safe-area-inset-right, 0))
+    32px max(var(--container-padding), env(safe-area-inset-left, 0));
   display: flex;
   flex-direction: column;
   gap: 32px;
@@ -632,8 +637,8 @@ table .plugin-description {
 }
 
 .footer-link:focus-visible {
-  outline: 3px solid var(--root-color--yellow);
-  outline-offset: 0;
+  outline: 3px dotted var(--root-color--yellow);
+  outline-offset: 2px;
   background-color: var(--root-color--yellow);
   color: #000000;
   text-decoration: none;
@@ -653,7 +658,8 @@ table .plugin-description {
 
 @media (max-width: 768px) {
   .footer-wrapper {
-    padding: 32px var(--container-padding) 24px;
+    padding: 32px max(var(--container-padding), env(safe-area-inset-right, 0))
+      24px max(var(--container-padding), env(safe-area-inset-left, 0));
   }
 
   .footer-content {
@@ -677,7 +683,8 @@ table .plugin-description {
 
 @media (max-width: 480px) {
   .footer-wrapper {
-    padding: 24px var(--container-padding) 16px;
+    padding: 24px max(var(--container-padding), env(safe-area-inset-right, 0))
+      16px max(var(--container-padding), env(safe-area-inset-left, 0));
   }
 
   .footer-content {
