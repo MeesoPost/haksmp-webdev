@@ -138,17 +138,30 @@ export default function PluginsList() {
                 </caption>
                 <thead className="utrecht-table__header">
                   <tr className="utrecht-table__row">
-                    <th className="utrecht-table__header-cell">Mod/Plugin</th>
-                    <th className="utrecht-table__header-cell">Beschrijving</th>
-                    <th className="utrecht-table__header-cell">Versie</th>
-                    <th className="utrecht-table__header-cell">Packs</th>
-                    <th className="utrecht-table__header-cell">Status</th>
+                    <th className="utrecht-table__header-cell" scope="col">
+                      Mod/Plugin
+                    </th>
+                    <th className="utrecht-table__header-cell" scope="col">
+                      Beschrijving
+                    </th>
+                    <th className="utrecht-table__header-cell" scope="col">
+                      Versie
+                    </th>
+                    <th className="utrecht-table__header-cell" scope="col">
+                      Packs
+                    </th>
+                    <th className="utrecht-table__header-cell" scope="col">
+                      Status
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="utrecht-table__body">
                   {plugins.map((plugin) => (
                     <tr key={plugin.id} className="utrecht-table__row">
-                      <th className="utrecht-table__header-cell plugin-name">
+                      <th
+                        className="utrecht-table__header-cell plugin-name"
+                        scope="row"
+                      >
                         {plugin.name}
                         <div className="plugin-author">{plugin.author}</div>
                       </th>
