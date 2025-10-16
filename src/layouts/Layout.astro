@@ -1,6 +1,7 @@
 ---
 // Import Utrecht CSS
 import '@utrecht/component-library-css/dist/index.css';
+import '@utrecht/design-tokens/dist/index.css';
 
 interface Props {
   title?: string;
@@ -41,28 +42,6 @@ const {
   
   <!-- Tabler Icons CSS -->
   <link rel="stylesheet" href="/node_modules/@tabler/icons-webfont/dist/tabler-icons-outline.min.css">
-  
-  <!-- Prevent FOUC for Utrecht components -->
-  <style>
-    /* Hide Utrecht elements until components are loaded */
-    [class*="utrecht-"] { 
-      visibility: hidden;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    /* Show Utrecht elements when ready */
-    .utrecht-ready [class*="utrecht-"] {
-      visibility: visible;
-      opacity: 1;
-    }
-    
-    /* Fallback if Utrecht fails to load */
-    .utrecht-error [class*="utrecht-"] {
-      visibility: visible;
-      opacity: 1;
-    }
-  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Spring naar content</a>
@@ -70,25 +49,13 @@ const {
   <main id="main-content">
     <slot />
   </main>
-  
-  <!-- Utrecht CSS included via import -->
-  
-  <!-- Utrecht components are loaded by UtrechtLoader component -->
-  <script type="module">
-    // Wait for Utrecht components to be ready
-    document.addEventListener('utrecht-ready', () => {
-      console.log('Utrecht components are ready!');
-      document.body.classList.add('utrecht-ready');
-    });
-  </script>
 </body>
 </html>
 
 <style is:global>
   @import '../styles/reset.css';
   @import '../styles/global.css';
-  @import '../styles/minecraft.css';
   @import '../styles/animations.css';
   @import '../styles/components/discord-button.css';
-  @import '../styles/utrecht-fallback.css';
+  @import '../styles/utrecht-react.css';
 </style>

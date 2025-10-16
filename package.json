@@ -13,10 +13,12 @@
     "@tabler/icons": "^3.35.0",
     "@tabler/icons-react": "^3.35.0",
     "@tabler/icons-webfont": "^3.35.0",
-    "@utrecht/component-library-css": "^8.0.0",
+    "@utrecht/component-library-css": "^8.1.0",
+    "@utrecht/component-library-react": "^10.3.3",
     "@utrecht/design-tokens": "^3.3.0",
-    "@utrecht/web-component-library-stencil": "3.6.0",
-    "astro": "^5.14.1"
+    "astro": "^5.14.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.3",
