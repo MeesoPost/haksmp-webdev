@@ -1,5 +1,4 @@
 :root {
-  /* Essential Discord colors only */
   --discord-blurple: #5865f2;
   --discord-dark-blurple: #4752c4;
   --discord-white: #ffffff;
@@ -51,7 +50,6 @@
   box-shadow: 0 0 0 var(--govuk-shadow);
 }
 
-/* Focus states - visible on all devices including mobile */
 .btn-discord:focus {
   outline: var(--focus-outline-width, 3px) dotted
     var(--focus-outline-color, #ffdd00);
@@ -64,7 +62,6 @@
   outline-offset: var(--focus-outline-offset, 2px);
 }
 
-/* Ensure focus is visible on tap for mobile */
 @media (hover: none) and (pointer: coarse) {
   .btn-discord:focus {
     outline: 3px dotted #ffdd00;
@@ -114,7 +111,6 @@
   box-shadow: 0 0 0 var(--govuk-shadow);
 }
 
-/* Size variant hover/active adjustments */
 .btn-discord--large:hover:not(:disabled) {
   box-shadow: 0 4px 0 var(--govuk-shadow);
 }
@@ -131,20 +127,16 @@
   box-shadow: 0 0 0 var(--govuk-shadow);
 }
 
-/* Pressed state */
 .btn-discord[aria-pressed="true"] {
   background: var(--discord-dark-blurple);
 }
 
-/* Busy state */
 .btn-discord[aria-busy="true"] {
   cursor: wait;
   opacity: 0.7;
 }
 
-/* Download button variants */
 .btn-download--enhanced {
-  /* Primary style - uses default discord button styling */
   background: var(--discord-blurple);
   border-color: var(--discord-blurple);
 }
@@ -158,7 +150,6 @@
 }
 
 .btn-download--lite {
-  /* Secondary/outline style - transparent background with blue border */
   background: transparent;
   border: 3px solid var(--discord-blurple);
   color: var(--discord-white);
@@ -180,7 +171,6 @@
   box-shadow: 0 0 0 var(--govuk-shadow);
 }
 
-/* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .btn-discord:hover:not(:disabled),
   .btn-discord:active:not(:disabled),

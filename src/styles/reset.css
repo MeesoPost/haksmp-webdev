@@ -44,16 +44,43 @@ h6 {
 
 button {
   cursor: pointer;
-  border: none;
-  background: none;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
+/* Preserve list semantics for screen readers */
 ul,
 ol {
   list-style: none;
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: revert;
+}
+
+/* Focus states for accessibility */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast support */
+@media (prefers-contrast: high) {
+  button,
+  input,
+  select,
+  textarea {
+    border: 1px solid currentColor;
+  }
 }
