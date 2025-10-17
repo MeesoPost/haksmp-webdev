@@ -4,6 +4,7 @@ import {
   Paragraph,
   PageHeader,
   PageContent,
+  Link,
 } from "@utrecht/component-library-react";
 import { plugins, modpacks, modpackInfo } from "../data/plugins.js";
 
@@ -67,7 +68,11 @@ export default function PluginsList() {
           <section className="download-section">
             <Paragraph className="download-description">
               Download hier de modpack met alle mods en plugins die je hieronder
-              kan zien. instructies vind je in de <u>Discord</u>.
+              kan zien. instructies vind je in de{" "}
+              <Link href="#" className="discord-link">
+                Discord
+              </Link>
+              .
             </Paragraph>
 
             <Paragraph className="modpack-explanation">

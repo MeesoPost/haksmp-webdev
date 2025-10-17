@@ -142,12 +142,52 @@
   opacity: 0.7;
 }
 
+/* Download button variants */
+.btn-download--enhanced {
+  /* Primary style - uses default discord button styling */
+  background: var(--discord-blurple);
+  border-color: var(--discord-blurple);
+}
+
+.btn-download--enhanced:hover:not(:disabled) {
+  background: var(--discord-dark-blurple);
+}
+
+.btn-download--enhanced:active:not(:disabled) {
+  background: var(--discord-dark-blurple);
+}
+
+.btn-download--lite {
+  /* Secondary/outline style - transparent background with blue border */
+  background: transparent;
+  border: 3px solid var(--discord-blurple);
+  color: var(--discord-white);
+}
+
+.btn-download--lite:hover:not(:disabled) {
+  background: var(--discord-dark-blurple);
+  border: 3px solid var(--discord-blurple);
+  color: var(--discord-white);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 0 var(--govuk-shadow);
+}
+
+.btn-download--lite:active:not(:disabled) {
+  background: var(--discord-dark-blurple);
+  border-color: var(--discord-dark-blurple);
+  color: var(--discord-white);
+  transform: translateY(4px);
+  box-shadow: 0 0 0 var(--govuk-shadow);
+}
+
 /* Respect user motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .btn-discord:hover:not(:disabled),
   .btn-discord:active:not(:disabled),
   .btn-discord--outline:hover:not(:disabled),
-  .btn-discord--outline:active:not(:disabled) {
+  .btn-discord--outline:active:not(:disabled),
+  .btn-download--lite:hover:not(:disabled),
+  .btn-download--lite:active:not(:disabled) {
     transform: none;
   }
 }

@@ -424,3 +424,25 @@ a {
 .btn-minecraft {
   margin-top: var(--space-lg);
 }
+
+.discord-link {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  color: var(--root-color--white);
+  text-decoration-color: var(--root-color--white);
+}
+
+.discord-link:hover,
+.discord-link:focus {
+  text-decoration-thickness: 3px;
+  color: var(--root-color--grey-dark);
+  text-decoration-color: var(--root-color--grey-dark);
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .discord-link {
+    transition: none;
+  }
+}
