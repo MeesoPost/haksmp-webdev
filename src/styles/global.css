@@ -409,7 +409,6 @@ a {
 
 .test-hero h1 {
   color: var(--root-color--grey);
-  margin-bottom: var(--space-sm);
   text-shadow: 4px 4px 0 var(--root-color--primary-darkest);
 }
 
