@@ -162,7 +162,7 @@ import Footer from '../components/Footer';
     font-family: "Monocraft", "Minecraft-Seven", var(--root-font-family--secondary);
     font-size: clamp(0.9rem, 2.5vw, 1.2rem);
     color: var(--root-color--support);
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-xs);
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
   }
 
@@ -180,19 +180,30 @@ import Footer from '../components/Footer';
       min-width: auto;
     }
 
+    .test-hero .logo-title {
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
     .main-logo {
       width: clamp(200px, 55vw, 400px);
     }
 
     .test-hero .subtitle {
       font-size: clamp(0.85rem, 3vw, 1.1rem);
+      margin-bottom: var(--space-sm);
     }
   }
 
   @media (max-width: 480px) {
     .utrecht-button-group {
-      margin-top: var(--space-sm);
-      margin-bottom: var(--space-md);
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-lg);
+    }
+
+    .test-hero .logo-title {
+      margin-top: var(--space-xs);
+      margin-bottom: var(--space-lg);
     }
 
     .main-logo {
