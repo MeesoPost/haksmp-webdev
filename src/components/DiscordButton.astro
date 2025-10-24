@@ -1,6 +1,6 @@
 ---
 export interface Props {
-  href?: string;
+  inviteCode?: string;
   size?: 'small' | 'medium' | 'large';
   variant?: 'primary' | 'secondary' | 'outline';
   disabled?: boolean;
@@ -8,30 +8,29 @@ export interface Props {
   pressed?: boolean | 'true' | 'false';
   class?: string;
   'aria-label'?: string;
-  type?: 'button' | 'submit' | 'reset';
 }
 
 const { 
-  href, 
+  inviteCode = 'BRrHTwFDzW',
   size = 'medium', 
   variant = 'primary', 
   disabled = false,
   busy = false,
   pressed,
   class: className = '',
-  'aria-label': ariaLabel,
-  type = 'button',
+  'aria-label': ariaLabel = 'Join our Discord server',
   ...restProps
 } = Astro.props;
+
+const discordInviteUrl = `https://discord.gg/${inviteCode}`;
 
 const baseClass = 'btn-discord';
 const sizeClass = size !== 'medium' ? `btn-discord--${size}` : '';
 const variantClass = variant !== 'primary' ? `btn-discord--${variant}` : '';
 const classes = [baseClass, sizeClass, variantClass, className].filter(Boolean).join(' ');
 
-const Tag = href ? 'a' : 'button';
+const Tag = 'a';
 
-// Prepare ARIA attributes
 const ariaAttributes: Record<string, any> = {
   'aria-label': ariaLabel,
 };
@@ -45,7 +44,6 @@ if (pressed !== undefined) {
 }
 
 if (disabled && Tag === 'a') {
-  // Links don't have disabled attribute, use aria-disabled
   ariaAttributes['aria-disabled'] = 'true';
   ariaAttributes['role'] = 'button';
   ariaAttributes['tabindex'] = '-1';
@@ -54,9 +52,9 @@ if (disabled && Tag === 'a') {
 
 <Tag 
   class={classes}
-  href={href && !disabled ? href : undefined}
-  disabled={Tag === 'button' ? disabled : undefined}
-  type={Tag === 'button' ? type : undefined}
+  href={!disabled ? discordInviteUrl : undefined}
+  target="_blank"
+  rel="noopener noreferrer"
   {...ariaAttributes}
   {...restProps}
 >
@@ -65,5 +63,3 @@ if (disabled && Tag === 'a') {
   </svg>
   <slot>Join Discord</slot>
 </Tag>
-
-<!-- CSS is already imported globally in Layout.astro -->
