@@ -14,7 +14,7 @@ const { videoId, title = "YouTube video player", width = "560", height = "315" }
     <iframe 
       width={width}
       height={height}
-      src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&hd=1`}
+      src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&hd=1&enablejsapi=1&origin=${typeof window !== 'undefined' ? window.location.origin : ''}`}
       title={title}
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -23,20 +23,6 @@ const { videoId, title = "YouTube video player", width = "560", height = "315" }
     >
     </iframe>
     
-    <!-- Watch on YouTube Button -->
-    <a 
-      href={`https://www.youtube.com/watch?v=${videoId}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      class="youtube-watch-button"
-      title="Bekijk in 4K op YouTube"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M23 7.5C23 6.5 22.5 5.7 21.7 5.4L21.2 5.2C19.6 4.7 12 4.7 12 4.7S4.4 4.7 2.8 5.2L2.3 5.4C1.5 5.7 1 6.5 1 7.5V16.5C1 17.5 1.5 18.3 2.3 18.6L2.8 18.8C4.4 19.3 12 19.3 12 19.3S19.6 19.3 21.2 18.8L21.7 18.6C22.5 18.3 23 17.5 23 16.5V7.5Z" fill="currentColor"/>
-        <path d="M9.75 15.02L15.5 12L9.75 8.98V15.02Z" fill="#000"/>
-      </svg>
-      <span>Bekijk op YouTube</span>
-    </a>
   </div>
 </div>
 
@@ -72,62 +58,10 @@ const { videoId, title = "YouTube video player", width = "560", height = "315" }
     background: transparent;
   }
 
-  /* YouTube Watch Button */
-  .youtube-watch-button {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-family: var(--root-font-family--secondary);
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(4px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 10;
-  }
-
-  .youtube-watch-button:hover {
-    background: rgba(255, 0, 0, 0.9);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(255, 0, 0, 0.3);
-  }
-
-  .youtube-watch-button:active {
-    transform: translateY(0);
-  }
-
-  .youtube-watch-button svg {
-    width: 18px;
-    height: 18px;
-    color: #ff0000;
-    transition: color 0.2s ease;
-  }
-
-  .youtube-watch-button:hover svg {
-    color: #fff;
-  }
-
-  .youtube-watch-button span {
-    white-space: nowrap;
-  }
-
   /* Focus styles for accessibility */
   .youtube-video-wrapper:focus-within {
     outline: 3px dotted #ffdd00;
     outline-offset: 4px;
-  }
-
-  .youtube-watch-button:focus {
-    outline: 2px dotted #ffdd00;
-    outline-offset: 2px;
   }
 
   /* Responsive design */
@@ -142,17 +76,6 @@ const { videoId, title = "YouTube video player", width = "560", height = "315" }
       border-width: 2px;
     }
 
-    .youtube-watch-button {
-      top: 8px;
-      right: 8px;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-    }
-
-    .youtube-watch-button svg {
-      width: 16px;
-      height: 16px;
-    }
   }
 
   @media (max-width: 480px) {
@@ -163,23 +86,6 @@ const { videoId, title = "YouTube video player", width = "560", height = "315" }
     .youtube-video-wrapper {
       border-radius: 6px;
       max-width: 95%;
-    }
-
-    .youtube-watch-button {
-      top: 6px;
-      right: 6px;
-      padding: 4px 8px;
-      font-size: 0.75rem;
-      gap: 6px;
-    }
-
-    .youtube-watch-button span {
-      display: none;
-    }
-
-    .youtube-watch-button svg {
-      width: 14px;
-      height: 14px;
     }
   }
 
