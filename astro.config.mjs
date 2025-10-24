@@ -11,11 +11,12 @@ export default defineConfig({
       // Content Security Policy
       "Content-Security-Policy": [
         "default-src 'self'",
-        "script-src 'self' 'unsafe-inline'",
-        "style-src 'self' 'unsafe-inline'",
-        "font-src 'self' data:",
-        "img-src 'self' data: https:",
-        "connect-src 'self'",
+        "script-src 'self' 'unsafe-inline' https://www.youtube.com https://youtube.com",
+        "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
+        "font-src 'self' data: https://cdn.jsdelivr.net",
+        "img-src 'self' data: https: https://www.youtube.com https://youtube.com https://i.ytimg.com",
+        "connect-src 'self' https://cdn.jsdelivr.net https://www.youtube.com https://youtube.com https://googlevideo.com https://play.google.com",
+        "frame-src 'self' https://www.youtube.com https://youtube.com",
         "frame-ancestors 'none'",
         "base-uri 'self'",
         "form-action 'self'",
