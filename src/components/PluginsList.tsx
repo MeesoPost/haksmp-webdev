@@ -102,24 +102,9 @@ export default function PluginsList() {
                       <span className="button-title">Bekijk op Modrinth</span>
                     </span>
                   </a>
-                  <div className="version-info">
-                    <span className="version-badge utrecht-badge utrecht-badge--info">
-                      v{modpack.version}
-                    </span>
-                    <span className="game-version-badge utrecht-badge">
-                      MC {modpack.gameVersion}
-                    </span>
-                  </div>
-                  <div className="modpack-metadata">
-                    <div className="metadata-item">
-                      <span className="metadata-label">Downloads:</span>
-                      <span className="metadata-value">{modpack.downloads}</span>
-                    </div>
-                    <div className="metadata-item">
-                      <span className="metadata-label">Gepubliceerd:</span>
-                      <span className="metadata-value">{modpack.publishedDate}</span>
-                    </div>
-                  </div>
+                  <span className="version-badge utrecht-badge utrecht-badge--info">
+                    v{modpack.version}
+                  </span>
                 </div>
               ))}
             </div>

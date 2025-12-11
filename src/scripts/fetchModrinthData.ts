@@ -53,10 +53,7 @@ interface ModpackVersion {
   id: string;
   name: string;
   version: string;
-  gameVersion: string;
   modrinthUrl: string;
-  downloads: number;
-  publishedDate: string;
 }
 
 interface ModpackInfo {
@@ -161,67 +158,17 @@ async function fetchModrinthData(): Promise<void> {
       }
     }
 
-    // Fetch latest modpack version (version with most downloads)
-    const modpacks: ModpackVersion[] = [];
-    try {
-      let latestModpack: any = null;
-      let maxDownloads = -1;
+    // Create modpack download info
+    const modpacks: Modpack[] = [
+      {
+        id: "enhanced",
+        name: "Enhanced",
+        version: latestVersion.version_number,
+        modrinthUrl: `https://modrinth.com/modpack/${MODPACK_ID}`,
+      },
+    ];
 
-      // Check all versions to find the one with most downloads
-      for (let i = 0; i < versionIds.length; i++) {
-        try {
-          const versionRes = await fetch(`${API_BASE}/version/${versionIds[i]}`);
-          if (!versionRes.ok) {
-            console.warn(`Failed to fetch version ${versionIds[i]}`);
-            continue;
-          }
-          const version = (await versionRes.json()) as any;
-
-          if ((version.downloads || 0) > maxDownloads) {
-            maxDownloads = version.downloads || 0;
-            latestModpack = version;
-          }
-
-          // Rate limiting
-          await new Promise((resolve) => setTimeout(resolve, 100));
-        } catch (error) {
-          console.warn(`Error processing version ${versionIds[i]}`);
-        }
-      }
-
-      if (latestModpack) {
-        modpacks.push({
-          id: latestModpack.id,
-          name: modpackProject.title,
-          version: latestModpack.version_number,
-          gameVersion: latestModpack.game_versions[0] || "Unknown",
-          modrinthUrl: `https://modrinth.com/modpack/${MODPACK_ID}`,
-          downloads: latestModpack.downloads || 0,
-          publishedDate: latestModpack.date_published
-            ? new Date(latestModpack.date_published).toLocaleDateString(
-                "nl-NL",
-                {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                }
-              )
-            : "Unknown",
-        });
-
-        console.log(
-          `Latest version: ${latestModpack.version_number} (${latestModpack.downloads} downloads)`
-        );
-        console.log(`Published: ${modpacks[0].publishedDate}`);
-      }
-    } catch (error) {
-      console.warn(
-        "Error processing modpack versions:",
-        error instanceof Error ? error.message : String(error)
-      );
-    }
-
-    // Create modpack info from latest version (for mod details)
+    // Create modpack info
     const modpackInfo: ModpackInfo = {
       name: modpackProject.title,
       version: latestVersion.version_number,
