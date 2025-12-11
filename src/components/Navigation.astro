@@ -1,0 +1,88 @@
+---
+interface Props {
+  currentPage?: string;
+}
+
+const { currentPage } = Astro.props;
+---
+
+<nav class="navigation">
+  <div class="nav-container">
+    <a href="/" class={currentPage === 'home' ? 'nav-link active' : 'nav-link'}>
+      Home
+    </a>
+    <a href="/wiki" class={currentPage === 'wiki' ? 'nav-link active' : 'nav-link'}>
+      Wiki
+    </a>
+    <a href="/plugins" class={currentPage === 'plugins' ? 'nav-link active' : 'nav-link'}>
+      Mods & Plugins
+    </a>
+  </div>
+</nav>
+
+<style>
+  .navigation {
+    background: linear-gradient(135deg, hsl(80, 91%, 27%) 0%, hsl(80, 91%, 17%) 100%);
+    border-bottom: 3px solid var(--root-color--support);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    display: flex;
+    gap: var(--space-lg);
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: var(--space-sm) var(--space-md);
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 4px;
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-link.active {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+    border-bottom: 3px solid #ffdd00;
+  }
+
+  @media (max-width: 768px) {
+    .nav-container {
+      gap: var(--space-sm);
+      padding: 0 var(--space-sm);
+    }
+
+    .nav-link {
+      padding: var(--space-xs) var(--space-sm);
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-container {
+      gap: var(--space-xs);
+    }
+
+    .nav-link {
+      padding: var(--space-xs) var(--space-xs);
+      font-size: 0.9rem;
+    }
+  }
+</style>
