@@ -53,7 +53,7 @@ interface Modpack {
   id: string;
   name: string;
   version: string;
-  downloadUrl: string;
+  modrinthUrl: string;
 }
 
 interface ModpackInfo {
@@ -164,7 +164,7 @@ async function fetchModrinthData(): Promise<void> {
         id: "enhanced",
         name: "Enhanced",
         version: latestVersion.version_number,
-        downloadUrl: "#",
+        modrinthUrl: `https://modrinth.com/modpack/${MODPACK_ID}`,
       },
     ];
 
