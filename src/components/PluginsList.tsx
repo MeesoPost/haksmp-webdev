@@ -75,17 +75,12 @@ export default function PluginsList() {
               .
             </Paragraph>
 
-            <Paragraph className="modpack-explanation">
-              * Performance Pack is met leifde gemaakt voor wie een iets mindere
-              video game machine heeft &lt;3
-            </Paragraph>
-
             <div className="button-group">
               {modpacks.map((modpack) => (
                 <div key={modpack.id} className="download-item">
                   <button
                     type="button"
-                    className={`btn-discord btn-download btn-download--${modpack.type}`}
+                    className="btn-discord btn-download btn-download--enhanced"
                   >
                     <svg
                       className="download-icon"
@@ -101,11 +96,7 @@ export default function PluginsList() {
                       <line x1="12" y1="15" x2="12" y2="3" />
                     </svg>
                     <span className="button-content">
-                      <span className="button-title">
-                        {modpack.type === "enhanced"
-                          ? "Download Modpack"
-                          : "Download Performance Pack"}
-                      </span>
+                      <span className="button-title">Download Modpack</span>
                     </span>
                   </button>
                   <span className="version-badge utrecht-badge utrecht-badge--info">
@@ -120,21 +111,6 @@ export default function PluginsList() {
           <section className="plugins-list">
             <Heading level={2}>Alle mods en plugins</Heading>
 
-            <div className="pack-legend">
-              <span className="legend-text">Versions:</span>
-              <span className="legend-item">
-                <span className="pack-indicator pack-indicator--normal">
-                  <i className="ti ti-circle-check"></i>
-                </span>
-                normal
-              </span>
-              <span className="legend-item">
-                <span className="pack-indicator pack-indicator--performance">
-                  <i className="ti ti-bolt"></i>
-                </span>
-                Performance
-              </span>
-            </div>
 
             <div className="plugins-table">
               <table className="utrecht-table">
@@ -151,9 +127,6 @@ export default function PluginsList() {
                     </th>
                     <th className="utrecht-table__header-cell" scope="col">
                       Versie
-                    </th>
-                    <th className="utrecht-table__header-cell" scope="col">
-                      Packs
                     </th>
                     <th className="utrecht-table__header-cell" scope="col">
                       Status
@@ -179,26 +152,6 @@ export default function PluginsList() {
                         <code className="version-code utrecht-code">
                           {plugin.version}
                         </code>
-                      </td>
-                      <td className="utrecht-table__cell">
-                        <div className="pack-indicators">
-                          {plugin.inNormalPack && (
-                            <span
-                              className="pack-indicator pack-indicator--normal"
-                              title="In Normal Pack"
-                            >
-                              <i className="ti ti-circle-check"></i>
-                            </span>
-                          )}
-                          {plugin.inPerformancePack && (
-                            <span
-                              className="pack-indicator pack-indicator--performance"
-                              title="In Performance Pack"
-                            >
-                              <i className="ti ti-bolt"></i>
-                            </span>
-                          )}
-                        </div>
                       </td>
                       <td className="utrecht-table__cell">
                         {plugin.required ? (
