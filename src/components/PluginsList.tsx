@@ -130,9 +130,6 @@ export default function PluginsList() {
                     <th className="utrecht-table__header-cell" scope="col">
                       Versie
                     </th>
-                    <th className="utrecht-table__header-cell" scope="col">
-                      Status
-                    </th>
                   </tr>
                 </thead>
                 <tbody className="utrecht-table__body">
@@ -154,17 +151,6 @@ export default function PluginsList() {
                         <code className="version-code utrecht-code">
                           {plugin.version}
                         </code>
-                      </td>
-                      <td className="utrecht-table__cell">
-                        {plugin.required ? (
-                          <span className="utrecht-badge utrecht-badge--danger">
-                            Verplicht
-                          </span>
-                        ) : (
-                          <span className="utrecht-badge utrecht-badge--neutral">
-                            Optioneel
-                          </span>
-                        )}
                       </td>
                     </tr>
                   ))}
