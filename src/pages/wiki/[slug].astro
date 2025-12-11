@@ -1,0 +1,76 @@
+---
+import { Document, Heading, Paragraph, PageHeader, PageContent, Link } from "@utrecht/component-library-react";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer";
+import WikiSidebar from "../../components/WikiSidebar";
+import WikiTableOfContents from "../../components/WikiTableOfContents";
+import WikiContent from "../../components/WikiContent";
+import { getAllWikiPages, getWikiPage } from "../../data/wiki-structure";
+
+export async function getStaticPaths() {
+  const pages = getAllWikiPages();
+  return pages.map((page) => ({
+    params: { slug: page.slug },
+    props: { page },
+  }));
+}
+
+const { slug } = Astro.params;
+const page = getWikiPage(slug!);
+
+if (!page) {
+  return new Response(null, {
+    status: 404,
+    statusText: "Not found",
+  });
+}
+
+const title = `${page.title} - HAK SMP Wiki`;
+const description = page.description;
+---
+
+<Layout title={title} description={description}>
+  <div className="wiki-wrapper">
+    <main className="wiki-main">
+      <div className="wiki-container">
+        <WikiSidebar currentSlug={slug} />
+
+        <div className="wiki-page">
+          <Document>
+            <PageHeader>
+              <Heading level={1} className="wiki-page-title">
+                {page.title}
+              </Heading>
+              <Paragraph lead>
+                {page.description}
+              </Paragraph>
+              <div className="wiki-meta">
+                <span className="wiki-category-badge">{page.category}</span>
+              </div>
+            </PageHeader>
+
+            <PageContent>
+              <div className="wiki-content-wrapper">
+                <WikiContent content={page.content} />
+              </div>
+
+              <div className="wiki-footer-nav">
+                <Link href="/wiki" className="wiki-back-link">
+                  ← Back to Documentation
+                </Link>
+              </div>
+            </PageContent>
+          </Document>
+        </div>
+
+        <WikiTableOfContents content={page.content} />
+      </div>
+    </main>
+  </div>
+
+  <Footer client:load />
+</Layout>
+
+<style is:global>
+@import '../../styles/wiki.css';
+</style>

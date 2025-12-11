@@ -1,0 +1,94 @@
+---
+import { Document, Heading, Paragraph, PageHeader, PageContent, Link } from "@utrecht/component-library-react";
+import Layout from "../../layouts/Layout.astro";
+import Footer from "../../components/Footer";
+import WikiSidebar from "../../components/WikiSidebar";
+import WikiSearch from "../../components/WikiSearch";
+import { getAllWikiPages, getWikiCategories, getWikiPagesByCategory } from "../../data/wiki-structure";
+
+const title = "Wiki - HAK SMP";
+const description = "Documentation and guides for HAK SMP Season 4: Het Landen Systeem";
+
+const allPages = getAllWikiPages();
+const categories = getWikiCategories();
+---
+
+<Layout title={title} description={description}>
+  <div className="wiki-wrapper">
+    <main className="wiki-main">
+      <div className="wiki-container">
+        <WikiSidebar />
+
+        <div className="wiki-page">
+          <Document>
+            <PageHeader>
+              <Heading level={1} className="wiki-page-title">
+                HAK SMP Documentation
+              </Heading>
+              <Paragraph lead>
+                Everything you need to know about HAK SMP Season 4: Het Landen Systeem
+              </Paragraph>
+            </PageHeader>
+
+            <PageContent>
+              <section className="wiki-intro">
+                <Paragraph>
+                  Welcome to the HAK SMP Wiki! This documentation covers everything from getting started to advanced territory management. Use the search or menu on the left to find what you need.
+                </Paragraph>
+              </section>
+
+              <section className="wiki-search-section">
+                <WikiSearch client:load />
+              </section>
+
+              {categories.map((category) => {
+                const categoryPages = getWikiPagesByCategory(category);
+                return (
+                  <section key={category} className="wiki-category-section">
+                    <Heading level={2} className="wiki-category-heading">
+                      {category}
+                    </Heading>
+
+                    <div className="wiki-cards">
+                      {categoryPages.map((page) => (
+                        <article key={page.slug} className="wiki-card">
+                          <Link href={`/wiki/${page.slug}`} className="wiki-card-link">
+                            <Heading level={3} className="wiki-card-title">
+                              {page.title}
+                            </Heading>
+                          </Link>
+                          <Paragraph className="wiki-card-description">
+                            {page.description}
+                          </Paragraph>
+                          <Link href={`/wiki/${page.slug}`} className="wiki-card-read-more">
+                            Read more →
+                          </Link>
+                        </article>
+                      ))}
+                    </div>
+                  </section>
+                );
+              })}
+
+              <section className="wiki-help">
+                <Heading level={2}>Need Help?</Heading>
+                <Paragraph>
+                  If you can't find what you're looking for in the wiki, join our Discord community where our team and other players can help you.
+                </Paragraph>
+                <Link href="#" className="wiki-discord-link">
+                  Join our Discord →
+                </Link>
+              </section>
+            </PageContent>
+          </Document>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <Footer client:load />
+</Layout>
+
+<style is:global>
+@import '../../styles/wiki.css';
+</style>
