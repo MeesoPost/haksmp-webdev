@@ -44,7 +44,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li className="footer-nav-item">
-                  <Link href="/wiki" className="footer-link">
+                  <Link href="#" className="footer-link">
                     Wiki
                   </Link>
                 </li>
