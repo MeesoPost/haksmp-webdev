@@ -17,6 +17,9 @@ pnpm-debug.log*
 .env
 .env.production
 
+# generated plugin data (from Modrinth API)
+src/data/plugins.js
+
 # macOS-specific files
 .DS_Store
 
