@@ -350,7 +350,7 @@ export const modpacks = [
     "id": "enhanced",
     "name": "Enhanced",
     "version": "1.0.0",
-    "downloadUrl": "#"
+    "modrinthUrl": "https://modrinth.com/modpack/A1fB3OWk"
   }
 ];
 

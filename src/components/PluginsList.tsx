@@ -78,27 +78,30 @@ export default function PluginsList() {
             <div className="button-group">
               {modpacks.map((modpack) => (
                 <div key={modpack.id} className="download-item">
-                  <button
-                    type="button"
+                  <a
+                    href={modpack.modrinthUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="btn-discord btn-download btn-download--enhanced"
                   >
                     <svg
-                      className="download-icon"
+                      className="external-link-icon"
                       width="20"
                       height="20"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
                       strokeWidth="2"
+                      aria-hidden="true"
                     >
-                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-                      <polyline points="7,10 12,15 17,10" />
-                      <line x1="12" y1="15" x2="12" y2="3" />
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" y1="14" x2="21" y2="3" />
                     </svg>
                     <span className="button-content">
-                      <span className="button-title">Download Modpack</span>
+                      <span className="button-title">Bekijk op Modrinth</span>
                     </span>
-                  </button>
+                  </a>
                   <span className="version-badge utrecht-badge utrecht-badge--info">
                     v{modpack.version}
                   </span>
@@ -110,7 +113,6 @@ export default function PluginsList() {
           {/* Plugins List Section */}
           <section className="plugins-list">
             <Heading level={2}>Alle mods en plugins</Heading>
-
 
             <div className="plugins-table">
               <table className="utrecht-table">
