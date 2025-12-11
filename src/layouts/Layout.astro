@@ -2,15 +2,18 @@
 // Import Utrecht CSS
 import '@utrecht/component-library-css/dist/index.css';
 import '@utrecht/design-tokens/dist/index.css';
+import Navigation from '../components/Navigation.astro';
 
 interface Props {
   title?: string;
   description?: string;
+  currentPage?: string;
 }
 
-const { 
+const {
   title = "HAK - Seizoen 4 | Het Landen Systeem",
-  description = "Join HAK Seizoen 4: Het Landen Systeem. Bouw je eigen koninkrijk met vrienden, unlock territorium, en creëer epische avonturen!"
+  description = "Join HAK Seizoen 4: Het Landen Systeem. Bouw je eigen koninkrijk met vrienden, unlock territorium, en creëer epische avonturen!",
+  currentPage
 } = Astro.props;
 ---
 
@@ -45,7 +48,9 @@ const {
 </head>
 <body>
   <a href="#main-content" class="skip-link">Spring naar content</a>
-  
+
+  <Navigation currentPage={currentPage} />
+
   <main id="main-content">
     <slot />
   </main>
