@@ -102,9 +102,24 @@ export default function PluginsList() {
                       <span className="button-title">Bekijk op Modrinth</span>
                     </span>
                   </a>
-                  <span className="version-badge utrecht-badge utrecht-badge--info">
-                    v{modpack.version}
-                  </span>
+                  <div className="version-info">
+                    <span className="version-badge utrecht-badge utrecht-badge--info">
+                      v{modpack.version}
+                    </span>
+                    <span className="game-version-badge utrecht-badge">
+                      MC {modpack.gameVersion}
+                    </span>
+                  </div>
+                  <div className="modpack-metadata">
+                    <div className="metadata-item">
+                      <span className="metadata-label">Downloads:</span>
+                      <span className="metadata-value">{modpack.downloads}</span>
+                    </div>
+                    <div className="metadata-item">
+                      <span className="metadata-label">Gepubliceerd:</span>
+                      <span className="metadata-value">{modpack.publishedDate}</span>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -130,9 +145,6 @@ export default function PluginsList() {
                     <th className="utrecht-table__header-cell" scope="col">
                       Versie
                     </th>
-                    <th className="utrecht-table__header-cell" scope="col">
-                      Status
-                    </th>
                   </tr>
                 </thead>
                 <tbody className="utrecht-table__body">
@@ -154,17 +166,6 @@ export default function PluginsList() {
                         <code className="version-code utrecht-code">
                           {plugin.version}
                         </code>
-                      </td>
-                      <td className="utrecht-table__cell">
-                        {plugin.required ? (
-                          <span className="utrecht-badge utrecht-badge--danger">
-                            Verplicht
-                          </span>
-                        ) : (
-                          <span className="utrecht-badge utrecht-badge--neutral">
-                            Optioneel
-                          </span>
-                        )}
                       </td>
                     </tr>
                   ))}

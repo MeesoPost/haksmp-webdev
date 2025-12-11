@@ -347,10 +347,13 @@ export const plugins = [
 
 export const modpacks = [
   {
-    "id": "enhanced",
-    "name": "Enhanced",
-    "version": "1.0.0",
-    "modrinthUrl": "https://modrinth.com/modpack/A1fB3OWk"
+    "id": "xHbmttcv",
+    "name": "HAK SMP - Landen & Dorpen Editie",
+    "version": "1.1.0",
+    "gameVersion": "1.21.10",
+    "modrinthUrl": "https://modrinth.com/modpack/A1fB3OWk",
+    "downloads": 202,
+    "publishedDate": "18 november 2025"
   }
 ];
 
