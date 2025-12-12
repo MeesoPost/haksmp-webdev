@@ -4,6 +4,36 @@ import YouTubeVideo from '../components/YouTubeVideo.astro';
 import Footer from '../components/Footer';
 ---
 
+<script>
+  function highlightActiveLink() {
+    const links = document.querySelectorAll('.wiki-toc-link');
+    const sections = document.querySelectorAll('[id="tutorials"], [id="rules"], [id="gameplay"]');
+
+    function updateActiveLink() {
+      let currentSection = '';
+
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 200) {
+          currentSection = section.id;
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', updateActiveLink);
+    updateActiveLink();
+  }
+
+  document.addEventListener('DOMContentLoaded', highlightActiveLink);
+</script>
+
 <Layout title="Wiki - HAK SMP - Landen & Dorpen Editie" description="Alles wat je moet weten over de HAK SMP - Landen & Dorpen Editie. Regels, tutorials en speelwijze." currentPage="wiki">
   <div class="wiki-wrapper">
     <aside class="wiki-sidebar-left">
@@ -11,9 +41,9 @@ import Footer from '../components/Footer';
         <div class="wiki-nav-section">
           <h3 class="wiki-nav-title">Documentatie</h3>
           <ul class="wiki-nav-list">
-            <li><a href="#tutorials" class="wiki-nav-link">📚 Tutorials</a></li>
-            <li><a href="#rules" class="wiki-nav-link">⚖️ Regels</a></li>
-            <li><a href="#gameplay" class="wiki-nav-link">🎮 Speelwijze</a></li>
+            <li><a href="#tutorials" class="wiki-nav-link">Tutorials</a></li>
+            <li><a href="#rules" class="wiki-nav-link">Regels</a></li>
+            <li><a href="#gameplay" class="wiki-nav-link">Speelwijze</a></li>
           </ul>
         </div>
       </nav>
@@ -24,6 +54,11 @@ import Footer from '../components/Footer';
       <section class="wiki-hero">
         <h1>Wiki</h1>
         <p class="subtitle">Alles wat je moet weten over de HAK SMP - Landen & Dorpen Editie</p>
+      </section>
+
+      <section class="wiki-progressboard">
+        <h2 class="progressboard-title">Progressboard</h2>
+        <img src="../../public/images/progressboard.jpg" alt="HAK SMP Season 4 Progressboard: Iron Gear (November 21), Diamond Gear (December 5), Nether Opening (December 19), Shulker Boxes (January 2)" class="progressboard-image" />
       </section>
 
       <section class="wiki-content">
@@ -245,10 +280,14 @@ import Footer from '../components/Footer';
     width: 280px;
     background: transparent;
     padding: var(--space-lg);
-    position: sticky;
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+    position: fixed;
     top: 80px;
+    right: var(--space-lg);
     height: calc(100vh - 80px);
     overflow-y: auto;
+    text-align: left;
   }
 
   .wiki-nav-section {
@@ -280,25 +319,28 @@ import Footer from '../components/Footer';
 
   .wiki-nav-link {
     display: block;
-    padding: 0.75rem 1rem;
+    padding: 0.75rem 1rem 0.75rem 1.5rem;
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
     transition: all 0.2s ease;
     border-left: 4px solid transparent;
-    border-radius: 6px;
+    margin: 0 -1.5rem;
+    margin-left: -1.5rem;
+    padding-left: 1.5rem;
     font-family: var(--root-font-family--primary);
+    text-align: left;
   }
 
   .wiki-nav-link:hover {
     color: rgba(255, 255, 255, 0.95);
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(80, 91, 27, 0.3);
     border-left-color: rgba(80, 91, 27, 0.7);
   }
 
   .wiki-nav-link:active {
-    background: rgba(80, 91, 27, 0.2);
+    background: rgba(80, 91, 27, 0.4);
     color: #ffffff;
     border-left-color: rgba(80, 91, 27, 1);
   }
@@ -332,15 +374,15 @@ import Footer from '../components/Footer';
 
   .wiki-toc-link {
     display: block;
-    padding: 0.5rem 0;
+    padding: 0.5rem 0 0.5rem 0.75rem;
     color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 400;
     transition: all 0.2s ease;
     border-left: 3px solid transparent;
-    padding-left: 0.75rem;
     font-family: var(--root-font-family--primary);
+    text-align: left;
   }
 
   .wiki-toc-link:hover {
@@ -348,9 +390,10 @@ import Footer from '../components/Footer';
     border-left-color: rgba(80, 91, 27, 0.5);
   }
 
-  .wiki-toc-link:active {
+  .wiki-toc-link.active {
     color: #ffffff;
     border-left-color: rgba(80, 91, 27, 1);
+    background: rgba(80, 91, 27, 0.15);
   }
 
   .wiki-toc-nested {
@@ -379,8 +422,8 @@ import Footer from '../components/Footer';
 
   .wiki-hero {
     background: #1a1a2e;
-    padding: 2rem 2rem 1rem 2rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem 2rem 0.5rem 2rem;
+    border-bottom: none;
   }
 
   .wiki-hero h1 {
@@ -392,9 +435,33 @@ import Footer from '../components/Footer';
   }
 
   .wiki-hero .subtitle {
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
     font-weight: 400;
+    font-family: var(--root-font-family--primary);
+    margin: 0;
+  }
+
+  .wiki-progressboard {
+    background: #1a1a2e;
+    padding: 0.75rem 2rem 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .progressboard-title {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    font-family: var(--root-font-family--primary);
+    letter-spacing: -0.5px;
+  }
+
+  .progressboard-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
   }
 
   .wiki-content {
