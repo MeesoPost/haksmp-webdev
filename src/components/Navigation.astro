@@ -6,24 +6,49 @@ interface Props {
 const { currentPage } = Astro.props;
 ---
 
-<nav class="navigation">
+<nav class="navigation" role="navigation" aria-label="Main navigation">
   <div class="nav-container">
-    <a href="/" class={currentPage === 'home' ? 'nav-link active' : 'nav-link'}>
+    <a
+      href="/"
+      class={`nav-link ${currentPage === 'home' ? 'active' : ''}`}
+      aria-current={currentPage === 'home' ? 'page' : undefined}
+    >
       Home
     </a>
-    <a href="/wiki" class={currentPage === 'wiki' ? 'nav-link active' : 'nav-link'}>
+    <a
+      href="/wiki"
+      class={`nav-link ${currentPage === 'wiki' ? 'active' : ''}`}
+      aria-current={currentPage === 'wiki' ? 'page' : undefined}
+    >
       Wiki
     </a>
-    <a href="/plugins" class={currentPage === 'plugins' ? 'nav-link active' : 'nav-link'}>
+    <a
+      href="/plugins"
+      class={`nav-link ${currentPage === 'plugins' ? 'active' : ''}`}
+      aria-current={currentPage === 'plugins' ? 'page' : undefined}
+    >
       Mods & Plugins
     </a>
   </div>
 </nav>
 
 <style>
+  /* Design tokens */
+  :root {
+    --nav-bg-primary: hsl(80, 91%, 27%);
+    --nav-bg-dark: hsl(80, 91%, 17%);
+    --nav-accent: hsl(29, 89%, 61%);
+    --nav-text-primary: rgba(255, 255, 255, 0.95);
+    --nav-hover-bg: hsl(80, 91%, 37%);
+    --nav-active-bg: hsl(80, 80%, 32%);
+    --nav-line-inactive: rgba(255, 255, 255, 0.15);
+    --nav-line-active: hsl(80, 91%, 42%);
+    --nav-focus-color: hsl(52, 100%, 50%);
+  }
+
   .navigation {
-    background: linear-gradient(135deg, hsl(80, 91%, 27%) 0%, hsl(80, 91%, 17%) 100%);
-    border-bottom: 3px solid var(--root-color--support);
+    background: linear-gradient(135deg, var(--nav-bg-primary) 0%, var(--nav-bg-dark) 100%);
+    border-bottom: 3px solid var(--nav-accent);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -31,58 +56,101 @@ const { currentPage } = Astro.props;
   }
 
   .nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-md);
     display: flex;
-    gap: var(--space-lg);
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    gap: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-left: 12%;
   }
 
   .nav-link {
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--nav-text-primary);
     text-decoration: none;
-    padding: var(--space-sm) var(--space-md);
-    font-weight: 500;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    padding: 1.25rem 2rem;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
     position: relative;
-    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    flex-shrink: 0;
   }
 
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--nav-line-inactive);
+    transition: background-color 0.2s ease;
+  }
+
+  /* Hover state */
   .nav-link:hover {
+    background-color: var(--nav-hover-bg);
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
   }
 
+  .nav-link:hover::before {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  /* Active state */
   .nav-link.active {
+    background-color: var(--nav-active-bg);
     color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
-    border-bottom: 3px solid #ffdd00;
   }
 
-  @media (max-width: 768px) {
-    .nav-container {
-      gap: var(--space-sm);
-      padding: 0 var(--space-sm);
+  .nav-link.active::before {
+    background: var(--nav-line-active);
+  }
+
+  /* Focus state (keyboard navigation) */
+  .nav-link:focus-visible {
+    outline: 3px solid var(--nav-focus-color);
+    outline-offset: -3px;
+  }
+
+  /* Respect prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .nav-link {
+      transition: background-color 0.1s ease, color 0.1s ease;
     }
 
+    .nav-link::before {
+      transition: background-color 0.1s ease;
+    }
+  }
+
+  /* Tablet breakpoint */
+  @media (max-width: 768px) {
     .nav-link {
-      padding: var(--space-xs) var(--space-sm);
+      padding: 1.1rem 1.6rem;
       font-size: 0.95rem;
     }
   }
 
+  /* Mobile breakpoint */
   @media (max-width: 480px) {
-    .nav-container {
-      gap: var(--space-xs);
+    .nav-link {
+      padding: 1rem 1.2rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: more) {
+    .nav-link:focus-visible {
+      outline: 4px solid var(--nav-focus-color);
+      outline-offset: -4px;
     }
 
-    .nav-link {
-      padding: var(--space-xs) var(--space-xs);
-      font-size: 0.9rem;
+    .nav-link::before {
+      height: 4px;
     }
   }
 </style>

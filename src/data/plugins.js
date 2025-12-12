@@ -1,4 +1,4 @@
-// Auto-generated from Modrinth API on 2025-12-11
+// Auto-generated from Modrinth API on 2025-12-12
 // Modpack ID: A1fB3OWk
 // DO NOT EDIT MANUALLY - changes will be overwritten on next build
 
@@ -363,5 +363,5 @@ export const modpackInfo = {
   "minecraftVersion": "1.21.10",
   "forgeVersion": "FABRIC",
   "totalMods": 34,
-  "lastUpdated": "2025-12-11"
+  "lastUpdated": "2025-12-12"
 };

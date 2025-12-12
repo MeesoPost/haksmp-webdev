@@ -5,17 +5,30 @@ import Footer from '../components/Footer';
 ---
 
 <Layout title="Wiki - HAK SMP - Landen & Dorpen Editie" description="Alles wat je moet weten over de HAK SMP - Landen & Dorpen Editie. Regels, tutorials en speelwijze." currentPage="wiki">
-  <section class="wiki-hero">
-    <div class="container">
-      <h1>Wiki</h1>
-      <p class="subtitle">Alles wat je moet weten over de HAK SMP - Landen & Dorpen Editie</p>
-    </div>
-  </section>
+  <div class="wiki-wrapper">
+    <aside class="wiki-sidebar-left">
+      <nav class="wiki-nav">
+        <div class="wiki-nav-section">
+          <h3 class="wiki-nav-title">Documentatie</h3>
+          <ul class="wiki-nav-list">
+            <li><a href="#tutorials" class="wiki-nav-link">📚 Tutorials</a></li>
+            <li><a href="#rules" class="wiki-nav-link">⚖️ Regels</a></li>
+            <li><a href="#gameplay" class="wiki-nav-link">🎮 Speelwijze</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
 
-  <section class="wiki-content">
-    <div class="container">
+    <main class="wiki-main">
+      <div class="wiki-main-wrapper">
+      <section class="wiki-hero">
+        <h1>Wiki</h1>
+        <p class="subtitle">Alles wat je moet weten over de HAK SMP - Landen & Dorpen Editie</p>
+      </section>
+
+      <section class="wiki-content">
       <!-- Tutorials Section -->
-      <section class="wiki-section">
+      <section class="wiki-section" id="tutorials">
         <h2>📚 Tutorials</h2>
         <p class="section-intro">Bekijk deze video's om snel aan de slag te gaan op de HAK SMP!</p>
 
@@ -23,78 +36,77 @@ import Footer from '../components/Footer';
           <div class="video-card">
             <h3>Hoe join je de server?</h3>
             <YouTubeVideo videoId="ZLTyRukyHqY" title="Hoe join je de HAK SMP - Landen & Dorpen Editie?" />
-            <p class="video-description">Leer stap voor stap hoe je de HAK SMP server kan joinen.</p>
           </div>
 
           <div class="video-card">
             <h3>Hoe start je een land?</h3>
             <YouTubeVideo videoId="3Wcep9TlNl0" title="Hoe je een land start op de HAK SMP - Landen & Dorpen Editie" />
-            <p class="video-description">Ontdek hoe je jouw eigen land kunt starten en claimen op de server.</p>
           </div>
         </div>
       </section>
 
       <!-- Rules Section -->
-      <section class="wiki-section">
+      <section class="wiki-section" id="rules">
         <h2>⚖️ Regels</h2>
-        <p class="section-intro">Deze regels zorgen ervoor dat iedereen een fijne tijd heeft op de server!</p>
+        <p class="section-intro">Hieronder vind je de algemene regels die gelden op de HAK SMP - Landen & Dorpen Editie!</p>
 
         <div class="rules-grid">
           <div class="rule-card">
-            <h3>Gedrag in de Discord Server</h3>
+            <h3>1. Gedrag in de Discord Server</h3>
             <ul>
               <li>Wees respectvol tegen iedereen en houd het gezellig.</li>
               <li>Schelden, pesten, beledigen of provoceren wordt niet getolereerd.</li>
-              <li>Persoonlijke gegevens delen is strikt verboden.</li>
-              <li>Volg altijd de aanwijzingen van de mods.</li>
+              <li>Persoonlijke gegevens delen (van jezelf of anderen) is strikt verboden.</li>
+              <li>Volg altijd de aanwijzingen van de mods. Zij hebben beslisrecht in elke situatie.</li>
               <li>Geen NSFW, racistische of haatdragende content.</li>
               <li>Gebruik de juiste kanalen voor de juiste onderwerpen.</li>
-              <li>Overleg over Minecraftserver hoort op de server te blijven.</li>
+              <li>Overleg of discussies die horen bij de Minecraftserver, horen op de server te blijven en niet uitgebreid te worden in Discord.</li>
             </ul>
           </div>
 
           <div class="rule-card">
-            <h3>Gedrag op de Minecraft Server</h3>
+            <h3>2. Gedrag op de Minecraft Server</h3>
             <ul>
-              <li>Proximity voicechat betekent akkoord met gebruik stem voor content.</li>
-              <li>Griefen, stelen of opzettelijk verpesten is verboden (tenzij afgesproken).</li>
-              <li>Onnodig lag veroorzaken is niet toegestaan.</li>
+              <li>Proximity voicechat gebruiken betekent dat je akkoord gaat dat je stem gebruikt mag worden voor content creation (streams, video's etc.). Uiteraard mag jij zelf ook content maken over de server!</li>
+              <li>Griefen, stelen of opzettelijk andermans spel verpesten is verboden, tenzij beide partijen duidelijk akkoord zijn (bijvoorbeeld via roleplay tussen landen).</li>
+              <li>Onnodig lag veroorzaken (mass farms, TNT abuse, etc.) is niet toegestaan.</li>
               <li>Respecteer landgrenzen, bases en builds van anderen.</li>
-              <li>Builds kapot maken is in geen enkele situatie toegestaan.</li>
-              <li>Oorlogen/roleplay tussen landen mogen alleen met duidelijke instemming.</li>
-              <li>Conflicten blijven op de server, niet persoonlijk.</li>
-              <li>Mods hebben altijd het laatste woord.</li>
+              <li>Het is in geen enkele situatie toegestaan om builds van je eigen of andere landen kapot te maken.</li>
+              <li>Eventuele oorlogen / roleplay spelen zich af in de grijze gebieden, zolang alle betrokken partijen het hiermee eens zijn.</li>
+              <li>Conflicten die op de server ontstaan, blijven op de server. Laat conflicten tussen spelers of landen geen persoonlijke ruzies worden.</li>
+              <li>De mods hebben altijd het laatste woord, ook in-game.</li>
             </ul>
           </div>
 
           <div class="rule-card">
-            <h3>Regels voor Landen & Diplomatie</h3>
+            <h3>3. Regels voor Landen & Diplomatie</h3>
             <ul>
-              <li>Respecteer het gekozen landensysteem.</li>
-              <li>Overleg tussen spelers gebeurt op een volwassen, duidelijke manier.</li>
-              <li>Oorlog, onderhandelingen en bondgenootschappen in SMP-context.</li>
-              <li>Landconflicten blijven ingame, niet in Discord of privé.</li>
-              <li>Samenwerking tussen landen is toegestaan en moet eerlijk blijven.</li>
-              <li>Grote gebeurtenissen moeten duidelijk gecommuniceerd worden.</li>
-              <li>Moderators mogen ingrijpen wanneer conflict te ver gaat.</li>
+              <li>Respecteer het gekozen landensysteem. Houd roleplay, grenzen, oorlogen, vriendschappen en conflicten netjes en ingame.</li>
+              <li>Overleg tussen spelers en landen moet op een volwassen, duidelijke manier verlopen.</li>
+              <li>Oorlog, onderhandelingen, bondgenootschappen of afspraken gebeuren binnen de SMP-context, niet als persoonlijke aanvallen.</li>
+              <li>Landconflicten of meningsverschillen horen niet door te sijpelen naar Discord of privégesprekken. Houd discussies bij het spel.</li>
+              <li>Samenwerking tussen landen is toegestaan, houd dit altijd eerlijk en transparant.</li>
+              <li>Grote gebeurtenissen (oorlogen, evenementen, etc.) moeten duidelijk worden gecommuniceerd aan betrokken partijen.</li>
+              <li>Moderators mogen ingrijpen wanneer een conflict te ver gaat of oneerlijk wordt.</li>
             </ul>
           </div>
         </div>
 
         <div class="info-box">
-          <p><strong>Heb je vragen of twijfel je ergens over?</strong> Vraag het gerust aan de staff! ❤️</p>
+          <p>Deze regels zijn er om de server leuk, eerlijk en overzichtelijk te houden. Heb je vragen of twijfel je ergens over? Vraag het gerust aan de staff. ❤️ Veel speelplezier!</p>
         </div>
       </section>
 
       <!-- Gameplay Section -->
-      <section class="wiki-section">
+      <section class="wiki-section" id="gameplay">
         <h2>🎮 Speelwijze</h2>
         <p class="section-intro">Dit is hoe het landensysteem werkt op de HAK SMP.</p>
 
         <div class="gameplay-grid">
           <div class="gameplay-card">
             <h3>1. Landen & Kaartindeling</h3>
-            <p>Op de kaart <strong>map.haksmp.nl</strong> staan alle landen strak uitgelijnd. Dit is de maximale grens voor je land.</p>
+            <p>Op de kaart <strong>map.haksmp.nl</strong> staan alle landen strak uitgelijnd. Dit is de maximale grens waar jouw land binnen mag claimen. Het is de bedoeling dat je alleen bouwt binnen de chunks die jouw land officieel heeft geclaimd.</p>
+
             <div class="gameplay-rule">
               <strong>Je mag bouwen op:</strong>
               <ul>
@@ -102,298 +114,556 @@ import Footer from '../components/Footer';
                 <li>Spawn</li>
               </ul>
             </div>
+
             <div class="gameplay-rule">
               <strong>Je mag niet bouwen in:</strong>
               <ul>
                 <li>Andere geclaimde landen</li>
-                <li>Ongeclaimde gebieden die niet aan jouw land grenzen</li>
+                <li>Ongeclaimde gebieden die niet aan jouw land grenzen (behalve bij speciale regels zoals hieronder uitgelegd)</li>
               </ul>
             </div>
           </div>
 
           <div class="gameplay-card">
             <h3>2. Grijze Gebieden</h3>
-            <p>Grenzen jouw chunks aan een grijs gebied, dan mag jouw land in dit hele gebied bouwen.</p>
-            <div class="gameplay-rule">
-              <strong>Let op:</strong> Als jouw buurland ook aan hetzelfde grijze gebied grenst, hebben beide landen evenveel recht op dit gebied. Hoe je ermee omgaat is volledig aan jullie.
-            </div>
+            <p>Grenzen jouw geclaimde chunks aan een grijs gebied, dan mag jouw land in dit hele gebied bouwen. Maar let op:</p>
+            <p>Grens jouw buurland ook aan hetzelfde grijze gebied? Dan hebben beide landen evenveel recht op dit gebied. Hier mogen landen dus bouwen, samenwerken of elkaar uitdagen. Hoe je ermee omgaat is volledig aan jullie.</p>
           </div>
 
           <div class="gameplay-card">
-            <h3>3. Minen & Resources</h3>
-            <p>Om het spel vrij en speelbaar te houden, gelden deze mining-regels:</p>
+            <h3>3. Minen & Resources verzamelen</h3>
+            <p>Om het spel vrij en speelbaar te houden gelden de volgende mining-regels:</p>
+
             <div class="gameplay-rule">
-              <strong>Vrij minen overal, behalve:</strong>
+              <strong>Vrij minen is overal toegestaan, behalve:</strong>
               <ul>
                 <li>Direct door bouwwerken van andere landen</li>
                 <li>Minen waarbij je andermans land schade toebrengt</li>
               </ul>
             </div>
+
             <div class="gameplay-rule">
-              <strong>Resources zoeken mag onder elk land, als:</strong>
+              <strong>Wat mag wél:</strong>
+              <p>Je mag resources zoeken <strong>onder</strong> elk land, zolang:</p>
               <ul>
-                <li>De chunks niet geclaimd zijn</li>
-                <li>Je het land niet stoort of beschadigt</li>
+                <li>de chunks niet geclaimd zijn</li>
+                <li>je het land niet stoort of beschadigd</li>
               </ul>
+              <p>Je mag farms bouwen (bijv. skeleton spawner, zombie spawner, dripstone farm) in ongeclaimde chunks, ongeacht waar op de map. Deze farms zijn te claimen door als bouwer een sign met je landnaam zichtbaar neer te zetten.</p>
             </div>
+
             <div class="gameplay-rule">
-              <strong>Farms in ongeclaimde chunks:</strong> Je mag farms (skeleton spawner, zombie spawner, etc.) bouwen. Claim ze door een sign met je landnaam. Als een ander land later de chunk claimt, blijft jij toegang houden maar mag het land de farm niet aanpassen.
+              <strong>Belangrijk:</strong>
+              <p>Als een ander land later de chunk claimt waarin jouw farm staat:</p>
+              <ul>
+                <li>Deze farm wordt eigendom van het gebied, maar jij en jouw land houden altijd toegang</li>
+                <li>Het claimende land mag de farm niet aanpassen, verplaatsen of verwijderen mits je hier samen afspraken over maakt</li>
+              </ul>
             </div>
           </div>
 
           <div class="gameplay-card">
             <h3>4. Paden & Wegen</h3>
             <p>Paden zijn belangrijk voor verbindingen tussen landen en spawn.</p>
+
             <div class="gameplay-rule">
-              <strong>Je mag een pad bouwen van je land naar spawn via:</strong>
+              <strong>Je mag een pad bouwen direct van je land naar spawn.</strong>
+              <p>Dit pad mag door:</p>
               <ul>
                 <li>Grijze gebieden</li>
                 <li>Ongeclaimde chunks</li>
                 <li>Andermans land (mits niet geclaimd)</li>
               </ul>
             </div>
+
             <div class="gameplay-rule">
-              <strong>Als het land waar je doorheen gaat dit claimt:</strong>
+              <strong>Als het land waar je doorheen gaat later de grond claimt:</strong>
               <ul>
                 <li>Het pad moet blijven bestaan</li>
-                <li>Het mag optisch verbeterd worden (met akkoord maker)</li>
-                <li>Toegang blijft gegarandeerd</li>
+                <li>Het mag optisch worden verbeterd of verplaatst, maar alleen als de oorspronkelijke maker akkoord gaat</li>
+                <li>Toegang tot het pad blijft gegarandeerd</li>
               </ul>
             </div>
           </div>
         </div>
       </section>
-    </div>
-  </section>
+      </section>
+      </section>
+      </div>
+
+      <aside class="wiki-sidebar-right">
+        <nav class="wiki-toc">
+          <h3 class="wiki-toc-title">Op deze pagina</h3>
+          <ul class="wiki-toc-list">
+            <li><a href="#tutorials" class="wiki-toc-link">Tutorials</a></li>
+            <li><a href="#rules" class="wiki-toc-link">Regels</a></li>
+            <li class="wiki-toc-nested">
+              <ul>
+                <li><a href="#rules" class="wiki-toc-link">Gedrag in Discord</a></li>
+                <li><a href="#rules" class="wiki-toc-link">Gedrag op Server</a></li>
+                <li><a href="#rules" class="wiki-toc-link">Landen & Diplomatie</a></li>
+              </ul>
+            </li>
+            <li><a href="#gameplay" class="wiki-toc-link">Speelwijze</a></li>
+            <li class="wiki-toc-nested">
+              <ul>
+                <li><a href="#gameplay" class="wiki-toc-link">Landen & Kaartindeling</a></li>
+                <li><a href="#gameplay" class="wiki-toc-link">Grijze Gebieden</a></li>
+                <li><a href="#gameplay" class="wiki-toc-link">Minen & Resources</a></li>
+                <li><a href="#gameplay" class="wiki-toc-link">Paden & Wegen</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </main>
+  </div>
 
   <Footer />
 </Layout>
 
 <style>
+  .wiki-wrapper {
+    display: flex;
+    background: #1a1a2e;
+    min-height: calc(100vh - var(--space-2xl));
+  }
+
+  /* Sidebar */
+  .wiki-sidebar-left {
+    width: 320px;
+    background: #16213e;
+    border-right: 2px solid rgba(255, 255, 255, 0.1);
+    padding: var(--space-lg) var(--space-lg);
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .wiki-sidebar-right {
+    width: 280px;
+    background: transparent;
+    padding: var(--space-lg);
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .wiki-nav-section {
+    margin-bottom: var(--space-lg);
+  }
+
+  .wiki-nav-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+    font-family: var(--root-font-family--primary);
+  }
+
+  .wiki-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wiki-nav-list li {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .wiki-nav-link {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+    font-family: var(--root-font-family--primary);
+  }
+
+  .wiki-nav-link:hover {
+    color: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: rgba(80, 91, 27, 0.7);
+  }
+
+  .wiki-nav-link:active {
+    background: rgba(80, 91, 27, 0.2);
+    color: #ffffff;
+    border-left-color: rgba(80, 91, 27, 1);
+  }
+
+  /* Table of Contents */
+  .wiki-toc {
+    width: 100%;
+  }
+
+  .wiki-toc-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0;
+    margin-bottom: var(--space-lg);
+    font-family: var(--root-font-family--primary);
+  }
+
+  .wiki-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .wiki-toc-list li {
+    padding: 0;
+    margin: 0;
+  }
+
+  .wiki-toc-link {
+    display: block;
+    padding: 0.5rem 0;
+    color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+    padding-left: 0.75rem;
+    font-family: var(--root-font-family--primary);
+  }
+
+  .wiki-toc-link:hover {
+    color: rgba(255, 255, 255, 0.9);
+    border-left-color: rgba(80, 91, 27, 0.5);
+  }
+
+  .wiki-toc-link:active {
+    color: #ffffff;
+    border-left-color: rgba(80, 91, 27, 1);
+  }
+
+  .wiki-toc-nested {
+    display: none;
+  }
+
+  .wiki-toc-nested ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  /* Main content */
+  .wiki-main {
+    display: flex;
+    flex: 1;
+    padding: 0;
+  }
+
+  .wiki-main-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 900px;
+  }
+
   .wiki-hero {
-    background: linear-gradient(135deg, hsl(80, 91%, 27%) 0%, hsl(80, 91%, 17%) 100%);
-    padding: var(--space-lg) var(--space-md);
-    text-align: center;
-    border-bottom: 3px solid var(--root-color--support);
+    background: #1a1a2e;
+    padding: 2rem 2rem 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .wiki-hero h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: 1.8rem;
     color: #ffffff;
-    margin-bottom: var(--space-sm);
-    font-family: "Monocraft", "Minecraft-Seven", var(--root-font-family--secondary);
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 0.5rem;
+    font-family: var(--root-font-family--primary);
+    font-weight: 700;
   }
 
   .wiki-hero .subtitle {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    font-weight: 400;
   }
 
   .wiki-content {
-    padding: var(--space-lg) var(--space-md);
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-md);
+    padding: 2rem;
   }
 
   .wiki-section {
-    margin-bottom: var(--space-2xl);
+    margin-bottom: 2rem;
+    scroll-margin-top: 100px;
   }
 
   .wiki-section h2 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    color: var(--root-color--primary);
-    margin-bottom: var(--space-md);
-    padding-bottom: var(--space-sm);
-    border-bottom: 3px solid var(--root-color--support);
-    font-family: "Monocraft", "Minecraft-Seven", var(--root-font-family--secondary);
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0;
+    border-bottom: none;
+    font-family: var(--root-font-family--primary);
+    font-weight: 700;
+    letter-spacing: -0.5px;
   }
 
   .section-intro {
-    font-size: 1.1rem;
-    color: var(--root-color--secondary);
-    margin-bottom: var(--space-lg);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-family: var(--root-font-family--primary);
   }
 
   /* Video Grid */
   .video-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .video-card {
-    background: var(--root-color--white);
-    border: 2px solid var(--root-color--support);
-    padding: var(--space-md);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1rem;
     border-radius: 8px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .video-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
   .video-card h3 {
-    color: var(--root-color--primary);
-    margin-bottom: var(--space-md);
-    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: var(--root-font-family--primary);
   }
 
   .video-description {
     margin-top: var(--space-md);
-    color: var(--root-color--secondary);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 0.95rem;
+    line-height: 1.6;
+    font-family: var(--root-font-family--primary);
   }
 
   /* Rules Grid */
   .rules-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0;
   }
 
   .rule-card {
-    background: linear-gradient(135deg, rgba(80, 91, 27, 0.05) 0%, rgba(80, 91, 27, 0.02) 100%);
-    border-left: 4px solid hsl(80, 91%, 27%);
-    padding: var(--space-md);
-    border-radius: 4px;
+    background: transparent;
+    border: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+  }
+
+  .rule-card:last-child {
+    border-bottom: none;
   }
 
   .rule-card h3 {
-    color: var(--root-color--primary);
-    margin-bottom: var(--space-sm);
-    font-size: 1.1rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: var(--root-font-family--primary);
   }
 
   .rule-card ul {
-    list-style-position: inside;
-    color: var(--root-color--secondary);
-    line-height: 1.8;
-    font-size: 0.95rem;
+    list-style-position: outside;
+    list-style-type: disc;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.6;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    font-family: var(--root-font-family--primary);
+    margin-bottom: 0;
   }
 
   .rule-card li {
-    margin-bottom: var(--space-xs);
+    margin-bottom: 0.25rem;
   }
 
   .info-box {
-    background: linear-gradient(135deg, hsl(80, 91%, 27%) 0%, hsl(80, 91%, 17%) 100%);
-    color: white;
-    padding: var(--space-lg);
-    border-radius: 8px;
-    text-align: center;
-    font-size: 1.1rem;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+    font-size: 1rem;
+    line-height: 1.6;
+    font-family: var(--root-font-family--primary);
   }
 
   /* Gameplay Grid */
   .gameplay-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 0;
   }
 
   .gameplay-card {
-    background: var(--root-color--white);
-    border: 2px solid var(--root-color--support);
-    padding: var(--space-md);
-    border-radius: 8px;
+    background: transparent;
+    border: none;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0;
+  }
+
+  .gameplay-card:last-child {
+    border-bottom: none;
   }
 
   .gameplay-card h3 {
-    color: var(--root-color--primary);
-    margin-bottom: var(--space-sm);
-    font-size: 1.15rem;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: var(--root-font-family--primary);
   }
 
   .gameplay-card > p {
-    color: var(--root-color--secondary);
-    margin-bottom: var(--space-md);
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.5rem;
     line-height: 1.6;
+    font-size: 1rem;
+    font-family: var(--root-font-family--primary);
   }
 
   .gameplay-rule {
-    background: rgba(80, 91, 27, 0.05);
-    padding: var(--space-sm);
-    margin-bottom: var(--space-sm);
-    border-left: 3px solid hsl(80, 91%, 27%);
+    background: transparent;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
   }
 
   .gameplay-rule strong {
-    color: var(--root-color--primary);
+    color: rgba(255, 255, 255, 0.98);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.25rem;
   }
 
-  .gameplay-rule ul {
-    list-style-position: inside;
-    color: var(--root-color--secondary);
-    margin-top: var(--space-xs);
-    font-size: 0.95rem;
-  }
-
-  .gameplay-rule li {
-    margin-left: var(--space-sm);
+  .gameplay-rule p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 0.25rem;
     line-height: 1.6;
   }
 
+  .gameplay-rule ul {
+    list-style-position: outside;
+    list-style-type: disc;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0.25rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    padding-left: 1.5rem;
+    line-height: 1.6;
+    font-family: var(--root-font-family--primary);
+  }
+
+  .gameplay-rule li {
+    line-height: 1.6;
+    margin-bottom: 0.25rem;
+  }
+
   /* Responsive */
-  @media (max-width: 768px) {
-    .wiki-hero {
-      padding: var(--space-md) var(--space-sm);
+  @media (max-width: 1200px) {
+    .wiki-sidebar-right {
+      display: none;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .wiki-wrapper {
+      flex-direction: column;
     }
 
-    .wiki-hero h1 {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
+    .wiki-main {
+      flex-direction: column;
+    }
+
+    .wiki-sidebar-left {
+      width: 100%;
+      position: relative;
+      top: 0;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: var(--space-md) 0;
+    }
+
+    .wiki-sidebar-right {
+      display: none;
+    }
+
+    .wiki-nav-section {
+      display: inline-block;
+      margin-right: var(--space-lg);
     }
 
     .wiki-content {
-      padding: var(--space-md) var(--space-sm);
+      padding: var(--space-md);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .wiki-sidebar-left {
+      padding: var(--space-sm) 0;
     }
 
-    .container {
-      padding: 0 var(--space-sm);
+    .wiki-nav-link {
+      padding: 0.4rem var(--space-sm);
+      font-size: 0.85rem;
     }
 
-    .video-grid,
-    .rules-grid,
-    .gameplay-grid {
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
+    .wiki-hero {
+      padding: var(--space-md);
     }
 
-    .video-card,
-    .gameplay-card {
-      border-radius: 6px;
+    .wiki-hero h1 {
+      font-size: 1.4rem;
     }
 
-    .rule-card {
-      border-radius: 2px;
+    .wiki-content {
+      padding: var(--space-md);
     }
   }
 
   @media (max-width: 480px) {
     .wiki-hero h1 {
-      font-size: clamp(1.25rem, 3vw, 2rem);
+      font-size: 1.2rem;
     }
 
     .wiki-section h2 {
-      font-size: clamp(1.25rem, 3vw, 2rem);
+      font-size: 1.05rem;
     }
 
-    .section-intro {
-      font-size: 1rem;
+    .wiki-nav-title {
+      font-size: 0.75rem;
+      padding: 0 var(--space-sm);
     }
 
-    .video-card h3,
-    .gameplay-card h3 {
-      font-size: 1.1rem;
+    .wiki-nav-link {
+      padding: 0.35rem var(--space-sm);
+      font-size: 0.8rem;
     }
   }
 </style>
